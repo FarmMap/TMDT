@@ -1,10 +1,10 @@
 // External files
 import Grid from "@mui/material/Grid";
 import React from "react";
-import { Carousel } from 'react-responsive-carousel';
+import Carousel from "react-material-ui-carousel";
 import DefaultLayOut from "../../components/defaultLayOut/DefaultLayOut";
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
-import GridViewIcon from '@mui/icons-material/GridView';
+import GridViewIcon from "@mui/icons-material/GridView";
 // Internal files
 // Styles
 import classNames from "classnames/bind";
@@ -14,6 +14,7 @@ import images from "../../../assets/images";
 const cx = classNames.bind(styles);
 
 const HomePage = () => {
+  const imageList = [images.banner, images.banner, images.banner];
   return (
     <DefaultLayOut>
       <Grid container className={cx("wrapper")}>
@@ -76,7 +77,7 @@ const HomePage = () => {
           </Grid>
 
           <Grid className={cx("sidebar-item")}>
-            <GridViewIcon style = {{fontSize:"27px"}} />
+            <GridViewIcon style={{ fontSize: "27px" }} />
             <span>
               Tất cả danh mục
               <KeyboardArrowRightRoundedIcon />
@@ -84,20 +85,14 @@ const HomePage = () => {
           </Grid>
         </Grid>
         <Grid item lg={9}>
-        <Carousel>
-                <div>
-                    <img src={images.banner} />                   
-                </div>
-                <div>
-                    <img src={images.banner} />
-                    
-                </div>
-                <div>
-                    <img src={images.banner} />
-                    
-                </div>
-            </Carousel>
-
+          <Carousel>
+            {imageList.map((image, index) => (
+              <Grid>
+                {" "}
+                <img src={image} key={index} alt="ITFSD-banner" />
+              </Grid>
+            ))}
+          </Carousel>
         </Grid>
       </Grid>
     </DefaultLayOut>
