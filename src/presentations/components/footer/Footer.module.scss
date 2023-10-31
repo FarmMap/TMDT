@@ -1,0 +1,25 @@
+.wrapper {
+  background-color: var(--white-color);
+  padding: 18px 36px;
+}
+
+.content-item {
+  p {
+    font-size: 1.8rem;
+    margin-bottom: 14px;
+    color: var(--black-color);
+  }
+
+  li {
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+    color: var(--text-color);
+
+    a {
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
