@@ -64,12 +64,12 @@ const Header = () => {
           style={{ borderRight: "1px solid #ddd", justifyContent: "center" }}
         >
           <Grid className={cx("img-wrapper")}>
-            <img src={images.yecaubaogia} alt="yecaubaogia-ITFSD" />
+            <img src={images.sansangvanchuyen} alt="yecaubaogia-ITFSD" />
           </Grid>
 
           <Grid className={cx("content-wrapper")}>
-            <h4>Yêu cầu báo giá</h4>
-            <p>Một yêu cầu, nhiều báo giá</p>
+            <h4>Sẵn sàng vận chuyển</h4>
+            <p>Đặt hàng trực tiếp, gửi hàng nhanh</p>
           </Grid>
         </Grid>
 
@@ -80,12 +80,12 @@ const Header = () => {
           style={{ justifyContent: "center" }}
         >
           <Grid className={cx("img-wrapper")}>
-            <img src={images.yecaubaogia} alt="yecaubaogia-ITFSD" />
+            <img src={images.dichvuhaucan} alt="yecaubaogia-ITFSD" />
           </Grid>
 
           <Grid className={cx("content-wrapper")}>
-            <h4>Yêu cầu báo giá</h4>
-            <p>Một yêu cầu, nhiều báo giá</p>
+            <h4>Dịch vụ hậu cần</h4>
+            <p>Vận chuyển theo đường bộ</p>
           </Grid>
         </Grid>
       </Grid>

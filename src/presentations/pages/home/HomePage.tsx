@@ -1,8 +1,10 @@
 // External files
 import Grid from "@mui/material/Grid";
 import React from "react";
+import { Carousel } from 'react-responsive-carousel';
 import DefaultLayOut from "../../components/defaultLayOut/DefaultLayOut";
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
+import GridViewIcon from '@mui/icons-material/GridView';
 // Internal files
 // Styles
 import classNames from "classnames/bind";
@@ -26,38 +28,77 @@ const HomePage = () => {
           </Grid>
 
           <Grid className={cx("sidebar-item")}>
-            <img src={images.traiCayTuoi} alt="ITFS sidebar" />
+            <img src={images.raucu} alt="ITFS sidebar" />
             <span>
-              Trái cây
+              Rau củ
               <KeyboardArrowRightRoundedIcon />
             </span>
           </Grid>
 
           <Grid className={cx("sidebar-item")}>
-            <img src={images.traiCayTuoi} alt="ITFS sidebar" />
+            <img src={images.thitvaca} alt="ITFS sidebar" />
             <span>
-              Trái cây
+              Thịt và cá
               <KeyboardArrowRightRoundedIcon />
             </span>
           </Grid>
 
           <Grid className={cx("sidebar-item")}>
-            <img src={images.traiCayTuoi} alt="ITFS sidebar" />
+            <img src={images.banh} alt="ITFS sidebar" />
             <span>
-              Trái cây
+              Tiệm bánh và đồ ăn nhẹ
               <KeyboardArrowRightRoundedIcon />
             </span>
           </Grid>
 
           <Grid className={cx("sidebar-item")}>
-            <img src={images.traiCayTuoi} alt="ITFS sidebar" />
+            <img src={images.sua} alt="ITFS sidebar" />
             <span>
-              Trái cây
+              Sữa và trứng
+              <KeyboardArrowRightRoundedIcon />
+            </span>
+          </Grid>
+
+          <Grid className={cx("sidebar-item")}>
+            <img src={images.douong} alt="ITFS sidebar" />
+            <span>
+              Đồ uống
+              <KeyboardArrowRightRoundedIcon />
+            </span>
+          </Grid>
+
+          <Grid className={cx("sidebar-item")}>
+            <img src={images.giavi} alt="ITFS sidebar" />
+            <span>
+              Gia vị
+              <KeyboardArrowRightRoundedIcon />
+            </span>
+          </Grid>
+
+          <Grid className={cx("sidebar-item")}>
+            <GridViewIcon style = {{fontSize:"27px"}} />
+            <span>
+              Tất cả danh mục
               <KeyboardArrowRightRoundedIcon />
             </span>
           </Grid>
         </Grid>
-        <Grid item lg={9}></Grid>
+        <Grid item lg={9}>
+        <Carousel>
+                <div>
+                    <img src={images.banner} />                   
+                </div>
+                <div>
+                    <img src={images.banner} />
+                    
+                </div>
+                <div>
+                    <img src={images.banner} />
+                    
+                </div>
+            </Carousel>
+
+        </Grid>
       </Grid>
     </DefaultLayOut>
   );
