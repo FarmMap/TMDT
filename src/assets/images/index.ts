@@ -11,6 +11,7 @@ const images = {
   sua: require("../images/sua.png"),
   banner: require("../images/banner.png"),
   rauSach: require("../images/rauSach.png"),
+  dashboard: require("../images/dashboard.png"),
 };
 
 export default images;

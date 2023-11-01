@@ -31,15 +31,20 @@
     height: 22px;
   }
 
+  
   .loginBtn {
-    background-color: #1c9a5e !important;
+    background-color: var(--primary-color) !important;
     box-shadow: none !important;
     font-size: 1.2rem !important;
     text-transform: none !important;
 
     &:hover {
-      opacity: 0.8;
+      background-color: var(--black-color);
     }
+    img{
+      height : 20px;
+      width :20px;
+  }
   }
 
   .signUpBtn {
@@ -58,10 +63,10 @@
 .heading {
   background-color: var(--white-color);
   border-radius: 12px;
-  width: 91vw !important;
+  width: 90vw !important;
   position: absolute;
-  top: 82px;
-  left: 78px;
+  top: 90px;
+  left: 91px;
 }
 
 .heading-item {

@@ -11,7 +11,7 @@ const Footer = () => {
     <Grid className={cx("wrapper")}>
       <Grid
         container
-        justifyContent={"space-around"}
+        justifyContent={"space-evenly"}
         className={cx("content-wrapper")}
       >
         <Grid item lg={2} className={cx("content-item")}>
@@ -29,75 +29,53 @@ const Footer = () => {
             </li>
             <li>
               <a href="http://itfsd.com" target="_blank" rel="noreferrer">
-                Trung tâm trợ giúp
-              </a>
-            </li>
-            <li>
-              <a href="http://itfsd.com" target="_blank" rel="noreferrer">
-                Trung tâm trợ giúp
-              </a>
-            </li>{" "}
-            <li>
-              <a href="http://itfsd.com" target="_blank" rel="noreferrer">
-                Trung tâm trợ giúp
-              </a>
-            </li>
-          </ul>
-        </Grid>
-
-        <Grid item lg={2} className={cx("content-item")}>
-          <p>Dịch vụ khách hàng</p>
-          <ul>
-            <li>
-              <a href="http://itfsd.com" target="_blank" rel="noreferrer">
-                Trung tâm trợ giúp
-              </a>
-            </li>
-            <li>
-              <a href="http://itfsd.com" target="_blank" rel="noreferrer">
                 Báo cáo lạm dụng
               </a>
             </li>
             <li>
               <a href="http://itfsd.com" target="_blank" rel="noreferrer">
-                Trung tâm trợ giúp
+                Gửi khiếu nại
               </a>
             </li>
             <li>
               <a href="http://itfsd.com" target="_blank" rel="noreferrer">
-                Trung tâm trợ giúp
-              </a>
-            </li>{" "}
-            <li>
-              <a href="http://itfsd.com" target="_blank" rel="noreferrer">
-                Trung tâm trợ giúp
+                Chính sách & quy định
               </a>
             </li>
+            
           </ul>
         </Grid>
+        
         <Grid item lg={2} className={cx("content-item")}>
-          <p>Dịch vụ khách hàng</p>
+          <p>Giới thiệu</p>
           <ul>
             <li>
               <a href="http://itfsd.com" target="_blank" rel="noreferrer">
-                Trung tâm trợ giúp
+                Về chúng tôi
               </a>
             </li>
             <li>
               <a href="http://itfsd.com" target="_blank" rel="noreferrer">
-                Báo cáo lạm dụng
+                ITFSD Blog
               </a>
             </li>
             <li>
               <a href="http://itfsd.com" target="_blank" rel="noreferrer">
-                Trung tâm trợ giúp
+                Điều khoản sử dụng
               </a>
             </li>
             <li>
               <a href="http://itfsd.com" target="_blank" rel="noreferrer">
-                Trung tâm trợ giúp
+                Điều kiện vận chuyển
               </a>
             </li>{" "}
+            
+          </ul>
+        </Grid>
+        <Grid item lg={2} className={cx("content-item")}>
+          <p>Hợp tác và liên kết</p>
+          <ul>
+            
             <li>
               <a href="http://itfsd.com" target="_blank" rel="noreferrer">
                 Trung tâm trợ giúp
@@ -106,28 +84,20 @@ const Footer = () => {
           </ul>
         </Grid>
         <Grid item lg={2} className={cx("content-item")}>
-          <p>Dịch vụ khách hàng</p>
+          <p>Phương thức thanh toán</p>
           <ul>
             <li>
               <a href="http://itfsd.com" target="_blank" rel="noreferrer">
                 Trung tâm trợ giúp
               </a>
             </li>
-            <li>
-              <a href="http://itfsd.com" target="_blank" rel="noreferrer">
-                Báo cáo lạm dụng
-              </a>
-            </li>
-            <li>
-              <a href="http://itfsd.com" target="_blank" rel="noreferrer">
-                Trung tâm trợ giúp
-              </a>
-            </li>
-            <li>
-              <a href="http://itfsd.com" target="_blank" rel="noreferrer">
-                Trung tâm trợ giúp
-              </a>
-            </li>{" "}
+            
+          </ul>
+        </Grid>
+        <Grid item lg={2} className={cx("content-item")}>
+          <p>Kết nối với chúng tôi</p>
+          <ul>
+            
             <li>
               <a href="http://itfsd.com" target="_blank" rel="noreferrer">
                 Trung tâm trợ giúp

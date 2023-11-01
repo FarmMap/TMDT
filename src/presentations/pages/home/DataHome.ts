@@ -64,7 +64,7 @@ const suggestProducts = [
     ],
   },
   {
-    heading: "Hàng mới về",
+    heading: "Sản phẩm bán chạy",
     productList: [
       {
         productSrc: images.rauSach,
@@ -93,7 +93,7 @@ const suggestProducts = [
     ],
   },
   {
-    heading: "Hàng mới về",
+    heading: "Sản phẩm giảm giá",
     productList: [
       {
         productSrc: images.rauSach,

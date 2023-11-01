@@ -30,13 +30,15 @@ const Header = () => {
         </Grid>
 
         <Grid className={cx("icon-wrapper")}>
-          <ShoppingCartIcon />
+        
           <Button className={cx("loginBtn")} variant="contained">
-            Đăng nhập
+          <img src={images.dashboard} alt = "dashboard-ITFSD"  />
+            Trang chủ
           </Button>
           <Button variant="outlined" className={cx("signUpBtn")}>
             Đăng kí
           </Button>
+          <ShoppingCartIcon />
         </Grid>
       </Grid>
 
