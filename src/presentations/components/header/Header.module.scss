@@ -17,35 +17,35 @@
 
 .search-wrapper {
   margin-left: 8px;
-  flex: 1;
+  width : 57%
 }
 
 .icon-wrapper {
-  width: 310px;
+  width: 410px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-
-  svg {
-    width: 22px;
-    height: 22px;
-  }
-
   
-  .loginBtn {
+  svg {
+    width: 27px;
+    height: 27px;
+  }
+  span{
+    padding-left : 5px;
+  }
+  
+.loginBtn {
     background-color: var(--primary-color) !important;
     box-shadow: none !important;
     font-size: 1.2rem !important;
     text-transform: none !important;
-
+    
     &:hover {
-      background-color: var(--black-color);
+      opacity : 0.8;
     }
-    img{
-      height : 20px;
-      width :20px;
+    
   }
-  }
+  
 
   .signUpBtn {
     color: var(--white-color) !important;
