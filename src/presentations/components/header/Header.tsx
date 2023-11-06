@@ -3,14 +3,19 @@ import React from "react";
 import { Button } from "@mui/material";
 import { Input } from "antd";
 import InputSearch from "./InputSearch";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import CurrencyExchangeRoundedIcon from '@mui/icons-material/CurrencyExchangeRounded';
+import SentimentSatisfiedAltRoundedIcon from '@mui/icons-material/SentimentSatisfiedAltRounded';
+import LocalMallRoundedIcon from '@mui/icons-material/LocalMallRounded';
 // Styles
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 import images from "../../../assets/images";
 
 const cx = classNames.bind(styles);
-
+const handleClick = () => {
+  window.location.reload();
+};
 const { Search } = Input;
 
 const Header = () => {
@@ -30,13 +35,20 @@ const Header = () => {
         </Grid>
 
         <Grid className={cx("icon-wrapper")}>
-          <ShoppingCartIcon />
+        
+          <Button className={cx("loginBtn")} variant="contained" onClick={handleClick}>
+            <HomeRoundedIcon/>
+            <span>Trang chủ </span>
+          </Button>
           <Button className={cx("loginBtn")} variant="contained">
-            Đăng nhập
+            <CurrencyExchangeRoundedIcon/>
+            <span>Giao thương </span>
           </Button>
-          <Button variant="outlined" className={cx("signUpBtn")}>
-            Đăng kí
+          <Button className={cx("loginBtn")} variant="contained" >
+            <SentimentSatisfiedAltRoundedIcon/>
+            <span>Tài khoản </span>
           </Button>
+          <LocalMallRoundedIcon style = {{cursor: "pointer"}} />
         </Grid>
       </Grid>
 
