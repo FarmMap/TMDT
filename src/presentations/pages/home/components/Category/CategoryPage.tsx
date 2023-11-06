@@ -2,6 +2,7 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
 import StarIcon from "@mui/icons-material/Star";
+import Carousel from "react-material-ui-carousel";
 // Internal
 import { suggestProducts } from "../../DataHome";
 // Styles
@@ -37,30 +38,60 @@ const CategoryPage = () => {
         {suggestProducts.map((productSg, i) => (
           <Grid item lg={3.9} className={cx("item")} key={i}>
             <h4 className={cx("item-heading")}>{productSg.heading}</h4>
-            <Grid container className={cx("category-container")}>
-              {productSg.productList.map((product, z) => (
-                <Grid item lg={3.7} className={cx("category-item")}>
-                  <img
-                    src={product.productSrc}
-                    className={cx("product-img")}
-                    alt="ITFSD-rauSach"
-                  />
-                  <h5 className={cx("product-name")}>{product.productName}</h5>
-                  <p className={cx("original-price")}>
-                    {product.originalPrice}
-                  </p>
-                  <p className={cx("sale-price")}>
-                    {product.salePrice} <span>1kg</span>
-                  </p>
-                  <p className={cx("feedBack")}>
-                    <span className={cx("feedBack-star")}>
-                      {renderStarIcons(product.feedBack.length)} <br />
-                    </span>{" "}
-                    {product.sold} đã bán
-                  </p>
-                </Grid>
-              ))}
-            </Grid>
+            <Carousel>
+              <Grid container className={cx("category-container")}>
+                {productSg.productList.map((product, z) => (
+                  <Grid item lg={3.7} key={z} className={cx("category-item")}>
+                    <img
+                      src={product.productSrc}
+                      className={cx("product-img")}
+                      alt="ITFSD-rauSach"
+                    />
+                    <h5 className={cx("product-name")}>
+                      {product.productName}
+                    </h5>
+                    <p className={cx("original-price")}>
+                      {product.originalPrice}
+                    </p>
+                    <p className={cx("sale-price")}>
+                      {product.salePrice} <span>1kg</span>
+                    </p>
+                    <p className={cx("feedBack")}>
+                      <span className={cx("feedBack-star")}>
+                        {renderStarIcons(product.feedBack.length)} <br />
+                      </span>{" "}
+                      {product.sold} đã bán
+                    </p>
+                  </Grid>
+                ))}
+              </Grid>
+              <Grid container className={cx("category-container")}>
+                {productSg.productList.map((product, z) => (
+                  <Grid item lg={3.7} className={cx("category-item")}>
+                    <img
+                      src={product.productSrc}
+                      className={cx("product-img")}
+                      alt="ITFSD-rauSach"
+                    />
+                    <h5 className={cx("product-name")}>
+                      {product.productName}
+                    </h5>
+                    <p className={cx("original-price")}>
+                      {product.originalPrice}
+                    </p>
+                    <p className={cx("sale-price")}>
+                      {product.salePrice} <span>1kg</span>
+                    </p>
+                    <p className={cx("feedBack")}>
+                      <span className={cx("feedBack-star")}>
+                        {renderStarIcons(product.feedBack.length)} <br />
+                      </span>{" "}
+                      {product.sold} đã bán
+                    </p>
+                  </Grid>
+                ))}
+              </Grid>
+            </Carousel>
           </Grid>
         ))}
       </Grid>

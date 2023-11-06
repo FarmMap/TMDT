@@ -11,6 +11,7 @@ import CategoryPage from "./components/Category/CategoryPage";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
+import ProductListPage from "./components/ProductList/ProductListPage";
 
 const cx = classNames.bind(styles);
 
@@ -53,6 +54,10 @@ const HomePage = () => {
 
         <Grid>
           <CategoryPage />
+        </Grid>
+
+        <Grid>
+          <ProductListPage />
         </Grid>
       </Grid>
     </DefaultLayOut>
