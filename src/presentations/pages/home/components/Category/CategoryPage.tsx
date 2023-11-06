@@ -3,6 +3,7 @@ import React from "react";
 import Grid from "@mui/material/Grid";
 import StarIcon from "@mui/icons-material/Star";
 import Carousel from "react-material-ui-carousel";
+import { NavLink } from "react-router-dom";
 // Internal
 import { suggestProducts } from "../../DataHome";
 // Styles
@@ -42,6 +43,7 @@ const CategoryPage = () => {
               <Grid container className={cx("category-container")}>
                 {productSg.productList.map((product, z) => (
                   <Grid item lg={3.7} key={z} className={cx("category-item")}>
+                    <NavLink to="/san-pham">
                     <img
                       src={product.productSrc}
                       className={cx("product-img")}
@@ -62,12 +64,14 @@ const CategoryPage = () => {
                       </span>{" "}
                       {product.sold} đã bán
                     </p>
+                    </NavLink>
                   </Grid>
                 ))}
               </Grid>
               <Grid container className={cx("category-container")}>
                 {productSg.productList.map((product, z) => (
                   <Grid item lg={3.7} className={cx("category-item")}>
+                    <NavLink to="/san-pham">
                     <img
                       src={product.productSrc}
                       className={cx("product-img")}
@@ -88,6 +92,7 @@ const CategoryPage = () => {
                       </span>{" "}
                       {product.sold} đã bán
                     </p>
+                    </NavLink>
                   </Grid>
                 ))}
               </Grid>

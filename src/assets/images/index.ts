@@ -13,6 +13,11 @@ const images = {
   rauSach: require("../images/rauSach.png"),
   dashboard: require("../images/dashboard.png"),
   chuoiHuong: require("../images/chuoiHuong.png"),
+  cangu: require("../images/cangu.png"),
+  cason: require("../images/cason.png"),
+  pseudo: require("../images/pseudo.png"),
+  thitsuon: require("../images/thitsuon.png"),
+  trung: require("../images/trung.png"),
 };
 
 export default images;

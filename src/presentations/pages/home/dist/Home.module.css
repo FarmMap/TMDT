@@ -16,18 +16,20 @@
   padding: 8px 18px;
   align-items: center;
   color: var(--black-color);
+}
 
-  span {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-left: 8px;
-    width: 100%;
-    cursor: pointer;
-  }
+.sidebar-item span {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 8px;
+  width: 100%;
+  cursor: pointer;
 }
 
 .css-1m9128y {
   position: absolute;
 }
+
+/*# sourceMappingURL=Home.module.css.map */
