@@ -44,7 +44,7 @@ const ProductListPage = () => {
 
       <Grid className={cx("container")} container>
         {productList.map((product, i) => (
-          <Grid item lg={1.8} className={cx("item")} key={i}>
+          <Grid item lg={1.6} className={cx("item")} key={i}>
             <NavLink to="/san-pham">
               <img
                 src={product.productSrc}

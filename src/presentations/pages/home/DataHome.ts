@@ -181,6 +181,30 @@ const productList = [
     feedBack: ["*", "*", "*", "*", "*"],
     sold: "163",
   },
+  {
+    productSrc: images.chuoiHuong,
+    productName: "Chuối hương",
+    originalPrice: "59.000đ",
+    salePrice: "35.000đ",
+    feedBack: ["*", "*", "*", "*", "*"],
+    sold: "63",
+  },
+  {
+    productSrc: images.chuoiHuong,
+    productName: "Chuối hương",
+    originalPrice: "59.000đ",
+    salePrice: "35.000đ",
+    feedBack: ["*", "*", "*", "*", "*"],
+    sold: "63",
+  },
+  {
+    productSrc: images.chuoiHuong,
+    productName: "Chuối hương",
+    originalPrice: "59.000đ",
+    salePrice: "35.000đ",
+    feedBack: ["*", "*", "*", "*", "*"],
+    sold: "63",
+  },
 ];
 
 export { imageList, sidebarList, suggestProducts, productList };
