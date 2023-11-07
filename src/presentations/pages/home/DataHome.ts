@@ -209,7 +209,7 @@ const productList = [
     productSrc: images.trung,
     productName: "Trứng gà",
     originalPrice: "30.000đ",
-    salePrice: "",
+    salePrice: "15.000đ",
     feedBack: ["*", "*", "*"],
     sold: "63",
   },
