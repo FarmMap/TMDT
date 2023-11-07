@@ -205,6 +205,38 @@ const productList = [
     feedBack: ["*", "*", "*", "*", "*"],
     sold: "63",
   },
+  {
+    productSrc: images.trung,
+    productName: "Trứng gà",
+    originalPrice: "30.000đ",
+    salePrice: "",
+    feedBack: ["*", "*", "*"],
+    sold: "63",
+  },
+  {
+    productSrc: images.cangu,
+    productName: "Cá ngừ",
+    originalPrice: "49.000đ",
+    salePrice: "35.000đ",
+    feedBack: ["*", "*", "*", "*", "*"],
+    sold: "23",
+  },
+  {
+    productSrc: images.thitsuon,
+    productName: "Thịt sườn",
+    originalPrice: "99.000đ",
+    salePrice: "85.000đ",
+    feedBack: ["*", "*", "*", "*", "*"],
+    sold: "163",
+  },
+  {
+    productSrc: images.pseudo,
+    productName: "Cá hồi",
+    originalPrice: "250.000 đ",
+    salePrice: "226.955 đ",
+    feedBack: ["*", "*", "*", "*", "*"],
+    sold: "333",
+  },
 ];
 
 export { imageList, sidebarList, suggestProducts, productList };
