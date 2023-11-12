@@ -1,0 +1,1 @@
+{"version":3,"sources":["DetailsPage.module.scss"],"names":[],"mappings":"AAAA,eACE,OAAQ,MACR,MAAO,MAGT,aACE,OAAQ,KACR,MAAO","file":"DetailsPage.module.min.css","sourcesContent":[".image-product{\r\n    height: 500px;\r\n    width: 500px;\r\n}\r\n.image-small{\r\n    height: 80px;\r\n    width: 80px;\r\n}"]}

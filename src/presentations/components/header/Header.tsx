@@ -7,6 +7,7 @@ import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import CurrencyExchangeRoundedIcon from '@mui/icons-material/CurrencyExchangeRounded';
 import SentimentSatisfiedAltRoundedIcon from '@mui/icons-material/SentimentSatisfiedAltRounded';
 import LocalMallRoundedIcon from '@mui/icons-material/LocalMallRounded';
+import { Link } from 'react-router-dom';
 // Styles
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
@@ -40,14 +41,18 @@ const Header = () => {
             <HomeRoundedIcon/>
             <span>Trang chủ </span>
           </Button>
+          
           <Button className={cx("loginBtn")} variant="contained">
             <CurrencyExchangeRoundedIcon/>
             <span>Giao thương </span>
           </Button>
-          <Button className={cx("loginBtn")} variant="contained" >
+          
+          <Link to="/login">
+          <Button className={cx("loginBtn")} variant="contained"  >
             <SentimentSatisfiedAltRoundedIcon/>
             <span>Tài khoản </span>
           </Button>
+          </Link>
           <LocalMallRoundedIcon style = {{cursor: "pointer"}} />
         </Grid>
       </Grid>

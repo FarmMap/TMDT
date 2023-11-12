@@ -1,0 +1,110 @@
+.header{
+    display:flex;
+    align-items:center; 
+    p{
+        padding-left:8px;
+    }
+}
+.login-header{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    margin-bottom:15px;
+    align-items: center;
+    p{
+        font-size: 20px;
+        color: var(--black-color);
+    }
+    a{
+        color: #1C9A5E;
+    }
+}
+.login-main{
+    background-color: #1C9A5E;
+    display: flex;
+    justify-content: end;
+    
+}
+.login-table{
+    width: 28%;
+    margin-top: 100px;
+    margin-right: 200px;
+    margin-bottom:115px;
+    background-color: #ffff;
+    border: 1px solid #ffff;
+    border-radius: 5px;
+    p{
+        color: var(--black-color);
+        font-size: 20px;
+    }
+}
+.form-login{
+    margin: 30px;
+    
+}
+.btnlogin{
+    width: 100%;
+    margin-top: 30px;
+    border-radius: 0px;
+    background-color: #1C9A5E;
+    height: 40px;
+    &:hover{
+        background-color: #1C9A5E;
+        opacity: 0.8;
+    }
+    span{
+        font-size:13px;
+    }
+}
+.form-login .input-user{
+    
+    margin-top: 30px;
+    border-radius: 3px;
+    height: 40px;
+}
+.or-login{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:30px;
+    span{
+        padding: 0px 8px;
+        font-size:15px;
+        color: #acb0ad;
+        text-transform: uppercase;
+    }
+}
+.line{
+    height: 1px;
+    width: 100%;
+    background-color: #acb0ad;
+    flex: 1;
+}
+.btn-google{
+    margin-top:30px;
+    align-items:center;
+    display: flex;
+    
+    justify-content: center;
+    button{
+        padding: 5px 30px;
+        font-size:15px;
+        text-transform: lowercase;
+        border : 1px solid var(--black-color);
+        color:var(--black-color);
+        &:hover{
+            border : 1px solid var(--black-color);
+        }
+    }
+    
+}
+.btn-register{
+    display:flex;
+    justify-content:center;
+    margin-top:30px;
+    color:#acb0ad;
+    a{
+        padding-left: 10px;
+        color:#1C9A5E;
+    }
+}
