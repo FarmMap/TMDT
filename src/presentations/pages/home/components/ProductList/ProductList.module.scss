@@ -2,7 +2,7 @@
   background-color: var(--white-color);
   width: 91vw;
   margin-top: 20px;
-  padding: 12px;
+  padding: 12px 0;
   border-radius: 12px;
 }
 
@@ -11,10 +11,7 @@
   margin-bottom: 8px;
   font-weight: 600;
   font-size: 1.4rem;
-}
-
-.container {
-  justify-content: space-between;
+  padding-left: 12px;
 }
 
 .item {
@@ -22,7 +19,11 @@
   padding: 12px;
   border: 1px solid #ddd;
   border-radius: 12px;
-  margin-bottom: 12px !important;
+  margin: 0 0px 12px 10px !important;
+
+  &:first-child {
+    margin-left: 0;
+  }
 
   a {
     &:hover {
