@@ -45,54 +45,54 @@ const CategoryPage = () => {
                 {productSg.productList.map((product, z) => (
                   <Grid item lg={3.7} key={z} className={cx("category-item")}>
                     <NavLink to="/san-pham">
-                    <img
-                      src={product.productSrc}
-                      className={cx("product-img")}
-                      alt="ITFSD-rauSach"
-                    />
-                    <h5 className={cx("product-name")}>
-                      {product.productName}
-                    </h5>
-                    <p className={cx("original-price")}>
-                      {product.originalPrice}
-                    </p>
-                    <p className={cx("sale-price")}>
-                      {product.salePrice} <span>1kg</span>
-                    </p>
-                    <p className={cx("feedBack")}>
-                      <span className={cx("feedBack-star")}>
-                        {renderStarIcons(product.feedBack.length)} <br />
-                      </span>{" "}
-                      {product.sold} đã bán
-                    </p>
+                      <img
+                        src={product.productSrc}
+                        className={cx("product-img")}
+                        alt="ITFSD-rauSach"
+                      />
+                      <h5 className={cx("product-name")}>
+                        {product.productName}
+                      </h5>
+                      <p className={cx("original-price")}>
+                        {product.originalPrice}
+                      </p>
+                      <p className={cx("sale-price")}>
+                        {product.salePrice} <span>1kg</span>
+                      </p>
+                      <p className={cx("feedBack")}>
+                        <span className={cx("feedBack-star")}>
+                          {renderStarIcons(product.feedBack.length)} <br />
+                        </span>{" "}
+                        {product.sold} đã bán
+                      </p>
                     </NavLink>
                   </Grid>
                 ))}
               </Grid>
               <Grid container className={cx("category-container")}>
                 {productSg.productList.map((product, z) => (
-                  <Grid item lg={3.7} className={cx("category-item")}>
+                  <Grid item lg={3.7} key={z} className={cx("category-item")}>
                     <NavLink to="/san-pham">
-                    <img
-                      src={product.productSrc}
-                      className={cx("product-img")}
-                      alt="ITFSD-rauSach"
-                    />
-                    <h5 className={cx("product-name")}>
-                      {product.productName}
-                    </h5>
-                    <p className={cx("original-price")}>
-                      {product.originalPrice}
-                    </p>
-                    <p className={cx("sale-price")}>
-                      {product.salePrice} <span>1kg</span>
-                    </p>
-                    <p className={cx("feedBack")}>
-                      <span className={cx("feedBack-star")}>
-                        {renderStarIcons(product.feedBack.length)} <br />
-                      </span>{" "}
-                      {product.sold} đã bán
-                    </p>
+                      <img
+                        src={product.productSrc}
+                        className={cx("product-img")}
+                        alt="ITFSD-rauSach"
+                      />
+                      <h5 className={cx("product-name")}>
+                        {product.productName}
+                      </h5>
+                      <p className={cx("original-price")}>
+                        {product.originalPrice}
+                      </p>
+                      <p className={cx("sale-price")}>
+                        {product.salePrice} <span>1kg</span>
+                      </p>
+                      <p className={cx("feedBack")}>
+                        <span className={cx("feedBack-star")}>
+                          {renderStarIcons(product.feedBack.length)} <br />
+                        </span>{" "}
+                        {product.sold} đã bán
+                      </p>
                     </NavLink>
                   </Grid>
                 ))}

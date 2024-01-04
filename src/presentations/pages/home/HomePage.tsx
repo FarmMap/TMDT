@@ -12,16 +12,20 @@ import CategoryPage from "./components/Category/CategoryPage";
 import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
 import ProductListPage from "./components/ProductList/ProductListPage";
+import useFetchProductPorfolio from "../../../data/api/ProductPorfolio/useFetchProductPortfolio";
 
 const cx = classNames.bind(styles);
 
 const HomePage = () => {
+  const { productPort } = useFetchProductPorfolio({});
+
+  console.log("productPort: ", productPort);
   return (
     <DefaultLayOut>
       <Grid>
         <Grid container className={cx("wrapper")}>
           <Grid item lg={3}>
-            <Grid className={cx("heading-sidebar")}> Gợi ý cho bạn</Grid>
+            <Grid className={cx("heading-sidebar")}> Danh mục</Grid>
             {sidebarList.map((sidebar, i) => (
               <Grid className={cx("sidebar-item")} key={i}>
                 <img src={sidebar.src} alt="ITFS sidebar" />
@@ -43,9 +47,9 @@ const HomePage = () => {
           <Grid item lg={9}>
             <Carousel>
               {imageList.map((image, index) => (
-                <Grid>
+                <Grid key={index}>
                   {" "}
-                  <img src={image} key={index} alt="ITFSD-banner" />
+                  <img src={image} alt="ITFSD-banner" />
                 </Grid>
               ))}
             </Carousel>
