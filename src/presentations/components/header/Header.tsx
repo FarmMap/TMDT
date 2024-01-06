@@ -1,30 +1,49 @@
 import Grid from "@mui/material/Grid";
-import React from "react";
-import { Button } from "@mui/material";
-import { Input } from "antd";
+import React, { useEffect, useState } from "react";
+import { Button, CircularProgress } from "@mui/material";
 import InputSearch from "./InputSearch";
-import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
-import CurrencyExchangeRoundedIcon from '@mui/icons-material/CurrencyExchangeRounded';
-import SentimentSatisfiedAltRoundedIcon from '@mui/icons-material/SentimentSatisfiedAltRounded';
-import LocalMallRoundedIcon from '@mui/icons-material/LocalMallRounded';
-import { Link } from 'react-router-dom';
+import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import CurrencyExchangeRoundedIcon from "@mui/icons-material/CurrencyExchangeRounded";
+import SentimentSatisfiedAltRoundedIcon from "@mui/icons-material/SentimentSatisfiedAltRounded";
+import LocalMallRoundedIcon from "@mui/icons-material/LocalMallRounded";
+import { Link } from "react-router-dom";
+import images from "../../../assets/images";
+import DefaultAvatar from "../defaultAvatar";
+import useFetchMyAccount from "../../../data/api/Account/useFetchMyAccount";
+import Tippy from "@tippyjs/react";
+import DefaultDropDown from "../defaultDropDown";
+import AccountInfo from "./components/AccountInfo";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
-import images from "../../../assets/images";
+import { NavLink } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 const handleClick = () => {
   window.location.reload();
 };
-const { Search } = Input;
 
 const Header = () => {
+  const token = window.localStorage.getItem("token");
+  const [isLogined, setIsLogined] = useState(false);
+
+  const { user, isLoading } = useFetchMyAccount({});
+  const [showAccount, setShowAccount] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (token == null || token == undefined) {
+      setIsLogined(false);
+    } else {
+      setIsLogined(true);
+    }
+  }, [token]);
   return (
     <Grid className={cx("container")}>
       <Grid className={cx("wrapper")}>
         <Grid className={cx("logo")}>
-          <p>AGRIMARKET</p>
+          <NavLink style={{ color: "white" }} to="/">
+            AGRIMARKET
+          </NavLink>
         </Grid>
 
         <Grid className={cx("search-wrapper")}>
@@ -36,24 +55,57 @@ const Header = () => {
         </Grid>
 
         <Grid className={cx("icon-wrapper")}>
-        
-          <Button className={cx("loginBtn")} variant="contained" onClick={handleClick}>
-            <HomeRoundedIcon/>
+          <Button
+            className={cx("loginBtn")}
+            variant="contained"
+            onClick={handleClick}
+          >
+            <HomeRoundedIcon />
             <span>Trang chủ </span>
           </Button>
-          
+
           <Button className={cx("loginBtn")} variant="contained">
-            <CurrencyExchangeRoundedIcon/>
+            <CurrencyExchangeRoundedIcon />
             <span>Giao thương </span>
           </Button>
-          
-          <Link to="/login">
-          <Button className={cx("loginBtn")} variant="contained"  >
-            <SentimentSatisfiedAltRoundedIcon/>
-            <span>Tài khoản </span>
-          </Button>
-          </Link>
-          <LocalMallRoundedIcon style = {{cursor: "pointer"}} />
+
+          {!isLogined ? (
+            <Link to="/login">
+              <Button className={cx("loginBtn")} variant="contained">
+                <SentimentSatisfiedAltRoundedIcon />
+                <span>Tài khoản </span>
+              </Button>
+            </Link>
+          ) : (
+            <DefaultDropDown
+              childrenRender={<AccountInfo />}
+              visible={showAccount}
+            >
+              <Tippy content={`${user.email}`} placement="bottom" theme="light">
+                <Button
+                  onClick={() => setShowAccount(!showAccount)}
+                  className={cx("loginBtn")}
+                  variant="contained"
+                >
+                  {!isLoading ? (
+                    <>
+                      <DefaultAvatar avatar={images.avatar} small />
+                      <span>{user.fullName}</span>
+                    </>
+                  ) : (
+                    <CircularProgress
+                      style={{
+                        height: "4px !important",
+                        width: "4px !important",
+                        color: "var(--border-color)",
+                      }}
+                    />
+                  )}
+                </Button>
+              </Tippy>
+            </DefaultDropDown>
+          )}
+          <LocalMallRoundedIcon style={{ cursor: "pointer" }} />
         </Grid>
       </Grid>
 

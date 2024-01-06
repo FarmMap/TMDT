@@ -8,18 +8,17 @@ import GridViewIcon from "@mui/icons-material/GridView";
 // Internal files
 import { sidebarList, imageList } from "./DataHome";
 import CategoryPage from "./components/Category/CategoryPage";
+import ProductListPage from "./components/ProductList/ProductListPage";
+import useFetchProductPorfolio from "../../../data/api/ProductPorfolio/useFetchProductPortfolio";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
-import ProductListPage from "./components/ProductList/ProductListPage";
-import useFetchProductPorfolio from "../../../data/api/ProductPorfolio/useFetchProductPortfolio";
 
 const cx = classNames.bind(styles);
 
 const HomePage = () => {
   const { productPort } = useFetchProductPorfolio({});
 
-  console.log("productPort: ", productPort);
   return (
     <DefaultLayOut>
       <Grid>

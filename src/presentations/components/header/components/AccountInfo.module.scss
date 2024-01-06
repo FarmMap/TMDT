@@ -1,0 +1,149 @@
+// Accout dropdown
+@mixin d-flx-al-item {
+  display: flex;
+  align-items: center;
+}
+
+$welcome-color: #959cb6;
+$green-color: #0abb87;
+
+.user-cart-avt {
+  cursor: pointer;
+}
+
+.account-dropdown-wrapper {
+  width: 230px;
+  max-width: 100%;
+  min-height: 100px;
+  background-color: var(--white-color);
+  background-clip: padding-box;
+
+  border-radius: 4px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-shadow: 0px 0px 50px 0px rgb(82 63 105 / 15%);
+
+  animation: topToDown 0.5s ease;
+}
+
+.header-account {
+  @include d-flx-al-item;
+
+  //   background-image: url(../../../../assets/images/backgroundaccount.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  padding: 8px 16px;
+  background-color: #f9fafe;
+
+  .user-cart-name {
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding-left: 10px;
+    flex-grow: 1;
+
+    .accountinfo-username {
+      font-weight: 600;
+      color: var(--blue-hover-color);
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    .accountinfo-role {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: 500;
+      text-transform: unset;
+      color: var(--black-color);
+    }
+  }
+
+  .user-cart-badge {
+    background-color: $green-color;
+    border-color: $green-color;
+    color: var(--white-color);
+    padding: 6px 12px;
+    border-radius: 2px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+      color: #fff;
+      background-color: #08976d;
+      border-color: #078b64;
+    }
+  }
+}
+
+.change-pass {
+  @include d-flx-al-item;
+  padding: 1.1rem 1.5rem;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--hover-black);
+  }
+
+  .change-pass-icon {
+    @include d-flx-al-item;
+    justify-content: center;
+    background-color: var(--border-color);
+    margin-right: 12px;
+    border-radius: 50%;
+    padding: 4px;
+
+    svg {
+      width: 22px;
+      height: 20px;
+      color: var(--black-color);
+    }
+  }
+
+  .change-pass-title {
+    @include d-flx-al-item;
+    height: 100%;
+    flex-grow: 1;
+    transition: color 0.3s ease;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #595d6e;
+  }
+
+  .change-nav-pass-icon {
+    @include d-flx-al-item;
+    height: 100%;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      color: $welcome-color;
+    }
+  }
+}
+
+.log-out-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 18px;
+}
+
+@keyframes topToDown {
+  from {
+    opacity: 0;
+    transform: translateY(-140px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .wrapper {
+    padding: 6px 0;
+    justify-content: space-between;
+  }
+}

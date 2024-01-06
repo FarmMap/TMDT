@@ -1,20 +1,18 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 
-import ProductPortfolioType from "../../types/ProductPortfolio/ProductPortfolioType";
-import { env } from "process";
-
+import UserAccountType from "../../types/UserAccount/UserAccountType";
 interface ResponseError {
   code: string;
   message: string;
 }
 
-interface useFetchProductPorfolioProps {
+interface useFetchMyAccountProps {
   shouldRefesh?: boolean;
 }
 
-const useFetchProductPorfolio = (props: useFetchProductPorfolioProps) => {
-  let [productPort, setProductPort] = useState<ProductPortfolioType>({});
+const useFetchMyAccount = (props: useFetchMyAccountProps) => {
+  let [user, setUser] = useState<UserAccountType>({});
   let [error, setError] = useState<string | null>(null);
   let [isLoading, setLoading] = useState(false);
 
@@ -24,7 +22,7 @@ const useFetchProductPorfolio = (props: useFetchProductPorfolioProps) => {
 
     var config = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_BASE_URL}product-categories`,
+      url: `${process.env.REACT_APP_API_BASE_URL}users/me`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
@@ -33,7 +31,7 @@ const useFetchProductPorfolio = (props: useFetchProductPorfolioProps) => {
     axios(config)
       .then((response: AxiosResponse) => {
         let data = response.data;
-        setProductPort(data);
+        setUser(data);
 
         setLoading(false);
       })
@@ -52,7 +50,7 @@ const useFetchProductPorfolio = (props: useFetchProductPorfolioProps) => {
       });
   }, [props.shouldRefesh]);
 
-  return { productPort, error, isLoading };
+  return { user, error, isLoading };
 };
 
-export default useFetchProductPorfolio;
+export default useFetchMyAccount;

@@ -1,20 +1,27 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 
-import ProductPortfolioType from "../../types/ProductPortfolio/ProductPortfolioType";
-import { env } from "process";
+import ProductList from "../../types/Product/ProductList";
+import Meta from "../../types/Meta/Meta";
+
+interface UseFetchProductListProps {
+  page?: number;
+  shouldRefesh?: boolean;
+}
+
+interface ProductListResponse {
+  meta: Meta;
+  data: ProductList[];
+}
 
 interface ResponseError {
   code: string;
   message: string;
 }
 
-interface useFetchProductPorfolioProps {
-  shouldRefesh?: boolean;
-}
-
-const useFetchProductPorfolio = (props: useFetchProductPorfolioProps) => {
-  let [productPort, setProductPort] = useState<ProductPortfolioType>({});
+const useFetchProductList = (props: UseFetchProductListProps) => {
+  let [productList, setProductList] = useState<ProductList[]>([]);
+  let [page, setPages] = useState(1);
   let [error, setError] = useState<string | null>(null);
   let [isLoading, setLoading] = useState(false);
 
@@ -24,7 +31,7 @@ const useFetchProductPorfolio = (props: useFetchProductPorfolioProps) => {
 
     var config = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_BASE_URL}product-categories`,
+      url: `${process.env.REACT_APP_API_BASE_URL}products?order=ASC&page=${props.page}&take=10`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
@@ -32,9 +39,9 @@ const useFetchProductPorfolio = (props: useFetchProductPorfolioProps) => {
 
     axios(config)
       .then((response: AxiosResponse) => {
-        let data = response.data;
-        setProductPort(data);
-
+        let data: ProductListResponse = response.data;
+        setProductList(data.data);
+        setPages(data.meta.pageCount ?? 0);
         setLoading(false);
       })
       .catch((error: AxiosError) => {
@@ -42,7 +49,7 @@ const useFetchProductPorfolio = (props: useFetchProductPorfolioProps) => {
           let responseError: ResponseError = error.response
             .data as ResponseError;
 
-          setError(responseError.message[0]);
+          setError(responseError.message);
         } else {
           let requestError = error.request;
 
@@ -50,9 +57,9 @@ const useFetchProductPorfolio = (props: useFetchProductPorfolioProps) => {
         }
         setLoading(false);
       });
-  }, [props.shouldRefesh]);
+  }, [props.page, props.shouldRefesh]);
 
-  return { productPort, error, isLoading };
+  return { productList, page, error, isLoading };
 };
 
-export default useFetchProductPorfolio;
+export default useFetchProductList;

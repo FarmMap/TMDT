@@ -1,4 +1,5 @@
 const images = {
+  avatar: require("../images/avatar.webp"),
   yecaubaogia: require("../images/yeucaubaogia.png"),
   traiCayTuoi: require("../images/traiCayTuoi.png"),
   sansangvanchuyen: require("../images/sansangvanchuyen.png"),
@@ -18,6 +19,7 @@ const images = {
   pseudo: require("../images/pseudo.png"),
   thitsuon: require("../images/thitsuon.png"),
   trung: require("../images/trung.png"),
+  bannerShopAcc: require("../images/bannerShopAcc.png"),
 };
 
 export default images;

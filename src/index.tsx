@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 // External files
 import { BrowserRouter } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // Internal files
 import GlobalStyle from "./presentations/components/globalStyle";
 // Style
@@ -18,5 +20,18 @@ root.render(
         <App />
       </GlobalStyle>
     </BrowserRouter>
+    <ToastContainer
+      style={{ zIndex: 9999999999999 }}
+      position="bottom-right"
+      autoClose={4000}
+      hideProgressBar={false}
+      newestOnTop
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="colored"
+    />
   </React.StrictMode>
 );
