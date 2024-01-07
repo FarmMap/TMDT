@@ -7,11 +7,10 @@ import Grid from "@mui/material/Grid";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./ProductList.module.scss";
-import images from "../../../../../assets/images";
 import { NavLink } from "react-router-dom";
-import Carousel from "react-material-ui-carousel";
 import { Button } from "@mui/material";
 import useFetchProductList from "../../../../../data/api/Product/useFetchProductList";
+import images from "../../../../../assets/images";
 
 const cx = classNames.bind(styles);
 
@@ -65,15 +64,14 @@ const ProductListPage = () => {
               <Grid item lg={1.6} className={cx("item")} key={i}>
                 <NavLink to="/san-pham">
                   <img
-                    src={`${product.images}`}
+                    // src={`${process.env.REACT_APP_API_BASE_URL}${product.images}`}
+                    src={images.dauGoiDau}
                     className={cx("product-img")}
                     alt={product.name}
                   />
                   <h5 className={cx("product-name")}>{product.name}</h5>
-                  <p className={cx("original-price")}>{product.price}</p>
-                  <p className={cx("sale-price")}>
-                    {product.salePrice} <span>1kg</span>
-                  </p>
+                  <p className={cx("original-price")}>{product.price}đ</p>
+                  <p className={cx("sale-price")}>{product.salePrice}đ</p>
                   <p className={cx("feedBack")}>
                     <span className={cx("feedBack-star")}>
                       {renderStarIcons(product.rating)} <br />

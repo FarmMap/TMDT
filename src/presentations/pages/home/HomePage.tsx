@@ -44,7 +44,7 @@ const HomePage = () => {
             </Grid>
           </Grid>
           <Grid item lg={9}>
-            <Carousel>
+            <Carousel indicators={false}>
               {imageList.map((image, index) => (
                 <Grid key={index}>
                   {" "}

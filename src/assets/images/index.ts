@@ -20,6 +20,7 @@ const images = {
   thitsuon: require("../images/thitsuon.png"),
   trung: require("../images/trung.png"),
   bannerShopAcc: require("../images/bannerShopAcc.png"),
+  dauGoiDau: require("../images/daugoidau.jpg"),
 };
 
 export default images;

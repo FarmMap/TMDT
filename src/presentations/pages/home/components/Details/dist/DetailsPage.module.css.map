@@ -1,1 +1,0 @@
-{"version":3,"names":[],"mappings":"","sources":["DetailsPage.module.scss"],"sourcesContent":[".image-product{\r\n    height: 500px;\r\n    width: 500px;\r\n}\r\n.image-small{\r\n    height: 80px;\r\n    width: 80px;\r\n}"],"file":"DetailsPage.module.css"}

@@ -40,7 +40,7 @@ const CategoryPage = () => {
         {suggestProducts.map((productSg, i) => (
           <Grid item lg={3.9} className={cx("item")} key={i}>
             <h4 className={cx("item-heading")}>{productSg.heading}</h4>
-            <Carousel>
+            <Carousel indicators={false}>
               <Grid container className={cx("category-container")}>
                 {productSg.productList.map((product, z) => (
                   <Grid item lg={3.7} key={z} className={cx("category-item")}>
