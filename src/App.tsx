@@ -11,6 +11,7 @@ import RedirectRoute from "./routes/RedirectRoute";
 import PrivateRoute from "./routes/PrivateRoute";
 import ProfilePage from "./presentations/pages/account/profile/ProfilePage";
 import ShopAccountPage from "./presentations/pages/account/shop/ShopAccountPage";
+import InfoMyShopPage from "./presentations/pages/shop/infoMyShop/InfoMyShopPage";
 //Style
 
 const App: React.FC = () => {
@@ -27,6 +28,10 @@ const App: React.FC = () => {
           {/* Tai khoan */}
           <Route path="/tai-khoan/trang-ca-nhan" element={<ProfilePage />} />
           <Route path="/tai-khoan/cua-hang" element={<ShopAccountPage />} />
+          <Route
+            path="/cua-hang/cua-hang-cua-toi"
+            element={<InfoMyShopPage />}
+          />
         </Route>
         {/* Private Route */}
         <Route path="/" element={<PrivateRoute />}></Route>

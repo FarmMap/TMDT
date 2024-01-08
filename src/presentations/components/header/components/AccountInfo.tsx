@@ -13,6 +13,7 @@ import useFetchMyAccount from "../../../../data/api/Account/useFetchMyAccount";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./AccountInfo.module.scss";
+import { useEffect, useState } from "react";
 const cx = classNames.bind(styles);
 
 type AccountInfoProps = {};
@@ -23,6 +24,13 @@ const AccountInfo = (props: AccountInfoProps) => {
     window.location.href = "/";
   };
   const { user } = useFetchMyAccount({});
+  const [role, setRole] = useState("");
+
+  useEffect(() => {
+    if (user.roles === "ADMIN") setRole("Quản trị");
+    else if (user.roles === "SHOP") setRole("Người bán");
+    else setRole("Người mua");
+  }, [user.roles]);
   return (
     <div className={cx("account-dropdown-wrapper")}>
       <div className={cx("header-account")}>
@@ -35,7 +43,7 @@ const AccountInfo = (props: AccountInfoProps) => {
           <Tippy content={`thienan1804`} placement="right" theme="light">
             <span className={cx("accountinfo-username")}>{user.fullName}</span>
           </Tippy>
-          <span className={cx("accountinfo-role")}>{user.email}</span>
+          <span className={cx("accountinfo-role")}>{role}</span>
         </div>
       </div>
       <div

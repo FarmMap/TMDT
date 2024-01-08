@@ -1,6 +1,6 @@
 // External files
 import Grid from "@mui/material/Grid";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DefaultLayOut from "../../components/defaultLayOut/DefaultLayOut";
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
 import GridViewIcon from "@mui/icons-material/GridView";
@@ -22,6 +22,13 @@ interface AccountPageProps {
 }
 const AccountPage = (props: AccountPageProps) => {
   const { user, isLoading } = useFetchMyAccount({});
+  const [role, setRole] = useState("");
+
+  useEffect(() => {
+    if (user.roles === "ADMIN") setRole("Quản trị");
+    else if (user.roles === "SHOP") setRole("Người bán");
+    else setRole("Người mua");
+  }, [user.roles]);
 
   return (
     <DefaultLayOut>
@@ -40,7 +47,7 @@ const AccountPage = (props: AccountPageProps) => {
                   <>
                     {" "}
                     <p>{user.fullName}</p>
-                    <p>{user.email}</p>
+                    <p> {role}</p>
                   </>
                 ) : (
                   <CircularProgress
@@ -53,12 +60,31 @@ const AccountPage = (props: AccountPageProps) => {
                 )}
               </Grid>
             </Grid>
-            {sidebarList.map((sidebar, i) => (
-              <NavLink to={sidebar.path} className={cx("sidebar-item")} key={i}>
-                {sidebar.icon}
-                <span>{sidebar.title}</span>
-              </NavLink>
-            ))}
+            {sidebarList.map((sidebar, i) =>
+              sidebar.title != "Cửa hàng" ? (
+                <NavLink
+                  to={sidebar.path}
+                  className={cx("sidebar-item")}
+                  key={i}
+                >
+                  {sidebar.icon}
+                  <span>{sidebar.title}</span>
+                </NavLink>
+              ) : (
+                <NavLink
+                  to={
+                    user.roles != "SHOP"
+                      ? sidebar.path
+                      : "/cua-hang/cua-hang-cua-toi"
+                  }
+                  className={cx("sidebar-item")}
+                  key={i}
+                >
+                  {sidebar.icon}
+                  <span>{sidebar.title}</span>
+                </NavLink>
+              )
+            )}
           </Grid>
           <Grid item lg={9.5}>
             {props.children}

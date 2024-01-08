@@ -4,16 +4,21 @@
 }
 
 .small {
-  width: 35px;
-  height: 35px;
+  width: 35px !important;
+  height: 35px !important;
 }
 
 .medium {
-  width: 45px;
-  height: 45px;
+  width: 45px !important;
+  height: 45px !important;
 }
 
 .large {
-  width: 55px;
-  height: 55px;
+  width: 55px !important;
+  height: 55px !important;
+}
+
+.superLarge {
+  width: 100px !important;
+  height: 100px !important;
 }
