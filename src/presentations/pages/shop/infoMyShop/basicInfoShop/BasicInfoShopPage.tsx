@@ -1,13 +1,11 @@
 import React from "react";
 import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
+import { Grid } from "@mui/material";
+import images from "../../../../../assets/images";
+import DefaultAvatar from "../../../../components/defaultAvatar";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./BasicInfoShopPage.module.scss";
-import { Button, Grid } from "@mui/material";
-import images from "../../../../../assets/images";
-import DefaultAvatar from "../../../../components/defaultAvatar";
-import { NavLink } from "react-router-dom";
-import { Input } from "antd";
 
 const cx = classNames.bind(styles);
 const BasicInfoShopPage = () => {
