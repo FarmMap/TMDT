@@ -42,10 +42,9 @@ const Footer = () => {
                 Chính sách & quy định
               </a>
             </li>
-            
           </ul>
         </Grid>
-        
+
         <Grid item lg={2} className={cx("content-item")}>
           <p>Giới thiệu</p>
           <ul>
@@ -69,13 +68,11 @@ const Footer = () => {
                 Điều kiện vận chuyển
               </a>
             </li>{" "}
-            
           </ul>
         </Grid>
         <Grid item lg={2} className={cx("content-item")}>
           <p>Hợp tác và liên kết</p>
           <ul>
-            
             <li>
               <a href="http://itfsd.com" target="_blank" rel="noreferrer">
                 Trung tâm trợ giúp
@@ -91,13 +88,11 @@ const Footer = () => {
                 Trung tâm trợ giúp
               </a>
             </li>
-            
           </ul>
         </Grid>
         <Grid item lg={2} className={cx("content-item")}>
           <p>Kết nối với chúng tôi</p>
           <ul>
-            
             <li>
               <a href="http://itfsd.com" target="_blank" rel="noreferrer">
                 Trung tâm trợ giúp

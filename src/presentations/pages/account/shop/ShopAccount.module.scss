@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column !important;
+  padding: 28px 0;
+
+  p {
+    margin: 12px 0;
+  }
+
+  img {
+    width: 200px;
+    height: 200px;
+    object-position: center;
+    object-fit: scale-down;
+  }
+}
+
+.signup-shop-btn {
+  box-shadow: none !important;
+  text-transform: none !important;
+  font-size: 1.2rem !important;
+  background-color: var(--primary-color) !important;
+
+  &:hover {
+    background-color: #4fa56e !important;
+  }
+}
+
+.create-wrapper {
+  padding: 18px;
+}
+
+.create-wrapper-heading {
+  font-size: 1.6rem;
+  color: #000;
+}

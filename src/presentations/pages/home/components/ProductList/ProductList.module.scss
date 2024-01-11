@@ -1,9 +1,9 @@
 .wrapper {
   background-color: var(--white-color);
-  width: 91vw;
+  width: 92.5vw;
   margin-top: 20px;
-  padding: 12px;
-  border-radius: 12px;
+  padding: 12px 0;
+  border-radius: 3px;
 }
 
 .header {
@@ -11,17 +11,19 @@
   margin-bottom: 8px;
   font-weight: 600;
   font-size: 1.4rem;
-}
-
-.container {
-  justify-content: space-between;
+  padding-left: 12px;
 }
 
 .item {
   background-color: var(--white-color);
   padding: 12px;
   border: 1px solid #ddd;
-  border-radius: 12px;
+  border-radius: 3px;
+  margin: 0 0px 12px 10px !important;
+
+  &:first-child {
+    margin-left: 0;
+  }
 
   a {
     &:hover {
@@ -82,5 +84,16 @@
     width: 14px;
     height: 14px;
     color: #ffc600;
+  }
+}
+
+.more {
+  text-align: center;
+
+  button {
+    padding: 4px 16px;
+    font-size: 1.6rem;
+    width: 240px;
+    text-transform: none;
   }
 }

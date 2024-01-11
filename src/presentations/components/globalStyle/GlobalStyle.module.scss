@@ -1,70 +1,35 @@
-@import "normalize.css";
-// Embeded Font Verdana
-@font-face {
-  font-family: "Verdana";
-  src: url("../../../assets/fonts/Verdana.eot");
-  src: url("../../../assets/fonts/Verdana.eot?#iefix")
-      format("embedded-opentype"),
-    url("../../../assets/fonts/Verdana.woff2") format("woff2"),
-    url("../../../assets/fonts/Verdana.woff") format("woff"),
-    url("../../../assets/fonts/Verdana.ttf") format("truetype"),
-    url("../../../assets/fonts/Verdana.svg#Verdana") format("svg");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Verdana";
-  src: url("../../../assets/fonts/Verdana_1.eot");
-  src: url("../../../assets/fonts/Verdana_1.eot?#iefix")
-      format("embedded-opentype"),
-    url("../../../assets/fonts/Verdana_1.woff2") format("woff2"),
-    url("../../../assets/fonts/Verdana_1.woff") format("woff"),
-    url("../../../assets/fonts/Verdana_1.ttf") format("truetype"),
-    url("../../../assets/fonts/Verdana_1.svg#Verdana") format("svg");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Verdana";
-  src: url("../../../assets/fonts/Verdana-Bold.eot");
-  src: url("../../../assets/fonts/Verdana-Bold.eot?#iefix")
-      format("embedded-opentype"),
-    url("../../../assets/fonts/Verdana-Bold.woff2") format("woff2"),
-    url("../../../assets/fonts/Verdana-Bold.woff") format("woff"),
-    url("../../../assets/fonts/Verdana-Bold.ttf") format("truetype"),
-    url("../../../assets/fonts/Verdana-Bold.svg#Verdana-Bold") format("svg");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Verdana";
-  src: url("../../../assets/fonts/Verdana-Bold_1.eot");
-  src: url("../../../assets/fonts/Verdana-Bold_1.eot?#iefix")
-      format("embedded-opentype"),
-    url("../../../assets/fonts/Verdana-Bold_1.woff2") format("woff2"),
-    url("../../../assets/fonts/Verdana-Bold_1.woff") format("woff"),
-    url("../../../assets/fonts/Verdana-Bold_1.ttf") format("truetype"),
-    url("../../../assets/fonts/Verdana-Bold_1.svg#Verdana-Bold") format("svg");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap");
 
 :root {
+  // --primary-color: ;
   --primary-color: #53b175;
+  --text-color: #74788d;
+  --black-color: #495057;
   --white-color: #fff;
-  --text-color: rgb(128, 128, 137);
-  --black-color: #000;
-  --title-color: #333333;
-  --primary-size: 1.4rem;
+  --second-color: #f93e3e;
+  --orange-color: #c16802;
+  --pink-hover-color: #e53670;
+  --yellow-color: #ffc107;
+  --gray-color: #ebecf08a;
+  --gray-color2: #ebecf0;
+  // --primary-color: #ec94fb;
+  --green-hover-color: #018b7e;
+  // --green-hover-color: #ec94fb;
+  --blue-color: rgba(53, 162, 235, 0.5);
+  --blue-color2: #1976d2;
+  --blue-hover-color: #2669ad;
+  --shadow-color: #babecc;
+  --bgr-body-content-app: #f7f8fa;
+  --border-color: #e2e5ec;
+  --hover-black: #4d59950f;
+  --sidebar-color: #fff;
+  --pink-color: rgba(255, 99, 132, 0.5);
 
-  --font-family: "Verdana";
+  --primary-size: 1.4rem;
+  --header-height: 54px;
+  --width-sidebar-small: 80px;
+  --width-sidebar-large: 242px;
+  --font-family: "Roboto", sans-serif;
 }
 
 * {

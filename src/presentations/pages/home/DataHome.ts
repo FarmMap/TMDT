@@ -40,8 +40,13 @@ const suggestProducts = [
       {
         productSrc: images.trung,
         productName: "Trứng gà",
+<<<<<<< HEAD
         originalPrice: "30.000 đ",
         salePrice: "",
+=======
+        originalPrice: "30.000đ",
+        salePrice: "15.000 đ",
+>>>>>>> An
         feedBack: ["*", "*", "*"],
         sold: "63",
       },
@@ -68,6 +73,7 @@ const suggestProducts = [
     heading: "Sản phẩm bán chạy",
     productList: [
       {
+<<<<<<< HEAD
         productSrc: images.rauSach,
         productName: "Rau sạch",
         originalPrice: "150.000 đ",
@@ -90,6 +96,30 @@ const suggestProducts = [
         salePrice: "",
         feedBack: ["*", "*", "*", "*", "*"],
         sold: "110",
+=======
+        productSrc: images.trung,
+        productName: "Trứng gà",
+        originalPrice: "30.000đ",
+        salePrice: "15.000 đ",
+        feedBack: ["*", "*", "*"],
+        sold: "63",
+      },
+      {
+        productSrc: images.rauSach,
+        productName: "Rau sạch",
+        originalPrice: "150.000 đ",
+        salePrice: "126.955 đ",
+        feedBack: ["*", "*", "*", "*", "*"],
+        sold: "13",
+      },
+      {
+        productSrc: images.cangu,
+        productName: "Cá ngừ",
+        originalPrice: "45.000 đ",
+        salePrice: "32.000 đ",
+        feedBack: ["*", "*", "*", "*"],
+        sold: "20",
+>>>>>>> An
       },
     ],
   },
@@ -97,6 +127,7 @@ const suggestProducts = [
     heading: "Sản phẩm giảm giá",
     productList: [
       {
+<<<<<<< HEAD
         productSrc: images.pseudo,
         productName: "Cá hồi",
         originalPrice: "250.000 đ",
@@ -119,6 +150,30 @@ const suggestProducts = [
         salePrice: "",
         feedBack: ["*", "*", "*", "*", "*"],
         sold: "663",
+=======
+        productSrc: images.trung,
+        productName: "Trứng gà",
+        originalPrice: "30.000đ",
+        salePrice: "15.000 đ",
+        feedBack: ["*", "*", "*"],
+        sold: "63",
+      },
+      {
+        productSrc: images.rauSach,
+        productName: "Rau sạch",
+        originalPrice: "150.000 đ",
+        salePrice: "126.955 đ",
+        feedBack: ["*", "*", "*", "*", "*"],
+        sold: "13",
+      },
+      {
+        productSrc: images.cangu,
+        productName: "Cá ngừ",
+        originalPrice: "45.000 đ",
+        salePrice: "32.000 đ",
+        feedBack: ["*", "*", "*", "*"],
+        sold: "20",
+>>>>>>> An
       },
     ],
   },
@@ -145,7 +200,11 @@ const productList = [
     productSrc: images.trung,
     productName: "Trứng gà",
     originalPrice: "30.000đ",
+<<<<<<< HEAD
     salePrice: "",
+=======
+    salePrice: "15.000đ",
+>>>>>>> An
     feedBack: ["*", "*", "*"],
     sold: "63",
   },
@@ -154,6 +213,12 @@ const productList = [
     productName: "Cá hồi",
     originalPrice: "259.000đ",
     salePrice: "235.000đ",
+<<<<<<< HEAD
+    feedBack: ["*", "*", "*", "*", "*"],
+    sold: "120",
+  },
+  {
+=======
     feedBack: ["*", "*", "*", "*", "*"],
     sold: "120",
   },
@@ -180,6 +245,109 @@ const productList = [
     salePrice: "85.000đ",
     feedBack: ["*", "*", "*", "*", "*"],
     sold: "163",
+  },
+  {
+    productSrc: images.rauSach,
+    productName: "Rau sạch",
+    originalPrice: "150.000 đ",
+    salePrice: "126.955 đ",
+    feedBack: ["*", "*", "*", "*", "*"],
+    sold: "120",
+  },
+  {
+    productSrc: images.chuoiHuong,
+    productName: "Chuối hương",
+    originalPrice: "59.000đ",
+    salePrice: "35.000đ",
+    feedBack: ["*", "*", "*", "*", "*"],
+    sold: "93",
+  },
+  {
+    productSrc: images.trung,
+    productName: "Trứng gà",
+    originalPrice: "30.000đ",
+    salePrice: "15.000đ",
+    feedBack: ["*", "*", "*"],
+    sold: "63",
+  },
+  {
+    productSrc: images.pseudo,
+    productName: "Cá hồi",
+    originalPrice: "259.000đ",
+    salePrice: "235.000đ",
+    feedBack: ["*", "*", "*", "*", "*"],
+    sold: "120",
+  },
+  {
+>>>>>>> An
+    productSrc: images.cangu,
+    productName: "Cá ngừ",
+    originalPrice: "49.000đ",
+    salePrice: "35.000đ",
+    feedBack: ["*", "*", "*", "*", "*"],
+    sold: "23",
+<<<<<<< HEAD
+  },
+  {
+    productSrc: images.cason,
+    productName: "Cá sơn",
+    originalPrice: "39.000đ",
+    salePrice: "25.000đ",
+    feedBack: ["*", "*", "*", "*", "*"],
+    sold: "13",
+=======
+  },
+  {
+    productSrc: images.cason,
+    productName: "Cá sơn",
+    originalPrice: "39.000đ",
+    salePrice: "25.000đ",
+    feedBack: ["*", "*", "*", "*", "*"],
+    sold: "13",
+  },
+  {
+    productSrc: images.thitsuon,
+    productName: "Thịt sườn",
+    originalPrice: "99.000đ",
+    salePrice: "85.000đ",
+    feedBack: ["*", "*", "*", "*", "*"],
+    sold: "163",
+  },
+  {
+    productSrc: images.trung,
+    productName: "Trứng gà",
+    originalPrice: "30.000đ",
+    salePrice: "15.000đ",
+    feedBack: ["*", "*", "*"],
+    sold: "63",
+  },
+  {
+    productSrc: images.cangu,
+    productName: "Cá ngừ",
+    originalPrice: "49.000đ",
+    salePrice: "35.000đ",
+    feedBack: ["*", "*", "*", "*", "*"],
+    sold: "23",
+>>>>>>> An
+  },
+  {
+    productSrc: images.thitsuon,
+    productName: "Thịt sườn",
+    originalPrice: "99.000đ",
+    salePrice: "85.000đ",
+    feedBack: ["*", "*", "*", "*", "*"],
+    sold: "163",
+<<<<<<< HEAD
+=======
+  },
+  {
+    productSrc: images.pseudo,
+    productName: "Cá hồi",
+    originalPrice: "250.000 đ",
+    salePrice: "226.955 đ",
+    feedBack: ["*", "*", "*", "*", "*"],
+    sold: "333",
+>>>>>>> An
   },
 ];
 

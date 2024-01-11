@@ -1,5 +1,5 @@
 //Ex
-import React from "react";
+import React, { useState } from "react";
 import StarIcon from "@mui/icons-material/Star";
 import Grid from "@mui/material/Grid";
 
@@ -7,22 +7,37 @@ import Grid from "@mui/material/Grid";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./ProductList.module.scss";
-import images from "../../../../../assets/images";
-import { productList } from "../../DataHome";
 import { NavLink } from "react-router-dom";
-import Carousel from "react-material-ui-carousel";
+import { Button } from "@mui/material";
+import useFetchProductList from "../../../../../data/api/Product/useFetchProductList";
+import images from "../../../../../assets/images";
 
 const cx = classNames.bind(styles);
 
 const ProductListPage = () => {
+  const [page, setPage] = useState(1);
+  const { productList } = useFetchProductList({
+    page: page,
+  });
+
   // Hàm này tạo mảng StarIcon màu vàng và màu xám dựa trên độ dài của feedBack
-  const renderStarIcons = (feedBackLength: number) => {
+  const renderStarIcons = (rating: string | undefined) => {
+    const numericRating = parseFloat(rating ? rating : "");
+    const roundedRating = Math.floor(numericRating);
+    const hasHalfStar = numericRating - roundedRating > 0.5;
+
     const starIcons = [];
     for (let i = 0; i < 5; i++) {
-      if (i < feedBackLength) {
+      if (i < roundedRating) {
         starIcons.push(
           <span key={i} className={cx("feedBack-star")}>
             <StarIcon />
+          </span>
+        );
+      } else if (i === roundedRating && hasHalfStar) {
+        starIcons.push(
+          <span key={i} className={cx("feedBack-star")}>
+            <StarIcon style={{ color: "#ffd700" }} />
           </span>
         );
       } else {
@@ -35,12 +50,14 @@ const ProductListPage = () => {
     }
     return starIcons;
   };
+
   return (
     <Grid className={cx("wrapper")}>
       <Grid className={cx("header")}>
         <h5>Danh mục sản phẩm</h5>
       </Grid>
 
+<<<<<<< HEAD
      
         <Grid className={cx("container")} container>
           {productList.map((product, i) => (
@@ -68,6 +85,38 @@ const ProductListPage = () => {
         </Grid>
         
       
+=======
+      <Grid className={cx("container")} container>
+        {productList.map(
+          (product, i) =>
+            product.approveStatus === "PENDING" && (
+              <Grid item lg={1.6} className={cx("item")} key={i}>
+                <NavLink to="/san-pham">
+                  <img
+                    // src={`${process.env.REACT_APP_API_BASE_URL}${product.images}`}
+                    src={images.dauGoiDau}
+                    className={cx("product-img")}
+                    alt={product.name}
+                  />
+                  <h5 className={cx("product-name")}>{product.name}</h5>
+                  <p className={cx("original-price")}>{product.price}đ</p>
+                  <p className={cx("sale-price")}>{product.salePrice}đ</p>
+                  <p className={cx("feedBack")}>
+                    <span className={cx("feedBack-star")}>
+                      {renderStarIcons(product.rating)} <br />
+                    </span>{" "}
+                    {product.inventory} đã bán
+                  </p>
+                </NavLink>
+              </Grid>
+            )
+        )}
+      </Grid>
+
+      <Grid className={cx("more")}>
+        <Button variant="outlined">Xem Thêm</Button>
+      </Grid>
+>>>>>>> An
     </Grid>
   );
 };
