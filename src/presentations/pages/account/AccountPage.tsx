@@ -38,7 +38,7 @@ const AccountPage = (props: AccountPageProps) => {
           justifyContent={"space-between"}
           className={cx("wrapper")}
         >
-          <Grid item lg={2.5} style={{ background: "rgb(245, 245, 250)" }}>
+          <Grid item lg={2} className={cx("sidebar")} style={{backgroundColor :"#ffff"}} >
             <Grid className={cx("heading-sidebar")}>
               <DefaultAvatar medium avatar={images.avatar} />
 
