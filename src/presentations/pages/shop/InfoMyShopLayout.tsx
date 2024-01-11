@@ -1,7 +1,7 @@
 // External files
 import Grid from "@mui/material/Grid";
 import React from "react";
-import DefaultLayOut from "../../components/defaultLayOut/DefaultLayOut";
+import DefaultLayOutShop from "../../components/defaultLayOutShop/DefaultLayOutShop";
 
 // Internal files
 import images from "../../../assets/images";
@@ -23,7 +23,7 @@ const InfoMyShopLayout = (props: InfoMyShopLayoutProps) => {
   const { myShop, isLoading } = useFetchMyShop({});
 
   return (
-    <DefaultLayOut>
+    <DefaultLayOutShop>
       <Grid>
         <Grid
           container
@@ -54,6 +54,17 @@ const InfoMyShopLayout = (props: InfoMyShopLayoutProps) => {
                 )}
               </Grid>
             </Grid>
+            <Grid className={cx("statistical")}>
+              <Grid className={cx("order")}>
+                <p>Đơn hàng đã hoàn thành <span style={{color:"red"}}>0</span></p>
+              </Grid>
+              <Grid className={cx("order")}>
+                <p>Đơn khiếu nại <span>0</span></p>
+              </Grid >
+              <Grid className={cx("order")}>
+                <p>Đơn hàng đã hủy <span>0</span></p>
+              </Grid>
+            </Grid>
             {sidebarList.map((sidebar, i) => (
               <NavLink to={sidebar.path} className={cx("sidebar-item")} key={i}>
                 {sidebar.icon}
@@ -66,7 +77,7 @@ const InfoMyShopLayout = (props: InfoMyShopLayoutProps) => {
           </Grid>
         </Grid>
       </Grid>
-    </DefaultLayOut>
+    </DefaultLayOutShop>
   );
 };
 

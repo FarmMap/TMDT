@@ -41,7 +41,7 @@ const ProfilePage = () => {
             <p>Ngày sinh</p>
             <DatePicker onChange={onChange} className={cx("datetime")} />
             <Grid className={cx("btn-update")}>
-            <Button >Cập nhật</Button>
+              <Button >Cập nhật</Button>
             </Grid>
             <Grid className={cx("re-pass")}>
               <a href="#">Đổi mật khẩu</a>

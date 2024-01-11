@@ -8,6 +8,7 @@
 .heading-sidebar {
   display: flex;
   padding: 20px;
+  background-color: var(--white-color);
 }
 
 .heading-sidebar-infor {
@@ -21,13 +22,23 @@
     }
   }
 }
-
+.statistical{
+  background-color: var(--white-color);
+  padding:20px 25px ;
+  color: #000;
+  .order{
+    padding: 10px 0;
+    span{
+      color: var(--primary-color);
+    }
+  }
+}
 .sidebar-item {
   display: flex;
   padding: 8px 18px;
   align-items: center;
   color: var(--black-color);
-
+  background-color: var(--white-color);
   &:hover {
     &:hover {
       background-color: var(--hover-black);
