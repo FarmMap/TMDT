@@ -15,7 +15,7 @@ interface DefaultAppLayOutProps {
 
 const DefaultLayOut = (props: DefaultAppLayOutProps) => {
   return (
-    <Grid>
+    <Grid style={{ background: "rgb(245, 245, 250)" }}>
       <Header />
       <Grid className={cx("body-wrapper")}>{props.children}</Grid>
       <Footer />
