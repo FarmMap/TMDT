@@ -14,6 +14,7 @@ import useFetchMyAccount from "../../../../data/api/Account/useFetchMyAccount";
 import classNames from "classnames/bind";
 import styles from "./AccountInfo.module.scss";
 import { useEffect, useState } from "react";
+import useAuth from "../../../../hooks/useAuth";
 const cx = classNames.bind(styles);
 
 type AccountInfoProps = {};
@@ -23,14 +24,16 @@ const AccountInfo = (props: AccountInfoProps) => {
     localStorage.removeItem("token");
     window.location.href = "/";
   };
-  const { user } = useFetchMyAccount({});
+  const { user: currentUser } = useFetchMyAccount({});
+  const [user] = useAuth();
   const [role, setRole] = useState("");
 
   useEffect(() => {
-    if (user.roles === "ADMIN") setRole("Quản trị");
-    else if (user.roles === "SHOP") setRole("Người bán");
+    if (currentUser.roles === "ADMIN") setRole("Quản trị");
+    else if (currentUser.roles === "SHOP") setRole("Người bán");
     else setRole("Người mua");
-  }, [user.roles]);
+  }, [currentUser.roles]);
+
   return (
     <div className={cx("account-dropdown-wrapper")}>
       <div className={cx("header-account")}>
@@ -41,7 +44,9 @@ const AccountInfo = (props: AccountInfoProps) => {
         </Tippy>
         <div className={cx("user-cart-name")}>
           <Tippy content={`thienan1804`} placement="right" theme="light">
-            <span className={cx("accountinfo-username")}>{user.fullName}</span>
+            <span className={cx("accountinfo-username")}>
+              {user ? currentUser.fullName : "Phiên đăng nhập đã hết hạn"}
+            </span>
           </Tippy>
           <span className={cx("accountinfo-role")}>{role}</span>
         </div>
