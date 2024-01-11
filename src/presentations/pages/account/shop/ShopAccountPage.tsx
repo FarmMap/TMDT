@@ -36,12 +36,7 @@ const ShopAccountPage = () => {
           </Grid>
         ) : (
           <Grid className={cx("create-wrapper")}>
-            <Grid className={cx("create-wrapper-heading")}>
-              Thông tin cửa hàng
-            </Grid>
-            <Grid>
-              <FormCreateShopPage setIsCreateShop={setIsCreateShop} />
-            </Grid>
+            <FormCreateShopPage setIsCreateShop={setIsCreateShop} />
           </Grid>
         )}
       </Grid>

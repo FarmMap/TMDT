@@ -3,8 +3,19 @@ export default interface ShopType {
   updatedAt?: string;
   id?: number;
   name?: string;
+  email?: string;
   phone?: string;
+  pickupAddress?: string[];
+  shippingMethodIds?: string[];
+  provinceCode?: string;
+  districtCode?: string;
+  wardCode?: string;
   type?: string;
-  identity?: string;
+  address?: string;
   taxCode?: string;
+  companyName?: string;
+  step?: number;
+  businessLicense?: File;
+  identity?: File;
+  avatar?: File;
 }

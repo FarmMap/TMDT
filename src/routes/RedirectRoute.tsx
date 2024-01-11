@@ -5,7 +5,6 @@ import useAuth from "../hooks/useAuth";
 import { UserContext } from "../hooks/useContext";
 const RedirectRoute = (props: { path: string }) => {
   const [user, errorMessage] = useAuth();
-
   if (user === undefined && errorMessage === undefined) {
     return (
       <div

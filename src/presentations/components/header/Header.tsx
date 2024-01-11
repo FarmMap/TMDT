@@ -13,6 +13,8 @@ import useFetchMyAccount from "../../../data/api/Account/useFetchMyAccount";
 import Tippy from "@tippyjs/react";
 import DefaultDropDown from "../defaultDropDown";
 import AccountInfo from "./components/AccountInfo";
+import useAuth from "../../../hooks/useAuth";
+
 // Styles
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
@@ -24,19 +26,11 @@ const handleClick = () => {
 };
 
 const Header = () => {
-  const token = window.localStorage.getItem("token");
-  const [isLogined, setIsLogined] = useState(false);
+  const [showAccount, setShowAccount] = useState(false);
 
-  const { user, isLoading } = useFetchMyAccount({});
-  const [showAccount, setShowAccount] = useState<boolean>(false);
+  const { user: currentUser, isLoading } = useFetchMyAccount({});
+  const [user] = useAuth();
 
-  useEffect(() => {
-    if (token == null || token == undefined) {
-      setIsLogined(false);
-    } else {
-      setIsLogined(true);
-    }
-  }, [token]);
   return (
     <Grid className={cx("container")}>
       <Grid className={cx("wrapper")}>
@@ -69,7 +63,7 @@ const Header = () => {
             <span>Giao thương </span>
           </Button>
 
-          {!isLogined ? (
+          {!user ? (
             <Link to="/login">
               <Button className={cx("loginBtn")} variant="contained">
                 <SentimentSatisfiedAltRoundedIcon />
@@ -81,7 +75,11 @@ const Header = () => {
               childrenRender={<AccountInfo />}
               visible={showAccount}
             >
-              <Tippy content={`${user.email}`} placement="bottom" theme="light">
+              <Tippy
+                content={`${currentUser.email}`}
+                placement="bottom"
+                theme="light"
+              >
                 <Button
                   onClick={() => setShowAccount(!showAccount)}
                   className={cx("loginBtn")}
@@ -90,7 +88,7 @@ const Header = () => {
                   {!isLoading ? (
                     <>
                       <DefaultAvatar avatar={images.avatar} small />
-                      <span>{user.fullName}</span>
+                      <span>{currentUser.fullName}</span>
                     </>
                   ) : (
                     <CircularProgress

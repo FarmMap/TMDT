@@ -1,6 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useCallback, useState } from "react";
-
 import ShopType from "../../types/Shop/ShopType";
 
 interface CreateShopParams {
@@ -12,50 +11,118 @@ interface ResponseError {
   message: string;
 }
 
-const useCreateShop = () => {
+interface useCreateShopProps {
+  name?: string;
+  pickupAddress?: string[];
+  email?: string;
+  phone?: string;
+  taxCode?: string;
+  shippingMethodIds?: string[];
+  type?: string;
+  companyName?: string;
+  provinceCode?: string;
+  districtCode?: string;
+  wardCode?: string;
+  address?: string;
+  businessLicense?: File;
+  identity?: File;
+  avatar?: File;
+}
+
+const useCreateShop = (props: useCreateShopProps) => {
   const [isCreated, setCreated] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setLoading] = useState(false);
 
-  const createShop = useCallback((params: CreateShopParams) => {
-    setCreated(false);
-    setError(null);
-    setLoading(true);
+  const createShopType = useCallback(
+    (params: CreateShopParams) => {
+      setCreated(false);
+      setError(null);
+      setLoading(true);
+      const FormData = require("form-data");
+      var data = new FormData();
+      data.append("name", props.name);
+      data.append("pickupAddress", props.pickupAddress);
+      data.append("email ", props.email);
+      data.append("phone ", props.phone);
+      data.append("taxCode ", props.taxCode);
+      if (props.shippingMethodIds) {
+        props.shippingMethodIds.forEach((id, index) => {
+          data.append(`shippingMethodIds[${index}]`, id);
+        });
+      }
+      if (props.pickupAddress) {
+        props.pickupAddress.forEach((id, index) => {
+          data.append(`pickupAddress[${index}]`, id);
+        });
+      }
+      data.append("type ", props.type);
+      data.append("companyName ", props.companyName);
+      data.append("provinceCode  ", props.provinceCode);
+      data.append("districtCode  ", props.districtCode);
+      data.append("wardCode  ", props.wardCode);
+      data.append("address  ", props.address);
+      data.append(
+        "businessLicense",
+        props.businessLicense,
+        props.businessLicense?.name
+      );
+      data.append("identity", props.identity, props.identity?.name);
+      data.append("avatar", props.avatar, props.avatar?.name);
 
-    let data = JSON.stringify(params.shop);
+      let config = {
+        method: "post",
+        maxBodyLength: Infinity,
+        url: `${process.env.REACT_APP_API_BASE_URL}shop`,
+        headers: {
+          accept: "*/*",
+          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+          "Content-Type": "multipart/form-data",
+        },
+        data: data,
+      };
 
-    let config = {
-      method: "post",
-      url: `${process.env.REACT_APP_API_BASE_URL}shop`,
-      headers: {
-        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-        "Content-Type": "application/json",
-      },
-      data: data,
-    };
+      axios(config)
+        .then((response: AxiosResponse) => {
+          setCreated(true);
 
-    axios(config)
-      .then((response: AxiosResponse) => {
-        setCreated(true);
-        setLoading(false);
-      })
-      .catch((error: AxiosError) => {
-        if (error.response) {
-          let responseError: ResponseError = error.response
-            .data as ResponseError;
+          setLoading(false);
+        })
+        .catch((error: AxiosError) => {
+          if (error.response) {
+            let responseError: ResponseError = error.response
+              .data as ResponseError;
 
-          setError(responseError.message);
-        } else {
-          let requestError = error.request;
+            setError(responseError.message);
+          } else {
+            let requestError = error.request;
 
-          setError(requestError);
-        }
+            setError(requestError);
+          }
 
-        setLoading(false);
-      });
-  }, []);
+          setLoading(false);
+        });
+    },
+    [
+      props.address,
+      props.avatar,
+      props.businessLicense,
+      props.companyName,
+      props.districtCode,
+      props.email,
+      props.identity,
+      props.name,
+      props.phone,
+      props.pickupAddress,
+      props.provinceCode,
+      props.shippingMethodIds,
+      props.taxCode,
+      props.type,
+      props.wardCode,
+    ]
+  );
 
-  return { isCreated, setCreated, error, isLoading, createShop };
+  return { isCreated, setCreated, error, isLoading, createShopType };
 };
 
 export default useCreateShop;

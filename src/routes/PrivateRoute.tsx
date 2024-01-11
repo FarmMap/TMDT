@@ -4,10 +4,10 @@ import { toast } from "react-toastify";
 import UserAccountType from "../data/types/UserAccount/UserAccountType";
 import { UserContext } from "../hooks/useContext";
 import { useEffect, useState } from "react";
-import useFetchMyAccount from "../data/api/Account/useFetchMyAccount";
+import useAuth from "../hooks/useAuth";
 
 const PrivateRoute = () => {
-  const { user, error: errorMessage } = useFetchMyAccount({});
+  const [user, errorMessage] = useAuth();
   const [showErrorToast, setShowErrorToast] = useState(false);
 
   useEffect(() => {

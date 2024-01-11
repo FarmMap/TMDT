@@ -19,12 +19,16 @@ const App: React.FC = () => {
     <div className="App">
       <Routes>
         {/* Public Route */}
-        <Route element={<RedirectRoute path="/" />}>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="*" element={<NotFound />} />
-          <Route path="/san-pham" element={<DetailsPage />} />
-          <Route path="/" element={<HomePage />} />
+        {/* <Route element={<RedirectRoute path="/" />}> */}
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="*" element={<NotFound />} />
+        <Route path="/san-pham" element={<DetailsPage />} />
+        <Route path="/" element={<HomePage />} />
+
+        {/* </Route> */}
+        {/* Private Route */}
+        <Route path="/" element={<PrivateRoute />}>
           {/* Tai khoan */}
           <Route path="/tai-khoan/trang-ca-nhan" element={<ProfilePage />} />
           <Route path="/tai-khoan/cua-hang" element={<ShopAccountPage />} />
@@ -33,8 +37,6 @@ const App: React.FC = () => {
             element={<InfoMyShopPage />}
           />
         </Route>
-        {/* Private Route */}
-        <Route path="/" element={<PrivateRoute />}></Route>
       </Routes>
     </div>
   );
