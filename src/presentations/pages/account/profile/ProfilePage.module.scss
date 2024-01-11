@@ -11,25 +11,27 @@
 .profile{
     display: flex;
     color: #000;
+   
     .infor-user{
+        width: 60%;
         margin-left: 6.2em;
         p{
             padding: 10px  0px;
         }
         Input{
-            width: 400%;
+            width: 100%;
             border-radius: 3px;
             height: 40px;
         }
         .datetime{
-            width: 400%;
+            width: 100%;
             border-radius: 3px;
         }
         .btn-update{
             margin: 20px 0 0 0;
             display: flex;
             justify-content: center;   
-            width: 400%;    
+            width: 100%;    
             Button{
                 padding: 10px 30px 34px 30px;
                 border: none;
@@ -45,7 +47,7 @@
         .re-pass{
             display: flex;
             justify-content: center;   
-            width: 400%; 
+            width: 100%; 
             margin-top: 10px;
             a{
                 font-weight: 400;
