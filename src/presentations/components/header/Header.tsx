@@ -21,10 +21,6 @@ import styles from "./Header.module.scss";
 import { NavLink } from "react-router-dom";
 
 const cx = classNames.bind(styles);
-const handleClick = () => {
-  window.location.reload();
-};
-
 const Header = () => {
   const [showAccount, setShowAccount] = useState(false);
 
@@ -56,14 +52,15 @@ const Header = () => {
         </Grid>
 
         <Grid className={cx("icon-wrapper")}>
-          <Button
+        <NavLink to = "/">
+        <Button
             className={cx("loginBtn")}
             variant="contained"
-            onClick={handleClick}
           >
             <HomeRoundedIcon />
             <span>Trang chủ </span>
           </Button>
+        </NavLink>
 
           <Button className={cx("loginBtn")} variant="contained">
             <CurrencyExchangeRoundedIcon />
@@ -116,57 +113,7 @@ const Header = () => {
           )}
           <LocalMallRoundedIcon style={{ cursor: "pointer" }} />
         </Grid>
-      </Grid>
-
-      <Grid container className={cx("heading")}>
-        <Grid
-          item
-          lg={4}
-          className={cx("heading-item")}
-          style={{ borderRight: "1px solid #ddd" }}
-        >
-          <Grid className={cx("img-wrapper")}>
-            <img src={images.yecaubaogia} alt="yecaubaogia-ITFSD" />
-          </Grid>
-
-          <Grid className={cx("content-wrapper")}>
-            <h4>Yêu cầu báo giá</h4>
-            <p>Một yêu cầu, nhiều báo giá</p>
-          </Grid>
-        </Grid>
-
-        <Grid
-          item
-          lg={4}
-          className={cx("heading-item")}
-          style={{ borderRight: "1px solid #ddd", justifyContent: "center" }}
-        >
-          <Grid className={cx("img-wrapper")}>
-            <img src={images.sansangvanchuyen} alt="yecaubaogia-ITFSD" />
-          </Grid>
-
-          <Grid className={cx("content-wrapper")}>
-            <h4>Sẵn sàng vận chuyển</h4>
-            <p>Đặt hàng trực tiếp, gửi hàng nhanh</p>
-          </Grid>
-        </Grid>
-
-        <Grid
-          item
-          lg={4}
-          className={cx("heading-item")}
-          style={{ justifyContent: "center" }}
-        >
-          <Grid className={cx("img-wrapper")}>
-            <img src={images.dichvuhaucan} alt="yecaubaogia-ITFSD" />
-          </Grid>
-
-          <Grid className={cx("content-wrapper")}>
-            <h4>Dịch vụ hậu cần</h4>
-            <p>Vận chuyển theo đường bộ</p>
-          </Grid>
-        </Grid>
-      </Grid>
+      </Grid>  
     </Grid>
   );
 };

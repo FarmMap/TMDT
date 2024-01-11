@@ -1,17 +1,20 @@
 .wrapper {
-  background-color: var(--white-color);
-  border-radius: 3px;
-  width: 90.2vw !important;
+  border-radius: 5px;
+  margin: 0;
 }
-
+.sidebar{
+  background-color: var(--white-color);
+  margin-top: 20px;
+  border-radius: 5px;
+}
 .heading-sidebar {
   display: flex;
-  padding: 20px;
+  padding: 30px ;
 }
 
 .heading-sidebar-infor {
   margin-left: 8px;
-
+  
   p {
     &:first-child {
       font-size: 1.5rem;
