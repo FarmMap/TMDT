@@ -25,7 +25,6 @@ const App: React.FC = () => {
         <Route path="*" element={<NotFound />} />
         <Route path="/san-pham" element={<DetailsPage />} />
         <Route path="/" element={<HomePage />} />
-
         {/* </Route> */}
         {/* Private Route */}
         <Route path="/" element={<PrivateRoute />}>

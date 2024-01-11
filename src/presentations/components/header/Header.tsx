@@ -28,8 +28,15 @@ const handleClick = () => {
 const Header = () => {
   const [showAccount, setShowAccount] = useState(false);
 
-  const { user: currentUser, isLoading } = useFetchMyAccount({});
+  const { user: currentUser, isLoading, error } = useFetchMyAccount({});
+
   const [user] = useAuth();
+
+  useEffect(() => {
+    if (error === "T") {
+      window.localStorage.removeItem("token");
+    }
+  }, [error]);
 
   return (
     <Grid className={cx("container")}>
@@ -88,7 +95,11 @@ const Header = () => {
                   {!isLoading ? (
                     <>
                       <DefaultAvatar avatar={images.avatar} small />
-                      <span>{currentUser.fullName}</span>
+                      <span>
+                        {user
+                          ? currentUser.fullName
+                          : "Phiên đăng nhập đã hết hạn"}
+                      </span>
                     </>
                   ) : (
                     <CircularProgress
