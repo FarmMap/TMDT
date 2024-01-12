@@ -17,6 +17,13 @@
   align-items: center;
   color: var(--black-color);
 
+  img {
+    width: 27px;
+    height: 27px;
+    object-fit: contain;
+    border-radius: 50%;
+  }
+
   span {
     height: 100%;
     display: flex;

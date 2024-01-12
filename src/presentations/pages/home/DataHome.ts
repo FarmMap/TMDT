@@ -61,7 +61,6 @@ const suggestProducts = [
         feedBack: ["*", "*", "*", "*"],
         sold: "20",
       },
-      
     ],
   },
   {
