@@ -71,5 +71,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "Quản lý cho thuê xe du lịch\r ### Thành viên nhóm:\r #### Back-End\r - Tống Hoàng Vũ\r #### Front-End\r - Lê Xuân Vinh\r - Nguyên Thiên Ân",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }

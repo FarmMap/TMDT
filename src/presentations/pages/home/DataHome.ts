@@ -40,8 +40,13 @@ const suggestProducts = [
       {
         productSrc: images.trung,
         productName: "Trứng gà",
+<<<<<<< HEAD
+        originalPrice: "30.000 đ",
+        salePrice: "",
+=======
         originalPrice: "30.000đ",
         salePrice: "15.000 đ",
+>>>>>>> An
         feedBack: ["*", "*", "*"],
         sold: "63",
       },
@@ -61,6 +66,7 @@ const suggestProducts = [
         feedBack: ["*", "*", "*", "*"],
         sold: "20",
       },
+      
     ],
   },
   {
