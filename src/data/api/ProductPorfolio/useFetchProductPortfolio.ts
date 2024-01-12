@@ -2,7 +2,6 @@ import axios, { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 
 import ProductPortfolioType from "../../types/ProductPortfolio/ProductPortfolioType";
-import { env } from "process";
 
 interface ResponseError {
   code: string;
@@ -14,7 +13,7 @@ interface useFetchProductPorfolioProps {
 }
 
 const useFetchProductPorfolio = (props: useFetchProductPorfolioProps) => {
-  let [productPort, setProductPort] = useState<ProductPortfolioType>({});
+  let [productPort, setProductPort] = useState<ProductPortfolioType[]>([]);
   let [error, setError] = useState<string | null>(null);
   let [isLoading, setLoading] = useState(false);
 

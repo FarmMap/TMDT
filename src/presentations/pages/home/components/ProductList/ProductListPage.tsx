@@ -54,7 +54,7 @@ const ProductListPage = () => {
   return (
     <Grid className={cx("wrapper")}>
       <Grid className={cx("header")}>
-        <h5>Danh mục sản phẩm</h5>
+        <h5>Danh sách sản phẩm</h5>
       </Grid>
 
       <Grid className={cx("container")} container>

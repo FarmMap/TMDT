@@ -18,18 +18,21 @@ const cx = classNames.bind(styles);
 
 const HomePage = () => {
   const { productPort } = useFetchProductPorfolio({});
-
+  console.log(productPort);
   return (
     <DefaultLayOut>
       <Grid>
         <Grid container className={cx("wrapper")}>
           <Grid item lg={3}>
             <Grid className={cx("heading-sidebar")}> Danh mục</Grid>
-            {sidebarList.map((sidebar, i) => (
+            {productPort.map((sidebar, i) => (
               <Grid className={cx("sidebar-item")} key={i}>
-                <img src={sidebar.src} alt="ITFS sidebar" />
+                <img
+                  src={`${process.env.REACT_APP_API_BASE_URL}${sidebar.image}`}
+                  alt="ITFS sidebar"
+                />
                 <span>
-                  {sidebar.text}
+                  {sidebar.name}
                   <KeyboardArrowRightRoundedIcon />
                 </span>
               </Grid>
