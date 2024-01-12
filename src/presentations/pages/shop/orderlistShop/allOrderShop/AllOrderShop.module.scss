@@ -1,0 +1,35 @@
+.wapper{
+    .menu-item{
+        display: flex;
+    }
+    .show-quantity{
+        display: flex;
+        align-items: center;
+        p{
+            font-size: 1.2rem;
+            color: var(--black-color);
+            padding: 0 10px;
+        }
+    }
+    .dropdown{
+        height: 30px;
+        font-size: 1.2rem;
+        border-radius: 3px;
+        &:hover{
+            border: 1px solid var(--border-color) !important;
+            color: var(--black-color) !important;
+        }
+    }
+    .time-order{
+        display: flex;
+        align-items: center;
+        p{
+            font-size: 1.2rem;
+            color: var(--black-color);
+            padding: 0 10px;
+        }
+    }
+}
+.table-list{
+    margin-top: 20px;
+}

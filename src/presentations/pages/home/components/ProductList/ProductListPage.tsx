@@ -57,35 +57,6 @@ const ProductListPage = () => {
         <h5>Danh mục sản phẩm</h5>
       </Grid>
 
-<<<<<<< HEAD
-     
-        <Grid className={cx("container")} container>
-          {productList.map((product, i) => (
-            <Grid item lg={1.8} className={cx("item")} key={i}>
-              <NavLink to="/san-pham">
-                <img
-                  src={product.productSrc}
-                  className={cx("product-img")}
-                  alt="ITFSD-rauSach"
-                />
-                <h5 className={cx("product-name")}>{product.productName}</h5>
-                <p className={cx("original-price")}>{product.originalPrice}</p>
-                <p className={cx("sale-price")}>
-                  {product.salePrice} <span>1kg</span>
-                </p>
-                <p className={cx("feedBack")}>
-                  <span className={cx("feedBack-star")}>
-                    {renderStarIcons(product.feedBack.length)} <br />
-                  </span>{" "}
-                  {product.sold} đã bán
-                </p>
-              </NavLink>
-            </Grid>
-          ))}
-        </Grid>
-        
-      
-=======
       <Grid className={cx("container")} container>
         {productList.map(
           (product, i) =>
@@ -116,7 +87,6 @@ const ProductListPage = () => {
       <Grid className={cx("more")}>
         <Button variant="outlined">Xem Thêm</Button>
       </Grid>
->>>>>>> An
     </Grid>
   );
 };
