@@ -12,6 +12,9 @@ import PrivateRoute from "./routes/PrivateRoute";
 import ProfilePage from "./presentations/pages/account/profile/ProfilePage";
 import ShopAccountPage from "./presentations/pages/account/shop/ShopAccountPage";
 import InfoMyShopPage from "./presentations/pages/shop/infoMyShop/InfoMyShopPage";
+import OrderShopPage from "./presentations/pages/shop/orderlistShop/OrderShopPage";
+import { Children } from "react";
+import ProductShopPage from "./presentations/pages/shop/productShop/ProductShopPage";
 //Style
 
 const App: React.FC = () => {
@@ -31,10 +34,11 @@ const App: React.FC = () => {
           {/* Tai khoan */}
           <Route path="/tai-khoan/trang-ca-nhan" element={<ProfilePage />} />
           <Route path="/tai-khoan/cua-hang" element={<ShopAccountPage />} />
-          <Route
-            path="/cua-hang/cua-hang-cua-toi"
-            element={<InfoMyShopPage />}
-          />
+          
+          {/* Shop */}
+          <Route path="/cua-hang/cua-hang-cua-toi" element={<InfoMyShopPage />} />
+          <Route path="/cua-hang/danh-sach-don-hang" element={<OrderShopPage/>} />
+          <Route path="/cua-hang/danh-sach-san-pham" element={<ProductShopPage/>} />
         </Route>
       </Routes>
     </div>

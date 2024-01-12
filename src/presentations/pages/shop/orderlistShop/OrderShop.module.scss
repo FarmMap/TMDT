@@ -1,0 +1,50 @@
+.wapper{
+    margin: 20px;
+    
+}
+.heading{
+    color: var(--black-color);
+    font-size: 2rem;
+}
+.menu-item{
+    padding: 20px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    .menu-input{
+        width: 65%;
+    }
+    Input{
+        border-radius: 3px;
+        width: 50%;
+    }
+    .dropdown{
+        border-radius: 3px !important;
+        font-size: 1.2rem;
+        width: 60%;
+    }
+    
+    .reload{
+        background-color: #E7E8EA;
+        color: var(--black-color);
+        box-shadow: none;
+        border-radius: 3px;
+        &:hover{
+            background-color:  #E7E8EA !important;
+            color: var(--black-color) !important;
+            opacity: 0.8;
+        }
+        margin-right: 5px;
+    }
+    .seacrh{
+        width: 25%;
+        height: 40px;
+        background-color: var(--primary-color);
+        box-shadow: none;
+        border-radius: 3px;
+        &:hover{
+            background-color:  var(--primary-color) !important;
+            opacity: 0.9;
+        }
+    }
+}
