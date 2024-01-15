@@ -224,13 +224,14 @@ const ProductShopPage = () => {
             </Space.Compact>
           </Grid>
           <Grid className={cx("table-list")}>
-            <Table
+            <Table size="small"
               rowSelection={{
                 type: selectionType,
                 ...rowSelection,
               }}
               columns={columns}
               dataSource={productList}
+              className={cx("table-row")}
             />
           </Grid>
         </Grid>
