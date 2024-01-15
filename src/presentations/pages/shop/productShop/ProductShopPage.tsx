@@ -70,11 +70,11 @@ const renderStarIcons = (rating: string | undefined) => {
 
 const rowSelection = {
   onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
-    console.log(
-      `selectedRowKeys: ${selectedRowKeys}`,
-      "selectedRows: ",
-      selectedRows
-    );
+    // console.log(
+    //   `selectedRowKeys: ${selectedRowKeys}`,
+    //   "selectedRows: ",
+    //   selectedRows
+    // );
   },
 };
 
@@ -100,7 +100,7 @@ const items: MenuProps["items"] = [
 ];
 const handleMenuClick: MenuProps["onClick"] = (e) => {
   message.info("Click on menu item.");
-  console.log("click", e);
+  // console.log("click", e);
 };
 const menuProps = {
   items,

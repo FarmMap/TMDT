@@ -1,8 +1,8 @@
 import React from "react";
 import AccountPage from "../AccountPage";
 import { Grid } from "@mui/material";
-import type { DatePickerProps } from 'antd';
-import { Button, DatePicker, Space } from 'antd';
+import type { DatePickerProps } from "antd";
+import { Button, DatePicker, Space } from "antd";
 import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
 import { Input } from "antd";
 
@@ -12,8 +12,8 @@ import styles from "./ProfilePage.module.scss";
 import images from "../../../../assets/images";
 
 const cx = classNames.bind(styles);
-const onChange: DatePickerProps['onChange'] = (date, dateString) => {
-  console.log(date, dateString);
+const onChange: DatePickerProps["onChange"] = (date, dateString) => {
+  // console.log(date, dateString);
 };
 const ProfilePage = () => {
   return (
@@ -27,8 +27,8 @@ const ProfilePage = () => {
             <img src={images.avatar} alt="ITFSD" />
             <input hidden type="file" id="wallpapper" />
             <label htmlFor="wallpapper">
-                <AddAPhotoOutlinedIcon />
-                Chọn ảnh
+              <AddAPhotoOutlinedIcon />
+              Chọn ảnh
             </label>
           </Grid>
           <Grid className={cx("infor-user")}>
@@ -41,13 +41,12 @@ const ProfilePage = () => {
             <p>Ngày sinh</p>
             <DatePicker onChange={onChange} className={cx("datetime")} />
             <Grid className={cx("btn-update")}>
-              <Button >Cập nhật</Button>
+              <Button>Cập nhật</Button>
             </Grid>
             <Grid className={cx("re-pass")}>
               <a href="#">Đổi mật khẩu</a>
             </Grid>
           </Grid>
-          
         </Grid>
       </Grid>
     </AccountPage>

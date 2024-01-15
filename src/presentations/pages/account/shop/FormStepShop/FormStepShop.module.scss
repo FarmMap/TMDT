@@ -11,6 +11,7 @@
     display: flex;
     width: 20%;
     justify-content: flex-end;
+    white-space: nowrap;
     align-items: center;
     font-size: 1.4rem;
     margin-right: 12px;
@@ -66,4 +67,33 @@
       margin-left: 8px !important;
     }
   }
+}
+
+.addressBtn {
+  width: 100%;
+  margin-bottom: 2rem !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.8rem !important;
+  border-radius: 3px;
+}
+
+// getPlace
+.account-dropdown-wrapper {
+  width: 420px;
+  height: 320px;
+  overflow: hidden;
+  overflow-y: scroll;
+  max-width: 100%;
+  min-height: 100px;
+  background-color: var(--white-color);
+  background-clip: padding-box;
+
+  border-radius: 4px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-shadow: 0px 0px 50px 0px rgb(82 63 105 / 15%);
+
+  animation: topToDown 0.5s ease;
 }

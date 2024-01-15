@@ -102,7 +102,13 @@ const FormStep1Shop = (props: FormStep1ShopProps) => {
       </Grid>
 
       <Grid className={cx("input-wrapper")}>
-        <label htmlFor="type">Phương thức vận chuyển</label>
+        <label htmlFor="type">
+          {" "}
+          <span style={{ color: "var(--second-color)", marginRight: "0.4rem" }}>
+            *
+          </span>
+          Phương thức vận chuyển
+        </label>
         <Grid className={cx("radio-wrapper")}>
           <input
             className={cx("radio-btn")}

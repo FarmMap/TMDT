@@ -18,7 +18,6 @@ const cx = classNames.bind(styles);
 
 const HomePage = () => {
   const { productPort } = useFetchProductPorfolio({});
-  console.log(productPort);
   return (
     <DefaultLayOut>
       <Grid>

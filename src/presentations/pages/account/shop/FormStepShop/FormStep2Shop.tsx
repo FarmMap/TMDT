@@ -1,10 +1,17 @@
-import React from "react";
-import { Grid, Button } from "@mui/material";
+import React, { useState } from "react";
+import { Grid, Select, MenuItem, Box, Tab } from "@mui/material";
 import ShopType from "../../../../../data/types/Shop/ShopType";
-
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { Button } from "antd";
+import DefaultDropDown from "../../../../components/defaultDropDown";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./FormStepShop.module.scss";
+
+import GetPlaceVietNamPage from "./GetPlaceVietNamPage";
+import useFetchProvinceList from "../../../../../data/api/Place/useFetchProvince";
+import useFetchDistrictByProvinceCode from "../../../../../data/api/Place/useFetchDistrictByProvinceCode";
+import useFetchWardByDistrictCode from "../../../../../data/api/Place/useFetchWardByDistrictCode";
 
 const cx = classNames.bind(styles);
 
@@ -14,10 +21,25 @@ interface FormStep2ShopProps {
 }
 
 const FormStep2Shop = (props: FormStep2ShopProps) => {
+  const [showPlace, setShowPlace] = useState(false);
+  const { provinceList } = useFetchProvinceList({});
+  const { districtList } = useFetchDistrictByProvinceCode({
+    code: props.shop.provinceCode,
+  });
+
+  const { wardList } = useFetchWardByDistrictCode({
+    code: props.shop.districtCode,
+  });
   return (
     <form className={cx("form-wrapper")}>
       <Grid className={cx("input-wrapper")}>
-        <label htmlFor="type">Loại hình kinh doanh</label>
+        <label htmlFor="type">
+          {" "}
+          <span style={{ color: "var(--second-color)", marginRight: "0.4rem" }}>
+            *
+          </span>
+          Loại hình kinh doanh
+        </label>
         <Grid className={cx("radio-wrapper")}>
           <input
             className={cx("radio-btn")}
@@ -74,25 +96,57 @@ const FormStep2Shop = (props: FormStep2ShopProps) => {
         />
       </Grid>
       <Grid className={cx("input-wrapper")}>
-        <label htmlFor="phone">
+        <label htmlFor="address">
           <span style={{ color: "var(--second-color)", marginRight: "0.4rem" }}>
             *
           </span>
-          Địa chỉ lấy hàng
+          Địa chỉ đăng ký kinh doanh
         </label>
-        <input
-          value={
-            props.shop.pickupAddress ? props.shop.pickupAddress.join("\n") : ""
-          }
-          onChange={(e) => {
-            let newShop = { ...props.shop };
-            newShop.pickupAddress = e.currentTarget.value.split("\n");
-            props.setShop(newShop);
-          }}
-          type="text"
-          id="pickupAddress"
-          placeholder="Nhập địa chỉ lấy hàng"
-        />
+        <Grid display={"flex"} flexDirection={"column"} flex={"0.61"}>
+          <DefaultDropDown
+            visible={showPlace}
+            childrenRender={
+              <GetPlaceVietNamPage shop={props.shop} setShop={props.setShop} />
+            }
+          >
+            <Button
+              onClick={() => setShowPlace(!showPlace)}
+              className={cx("addressBtn")}
+            >
+              <p>
+                {provinceList.map(
+                  (province, i) =>
+                    province.code == props.shop.provinceCode && province.name
+                )}{" "}
+                {props.shop.provinceCode && "/"}
+                {districtList.map(
+                  (district, i) =>
+                    district.code == props.shop.districtCode && district.name
+                )}
+                {props.shop.districtCode && "/"}
+                {wardList.map(
+                  (ward, i) => ward.code == props.shop.wardCode && ward.name
+                )}
+              </p>
+              <ArrowDropDownIcon />
+            </Button>
+          </DefaultDropDown>
+          <input
+            value={
+              props.shop.pickupAddress
+                ? props.shop.pickupAddress.join("\n")
+                : ""
+            }
+            onChange={(e) => {
+              let newShop = { ...props.shop };
+              newShop.pickupAddress = e.currentTarget.value.split("\n");
+              props.setShop(newShop);
+            }}
+            type="text"
+            id="pickupAddress"
+            placeholder="Nhập địa chỉ đăng ký kinh doanh"
+          />
+        </Grid>
       </Grid>
 
       <Grid className={cx("input-wrapper")}>
