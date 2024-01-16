@@ -17,6 +17,7 @@ import { DownOutlined, SearchOutlined } from "@ant-design/icons";
 import Table, { ColumnsType } from "antd/es/table";
 import StarIcon from "@mui/icons-material/Star";
 import useFetchProductList from "../../../../data/api/Product/useFetchProductList";
+import { NavLink } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 interface DataType {
@@ -177,10 +178,12 @@ const ProductShopPage = () => {
         <Grid className={cx("wapper")}>
           <Grid className={cx("heading-sidebar")}>
             <h4>Danh sách sản phẩm</h4>
-            <Button type="primary">
-              <AddIcon />
-              <span>Thêm sản phẩm</span>
-            </Button>
+            <NavLink to="/cua-hang/danh-sach-san-pham/tao-san-pham">
+              <Button type="primary">
+                <AddIcon style={{fontSize:"20px"}} />
+                <span>Thêm sản phẩm</span>
+              </Button>
+            </NavLink>
           </Grid>
           <Grid className={cx("menu-item")}>
             <Input

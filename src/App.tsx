@@ -15,6 +15,7 @@ import InfoMyShopPage from "./presentations/pages/shop/infoMyShop/InfoMyShopPage
 import OrderShopPage from "./presentations/pages/shop/orderlistShop/OrderShopPage";
 import { Children } from "react";
 import ProductShopPage from "./presentations/pages/shop/productShop/ProductShopPage";
+import AddProductPage from "./presentations/pages/shop/addProductShop/AddProductPage";
 //Style
 
 const App: React.FC = () => {
@@ -39,6 +40,7 @@ const App: React.FC = () => {
           <Route path="/cua-hang/cua-hang-cua-toi" element={<InfoMyShopPage />} />
           <Route path="/cua-hang/danh-sach-don-hang" element={<OrderShopPage/>} />
           <Route path="/cua-hang/danh-sach-san-pham" element={<ProductShopPage/>} />
+          <Route path="/cua-hang/danh-sach-san-pham/tao-san-pham" element={<AddProductPage/>} />
         </Route>
       </Routes>
     </div>
