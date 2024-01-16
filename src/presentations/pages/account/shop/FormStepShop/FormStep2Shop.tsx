@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Grid, Select, MenuItem, Box, Tab } from "@mui/material";
 import ShopType from "../../../../../data/types/Shop/ShopType";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { Button } from "antd";
 import DefaultDropDown from "../../../../components/defaultDropDown";
-// Styles
-import classNames from "classnames/bind";
-import styles from "./FormStepShop.module.scss";
 
 import GetPlaceVietNamPage from "./GetPlaceVietNamPage";
 import useFetchProvinceList from "../../../../../data/api/Place/useFetchProvince";
 import useFetchDistrictByProvinceCode from "../../../../../data/api/Place/useFetchDistrictByProvinceCode";
 import useFetchWardByDistrictCode from "../../../../../data/api/Place/useFetchWardByDistrictCode";
+import ImageIcon from "@mui/icons-material/Image";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+// Styles
+import classNames from "classnames/bind";
+import styles from "./FormStepShop.module.scss";
 
 const cx = classNames.bind(styles);
 
@@ -30,6 +32,9 @@ const FormStep2Shop = (props: FormStep2ShopProps) => {
   const { wardList } = useFetchWardByDistrictCode({
     code: props.shop.districtCode,
   });
+
+  // Ref để tham chiếu tới input file
+  const fileInputRef = useRef(null);
   return (
     <form className={cx("form-wrapper")}>
       <Grid className={cx("input-wrapper")}>
@@ -132,62 +137,110 @@ const FormStep2Shop = (props: FormStep2ShopProps) => {
             </Button>
           </DefaultDropDown>
           <input
-            value={
-              props.shop.pickupAddress
-                ? props.shop.pickupAddress.join("\n")
-                : ""
-            }
+            value={props.shop.address ? props.shop.address : ""}
             onChange={(e) => {
               let newShop = { ...props.shop };
-              newShop.pickupAddress = e.currentTarget.value.split("\n");
+              newShop.address = e.currentTarget.value;
               props.setShop(newShop);
             }}
             type="text"
-            id="pickupAddress"
+            id="address"
             placeholder="Nhập địa chỉ đăng ký kinh doanh"
           />
         </Grid>
       </Grid>
 
       <Grid className={cx("input-wrapper")}>
-        <label htmlFor="email">
-          {" "}
-          <span style={{ color: "var(--second-color)", marginRight: "0.4rem" }}>
-            *
-          </span>
-          Email
-        </label>
-        <input
-          value={props.shop.email}
-          type={"email"}
-          onChange={(e) => {
-            let newShop = { ...props.shop };
-            newShop.email = e.currentTarget.value;
-            props.setShop(newShop);
-          }}
-          id="email"
-          placeholder="Nhập email"
-        />
-      </Grid>
-      <Grid className={cx("input-wrapper")}>
         <label htmlFor="taxCode">
           {" "}
           <span style={{ color: "var(--second-color)", marginRight: "0.4rem" }}>
             *
           </span>
-          Số điện thoại
+          Mã số thuế
         </label>
         <input
-          value={props.shop.phone}
+          value={props.shop.taxCode ?? ""}
+          type={"number"}
           onChange={(e) => {
             let newShop = { ...props.shop };
-            newShop.phone = e.currentTarget.value;
+            newShop.taxCode = e.currentTarget.value;
             props.setShop(newShop);
           }}
-          type="text"
-          id="phone"
-          placeholder="Nhập số điện thoại"
+          id="taxCode"
+          placeholder="Nhập mã số thuế (14 kí tự)"
         />
+      </Grid>
+      <Grid className={cx("input-wrapper")}>
+        <label htmlFor="">
+          {" "}
+          <span style={{ color: "var(--second-color)", marginRight: "0.4rem" }}>
+            *
+          </span>
+          Giấy phép đăng ký kinh doanh
+        </label>
+        <Grid display={"flex"} flexDirection={"column"} flex={"0.6"}>
+          <label
+            htmlFor="file-input"
+            style={{
+              border: props.shop.businessLicense
+                ? "none"
+                : "1px dashed var(--border-color) ",
+            }}
+            className={cx("file-input-label")}
+          >
+            {props.shop.businessLicense ? (
+              <Grid width={"100%"} height={"100%"} position={"relative"}>
+                <img
+                  src={
+                    props.shop.businessLicense instanceof File
+                      ? URL.createObjectURL(props.shop.businessLicense)
+                      : props.shop.businessLicense || "" // Use an empty string if farm.image is null
+                  }
+                  alt="Chọn hình ảnh"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                    margin: "1.2rem 0 1.2rem 0",
+                  }}
+                />
+                <Button
+                  className={cx("deleteImg-btn")}
+                  onClick={() => {
+                    // Handle image deletion here
+                    props.setShop((prevShop) => ({
+                      ...prevShop,
+                      businessLicense: undefined,
+                    }));
+                  }}
+                >
+                  <DeleteOutlineOutlinedIcon />
+                </Button>
+              </Grid>
+            ) : (
+              <ImageIcon className={cx("img-icon")} />
+            )}
+          </label>
+
+          <input
+            hidden
+            type="file"
+            accept=".jpg, .jpeg, .png"
+            ref={fileInputRef}
+            id="file-input"
+            onChange={(e) => {
+              const fileInput = e.target;
+              if (fileInput && fileInput.files && fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                // Cập nhật state shop.image với File ảnh đã chọn
+                props.setShop((prevShop) => ({
+                  ...prevShop,
+                  businessLicense: file, // Set to the selected File object
+                }));
+              }
+            }}
+          />
+        </Grid>
       </Grid>
     </form>
   );

@@ -2,19 +2,20 @@
   border-radius: 5px;
   margin: 0;
 }
-.sidebar{
+.sidebar {
   background-color: var(--white-color);
   margin-top: 20px;
   border-radius: 5px;
+  max-height: 28.4rem;
 }
 .heading-sidebar {
   display: flex;
-  padding: 30px ;
+  padding: 30px;
 }
 
 .heading-sidebar-infor {
   margin-left: 8px;
-  
+
   p {
     &:first-child {
       font-size: 1.5rem;

@@ -17,5 +17,7 @@ export default interface ShopType {
   step?: number;
   businessLicense?: File;
   identity?: File;
+  identityCode?: string;
+  fullName?: string;
   avatar?: File;
 }

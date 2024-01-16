@@ -6,6 +6,7 @@ import useCreateShop from "../../../../data/api/Shop/useCreateShop";
 import { toast } from "react-toastify";
 import FormStep1Shop from "./FormStepShop/FormStep1Shop";
 import FormStep2Shop from "./FormStepShop/FormStep2Shop";
+import FormStep3Shop from "./FormStepShop/FormStep3Shop";
 
 interface FormCreateShopPageProps {
   setIsCreateShop: React.Dispatch<React.SetStateAction<boolean>>;
@@ -28,7 +29,7 @@ const FormCreateShopPage = (props: FormCreateShopPageProps) => {
     },
     {
       title: "Thông tin định danh",
-      content: "Last-content",
+      content: <FormStep3Shop shop={shop} setShop={setShop} />,
     },
     {
       title: "Hoàn tất",
@@ -74,29 +75,57 @@ const FormCreateShopPage = (props: FormCreateShopPageProps) => {
     shop.shippingMethodIds?.length,
   ]);
 
-  // console.log(isNext, current, shop);
+  console.log(shop);
 
   // end step
 
-  const handleSetCreateShop = () => {
-    props.setIsCreateShop(false);
+  // APi
+  const {
+    isCreated,
+    error: createShopErr,
+    createShop,
+  } = useCreateShop({
+    name: shop.name,
+    pickupAddress: shop.pickupAddress,
+    email: shop.email,
+    phone: shop.phone,
+    taxCode: shop.taxCode,
+    shippingMethodIds: shop.shippingMethodIds,
+    type: shop.type,
+    companyName: shop.companyName,
+    provinceCode: shop.provinceCode,
+    districtCode: shop.districtCode,
+    wardCode: shop.wardCode,
+    address: shop.address,
+    businessLicense: shop.businessLicense,
+    identity: shop.identity,
+    avatar: shop.avatar,
+  });
+
+  const handleCreateShop = () => {
+    createShop();
   };
+
+  useEffect(() => {
+    if (isCreated) {
+      toast.success("Thao tác thành công");
+    } else if (createShopErr) {
+      toast.error(createShopErr);
+    }
+  }, [createShopErr, isCreated]);
 
   return (
     <Grid>
       <Steps current={current} items={items} />
       <div style={{ margin: "4rem 0" }}>{steps[current].content}</div>
       <div style={{ marginTop: 24 }}>
-        {current < steps.length - 1 && (
+        {current < 2 && (
           <Button disabled={!isNext} type="primary" onClick={() => next()}>
             Tiếp theo
           </Button>
         )}
-        {current === steps.length - 1 && (
-          <Button
-            type="primary"
-            onClick={() => message.success("Processing complete!")}
-          >
+        {current === 2 && (
+          <Button type="primary" onClick={handleCreateShop}>
             Hoàn thành
           </Button>
         )}
