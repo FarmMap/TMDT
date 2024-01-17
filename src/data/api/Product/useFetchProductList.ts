@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 
-import ProductList from "../../types/Product/ProductList";
+import ProductList from "../../types/Product/ProductType";
 import Meta from "../../types/Meta/Meta";
 
 interface UseFetchProductListProps {

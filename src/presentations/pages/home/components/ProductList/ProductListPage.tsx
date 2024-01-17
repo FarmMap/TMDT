@@ -60,12 +60,12 @@ const ProductListPage = () => {
       <Grid className={cx("container")} container>
         {productList.map(
           (product, i) =>
-            product.approveStatus === "PENDING" && (
+            product.approveStatus === "APPROVED" && (
               <Grid item lg={1.6} className={cx("item")} key={i}>
                 <NavLink to="/san-pham">
                   <img
-                    // src={`${process.env.REACT_APP_API_BASE_URL}${product.images}`}
-                    src={images.dauGoiDau}
+                    src={`${process.env.REACT_APP_API_BASE_URL}${product.images}`}
+                    // src={images.dauGoiDau}
                     className={cx("product-img")}
                     alt={product.name}
                   />

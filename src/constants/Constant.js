@@ -9,4 +9,15 @@ const TYPESHOP = [
     },
 ];
 
-export { TYPESHOP }
+const STATUSPRODUCT = [
+    {
+        value: "true",
+        name: "Đang bán"
+    },
+    {
+        value: "fasle",
+        name: "Ngừng bán"
+    },
+]
+
+export { TYPESHOP, STATUSPRODUCT }
