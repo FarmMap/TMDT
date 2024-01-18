@@ -277,17 +277,19 @@ const DetailsPage = () => {
                 </Grid>
 
                 <Grid className={cx("button-wrap")}>
-                  <button style={{ backgroundColor: "#E7E8EA" }}>
+                  <button className={cx("btn-pay")} style={{ backgroundColor: "#E7E8EA" }}>
                     Thêm vào giỏ
                   </button>
-                  <button
-                    style={{
-                      backgroundColor: "var(--primary-color)",
-                      color: "var(--white-color)",
-                    }}
-                  >
-                    Mua ngay
-                  </button>
+                  <NavLink to ="thanh-toan" className={cx("btn-pay")}>
+                    <button
+                      style={{
+                        backgroundColor: "var(--primary-color)",
+                        color: "var(--white-color)",
+                      }}
+                    >
+                      Mua ngay
+                    </button>
+                  </NavLink>
                 </Grid>
               </Grid>
 

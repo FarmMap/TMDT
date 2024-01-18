@@ -16,6 +16,9 @@ import OrderShopPage from "./presentations/pages/shop/orderlistShop/OrderShopPag
 import { Children } from "react";
 import ProductShopPage from "./presentations/pages/shop/productShop/ProductShopPage";
 import AddProductPage from "./presentations/pages/shop/addProductShop/AddProductPage";
+import PayProductPage from "./presentations/pages/home/components/Pay/PayProductPage";
+import SuccessOrderPage from "./presentations/pages/home/components/Pay/Success/SuccessOrderPage";
+import CartShopPage from "./presentations/pages/home/components/Cart/CartShopPage";
 //Style
 
 const App: React.FC = () => {
@@ -28,7 +31,10 @@ const App: React.FC = () => {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/san-pham" element={<DetailsPage />} />
+        <Route path="/san-pham/thanh-toan" element={<PayProductPage />} />
+        <Route path="/san-pham/thanh-toan/thanh-cong" element={<SuccessOrderPage />} />
         <Route path="/" element={<HomePage />} />
+        <Route path="/gio-hang" element={<CartShopPage />} />
         {/* </Route> */}
         {/* Private Route */}
         <Route path="/" element={<PrivateRoute />}>

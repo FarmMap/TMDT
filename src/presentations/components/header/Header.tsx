@@ -52,15 +52,15 @@ const Header = () => {
         </Grid>
 
         <Grid className={cx("icon-wrapper")}>
-        <NavLink to = "/">
-        <Button
-            className={cx("loginBtn")}
-            variant="contained"
-          >
-            <HomeRoundedIcon />
-            <span>Trang chủ </span>
-          </Button>
-        </NavLink>
+          <NavLink to="/">
+            <Button
+              className={cx("loginBtn")}
+              variant="contained"
+            >
+              <HomeRoundedIcon />
+              <span>Trang chủ </span>
+            </Button>
+          </NavLink>
 
           <Button className={cx("loginBtn")} variant="contained">
             <CurrencyExchangeRoundedIcon />
@@ -111,9 +111,11 @@ const Header = () => {
               </Tippy>
             </DefaultDropDown>
           )}
-          <LocalMallRoundedIcon style={{ cursor: "pointer" }} />
+          <Link to="gio-hang">
+            <LocalMallRoundedIcon style={{ cursor: "pointer", color:"#fff" }}   />
+          </Link>
         </Grid>
-      </Grid>  
+      </Grid>
     </Grid>
   );
 };

@@ -12,6 +12,7 @@
 
 .main-img-wrap {
   position: relative;
+
   button {
     background-color: #e7e8ea !important;
     border-radius: 3px !important;
@@ -32,11 +33,13 @@
       color: #000;
     }
   }
+
   .heart-btn {
     position: absolute;
     bottom: 4px;
     right: 0;
   }
+
   .share-btn {
     position: absolute;
     bottom: 4px;
@@ -116,6 +119,7 @@
     display: flex;
     align-items: center;
     font-size: 1.4rem;
+
     svg {
       width: 14px;
       height: 100%;
@@ -187,7 +191,7 @@
   align-items: center;
   margin-top: 14px;
 
-  button {
+  .btn-pay {
     width: 49%;
     cursor: pointer;
     padding: 12px 0;
@@ -195,6 +199,17 @@
 
     &:hover {
       opacity: 0.9;
+    }
+
+    button {
+      width: 100%;
+      cursor: pointer;
+      padding: 12px 0;
+      border-radius: 3px;
+
+      &:hover {
+        opacity: 0.9;
+      }
     }
   }
 }
