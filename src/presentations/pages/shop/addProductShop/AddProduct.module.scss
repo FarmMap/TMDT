@@ -94,6 +94,11 @@
             border: 1px solid var(--primary-color) !important;
             color: var(--primary-color) !important;
           }
+          .title-category{
+            display: flex;
+            justify-content: space-between;
+          }
+
         }
       }
     }
@@ -125,5 +130,10 @@
         opacity: 0.9;
       }
     }
+  }
+  .switch{
+    padding-left: 10px;
+    display: flex;
+    justify-content: space-between;
   }
 }
