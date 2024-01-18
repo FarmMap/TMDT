@@ -1,5 +1,5 @@
 export default interface ShippingMethodType {
   id: string;
-  name?: string;
+  title?: string;
   description?: string;
 }

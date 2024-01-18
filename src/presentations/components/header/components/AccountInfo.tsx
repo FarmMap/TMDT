@@ -45,7 +45,11 @@ const AccountInfo = (props: AccountInfoProps) => {
         <div className={cx("user-cart-name")}>
           <Tippy content={`thienan1804`} placement="right" theme="light">
             <span className={cx("accountinfo-username")}>
-              {user ? currentUser.fullName : "Phiên đăng nhập đã hết hạn"}
+              {user
+                ? currentUser.fullName
+                  ? currentUser.fullName
+                  : currentUser.email
+                : "Phiên đăng nhập đã hết hạn"}
             </span>
           </Tippy>
           <span className={cx("accountinfo-role")}>{role}</span>

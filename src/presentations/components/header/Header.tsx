@@ -52,15 +52,12 @@ const Header = () => {
         </Grid>
 
         <Grid className={cx("icon-wrapper")}>
-        <NavLink to = "/">
-        <Button
-            className={cx("loginBtn")}
-            variant="contained"
-          >
-            <HomeRoundedIcon />
-            <span>Trang chủ </span>
-          </Button>
-        </NavLink>
+          <NavLink to="/">
+            <Button className={cx("loginBtn")} variant="contained">
+              <HomeRoundedIcon />
+              <span>Trang chủ </span>
+            </Button>
+          </NavLink>
 
           <Button className={cx("loginBtn")} variant="contained">
             <CurrencyExchangeRoundedIcon />
@@ -95,6 +92,8 @@ const Header = () => {
                       <span>
                         {user
                           ? currentUser.fullName
+                            ? currentUser.fullName
+                            : currentUser.email
                           : "Phiên đăng nhập đã hết hạn"}
                       </span>
                     </>
@@ -113,7 +112,7 @@ const Header = () => {
           )}
           <LocalMallRoundedIcon style={{ cursor: "pointer" }} />
         </Grid>
-      </Grid>  
+      </Grid>
     </Grid>
   );
 };
