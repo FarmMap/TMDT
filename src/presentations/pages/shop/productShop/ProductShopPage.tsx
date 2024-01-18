@@ -25,12 +25,12 @@ interface DataType {
   updatedAt?: string;
   id?: number;
   name?: string;
-  price?: number;
-  salePrice?: number;
+  price?: string;
+  salePrice?: string;
   saleStartDate?: string;
   saleEndDate?: string;
   quantity?: number;
-  images?: File;
+  images?: File[];
   inventory?: number;
   status?: boolean;
   approveStatus?: string;
@@ -117,7 +117,6 @@ const ProductShopPage = () => {
     {
       title: "Mã đơn hàng",
       dataIndex: "id",
-      render: (text: string) => <a>{text}</a>,
     },
     {
       title: "Tên sản phẩm",
@@ -134,42 +133,37 @@ const ProductShopPage = () => {
     {
       title: "Trạng thái",
       dataIndex: "function",
-      render: (text: string, record: DataType) =>
-        productList.map((product, i) => (
-          <span key={i} className={cx("feedBack-star")}>
-            {product.status ? "Đang bán" : "Ngừng bán"}
-          </span>
-        )),
+      render: (text: string, record: DataType) => (
+        <span className={cx("feedBack-star")}>
+          {record.status ? "Đang bán" : "Ngừng bán"}
+        </span>
+      ),
     },
     {
       title: "Trạng thái duyệt sản phẩm",
       dataIndex: "function",
-      render: (text: string, record: DataType) =>
-        productList.map((product, i) => (
-          <span key={i} className={cx("feedBack-star")}>
-            {product.approveStatus === "PENDING" ? (
-              <span style={{ color: "var(--second-color)" }}>
-                Chưa phê duyệt
-              </span>
-            ) : (
-              <span style={{ color: "var(--primary-color)" }}>
-                Đã phê duyệt
-              </span>
-            )}
-          </span>
-        )),
+      render: (text: string, record: DataType) => (
+        <span className={cx("feedBack-star")}>
+          {record.approveStatus === "PENDING" ? (
+            <span style={{ color: "var(--yellow-color)" }}>Chưa phê duyệt</span>
+          ) : record.approveStatus === "APPROVED" ? (
+            <span style={{ color: "var(--primary-color)" }}>Đã phê duyệt</span>
+          ) : (
+            <span style={{ color: "var(--second-color)" }}>Từ chối</span>
+          )}
+        </span>
+      ),
     },
     {
       title: "Đánh giá",
       dataIndex: "function",
-      render: (text: string, record: DataType) =>
-        productList.map((product, i) => (
-          <p className={cx("feedBack")}>
-            <span className={cx("feedBack-star")}>
-              {renderStarIcons(product.rating)} <br />
-            </span>{" "}
-          </p>
-        )),
+      render: (text: string, record: DataType) => (
+        <p className={cx("feedBack")}>
+          <span className={cx("feedBack-star")}>
+            {renderStarIcons(record.rating)} <br />
+          </span>{" "}
+        </p>
+      ),
     },
   ];
   return (
@@ -180,7 +174,7 @@ const ProductShopPage = () => {
             <h4>Danh sách sản phẩm</h4>
             <NavLink to="/cua-hang/danh-sach-san-pham/tao-san-pham">
               <Button type="primary">
-                <AddIcon style={{fontSize:"20px"}} />
+                <AddIcon style={{ fontSize: "20px" }} />
                 <span>Thêm sản phẩm</span>
               </Button>
             </NavLink>
@@ -227,7 +221,8 @@ const ProductShopPage = () => {
             </Space.Compact>
           </Grid>
           <Grid className={cx("table-list")}>
-            <Table size="small"
+            <Table
+              size="small"
               rowSelection={{
                 type: selectionType,
                 ...rowSelection,

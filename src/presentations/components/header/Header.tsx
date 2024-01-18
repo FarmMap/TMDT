@@ -53,10 +53,7 @@ const Header = () => {
 
         <Grid className={cx("icon-wrapper")}>
           <NavLink to="/">
-            <Button
-              className={cx("loginBtn")}
-              variant="contained"
-            >
+            <Button className={cx("loginBtn")} variant="contained">
               <HomeRoundedIcon />
               <span>Trang chủ </span>
             </Button>
@@ -95,6 +92,8 @@ const Header = () => {
                       <span>
                         {user
                           ? currentUser.fullName
+                            ? currentUser.fullName
+                            : currentUser.email
                           : "Phiên đăng nhập đã hết hạn"}
                       </span>
                     </>
