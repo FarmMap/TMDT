@@ -110,8 +110,10 @@ const Header = () => {
               </Tippy>
             </DefaultDropDown>
           )}
-          <Link to="gio-hang">
-            <LocalMallRoundedIcon style={{ cursor: "pointer", color:"#fff" }}   />
+          <Link to="/gio-hang">
+            <LocalMallRoundedIcon
+              style={{ cursor: "pointer", color: "#fff" }}
+            />
           </Link>
         </Grid>
       </Grid>
