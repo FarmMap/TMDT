@@ -138,7 +138,7 @@ const FormStep1Shop = (props: FormStep1ShopProps) => {
           />
 
           <label className={cx("label-radio")} htmlFor="nhanh">
-            {shippingMethod.map((item, i) => i === 0 && item.name)}
+            {shippingMethod.map((item, i) => i === 0 && item.title)}
           </label>
           <input
             className={cx("radio-btn")}
@@ -167,7 +167,7 @@ const FormStep1Shop = (props: FormStep1ShopProps) => {
             name="tiet-kiem"
           />
           <label className={cx("label-radio")} htmlFor="tiet-kiem">
-            {shippingMethod.map((item, i) => i === 1 && item.name)}
+            {shippingMethod.map((item, i) => i === 1 && item.title)}
           </label>
         </Grid>
       </Grid>

@@ -23,7 +23,7 @@ const useFetchShippingMethod = (props: useFetchShippingMethodProps) => {
 
     var config = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_BASE_URL}shipping-methods`,
+      url: `${process.env.REACT_APP_API_BASE_URL}delivery-methods`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
