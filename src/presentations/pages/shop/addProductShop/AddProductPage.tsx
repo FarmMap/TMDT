@@ -355,7 +355,7 @@ const AddProductPage = () => {
                   <p>Danh mục sản phẩm</p>
                   <Dropdown menu={menuProps}>
                     <Button className={cx("dropdown")}>
-                      <Space>
+                      <Space className={cx("title-category")}>
                         {selectedCategoryName || "Chọn danh mục"}
                         <DownOutlined rev={undefined} />
                       </Space>
@@ -367,7 +367,7 @@ const AddProductPage = () => {
                 <p>Trạng thái</p>
                 <a>Chờ xét duyệt</a>
               </Grid>
-              <Grid className={cx("menu-item")}>
+              <Grid className={cx("switch")}>
                 <p>Trạng thái sản phẩm</p>
                 <Switch
                   defaultChecked
