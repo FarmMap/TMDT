@@ -312,7 +312,7 @@ const AddProductPage = () => {
                   </Grid>
                 </Grid>
 
-                <Grid className={cx("")}>
+                <Grid >
                   <p>Ngày bắt đầu / kết thúc khuyến mãi</p>
                   <RangePicker onChange={onRangeChange} />
                 </Grid>

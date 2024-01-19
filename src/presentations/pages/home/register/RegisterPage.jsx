@@ -12,6 +12,7 @@ import { auth } from "../../../../config/firebase";
 import classNames from "classnames/bind";
 import styles from "./RegisterPage.module.scss";
 import { toast } from "react-toastify";
+import Footer from "../../../components/footer/Footer";
 
 const cx = classNames.bind(styles);
 
@@ -164,6 +165,7 @@ const RegisterPage = () => {
           </Grid>
         </Grid>
       </form>
+      <Footer/>
     </div>
   );
 };

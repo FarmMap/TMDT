@@ -20,9 +20,22 @@
   }
 }
 .login-main {
-  background-color: #1c9a5e;
+  background-image: url(../../../assets/images/bannerlogin.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
   display: flex;
   justify-content: end;
+}
+.login-main::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.162); /* Điều chỉnh giá trị alpha để làm cho ảnh tối màu hơn */
+  z-index: 1; /* Đảm bảo pseudo-element ở trên ảnh */
 }
 .login-table {
   width: 28%;
@@ -32,6 +45,8 @@
   background-color: #ffff;
   border: 1px solid #ffff;
   border-radius: 5px;
+  position: relative; /* Thêm thuộc tính này để sử dụng z-index */
+  z-index: 2;
   p {
     color: var(--black-color);
     font-size: 20px;
@@ -114,3 +129,4 @@
     color: #1c9a5e;
   }
 }
+

@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import classNames from "classnames/bind";
 import styles from "./LoginPage.module.scss";
 import { signInWithEmailAndPassword } from "@firebase/auth";
+import Footer from "../../components/footer/Footer";
 
 const cx = classNames.bind(styles);
 
@@ -90,6 +91,7 @@ const LoginPage = () => {
           </Grid>
         </Grid>
       </form>
+      <Footer/>
     </div>
   );
 };

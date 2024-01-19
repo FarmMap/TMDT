@@ -10,7 +10,7 @@
     .location {
         display: flex;
         justify-content: space-between;
-        background: #C1E9FF;
+        background: #6dd4a378;
         padding: 15px 20px;
 
         p {
@@ -24,13 +24,13 @@
 
             svg {
                 font-size: 1.6rem;
-                color: #4A90E2;
+                color: #1c9a5e;
             }
 
         }
 
         a {
-            color: #4A90E2;
+            color: var(--black-color);
             font-weight: 400;
             font-size: 1.3rem;
         }
@@ -78,7 +78,7 @@
 
                 svg {
                     padding-right: 5px;
-                    color: #4A90E2;
+                    color: #1c9a5e;
                     font-size: 2.6rem;
                 }
             }
@@ -131,7 +131,7 @@
         .heading-sales {
             display: flex;
             justify-content: space-between;
-            background: #C1E9FF;
+            background: #6dd4a378;
             padding: 15px 20px;
 
             p {
@@ -145,7 +145,7 @@
 
                 svg {
                     font-size: 1.6rem;
-                    color: #4A90E2;
+                    color: #1c9a5e;
                 }
 
             }
@@ -170,7 +170,7 @@
         .heading-details {
             display: flex;
             justify-content: space-between;
-            background: #C1E9FF;
+            background: #6dd4a378;
             padding: 15px 20px;
 
             p {
@@ -184,7 +184,7 @@
 
                 svg {
                     font-size: 1.6rem;
-                    color: #4A90E2;
+                    color: #1c9a5e;
                 }
 
             }

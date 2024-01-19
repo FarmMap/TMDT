@@ -88,14 +88,6 @@ const PayProductPage = () => {
                       <Radio value={1}>Thanh toán tiền mặt</Radio>
                       <p><LocalAtmOutlinedIcon /></p>
                     </Grid>
-                    <Grid className={cx("radio-money")}>
-                      <Radio value={2}>Momo</Radio>
-                      <p><LocalAtmOutlinedIcon /></p>
-                    </Grid>
-                    <Grid className={cx("radio-money")}>
-                      <Radio value={3}>Tài khoản ngân hàng</Radio>
-                      <p><LocalAtmOutlinedIcon /></p>
-                    </Grid>
                   </Space>
                 </Radio.Group>
               </Grid>
