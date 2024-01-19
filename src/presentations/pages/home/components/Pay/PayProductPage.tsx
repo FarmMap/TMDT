@@ -126,7 +126,7 @@ const PayProductPage = () => {
   useEffect(() => {
     if (Object.keys(order).length === 0 && order.constructor === Object) {
       setOrder({
-        provinceCode: user.province?.code,
+        provinceCode: `${user.province?.code}`,
         districtCode: user.district?.code,
         wardCode: user.ward?.code,
         address: user.address,
@@ -155,6 +155,20 @@ const PayProductPage = () => {
   const { isCreated, error, createOrder } = useCreateOrder();
 
   const handleSubmitOrder = () => {
+    const newOrder = { ...order };
+    newOrder.provinceCode = user.province?.code;
+    newOrder.districtCode = user.district?.code;
+    newOrder.wardCode = user.ward?.code;
+    newOrder.address = user.address ?? "Chưa cập nhật";
+    newOrder.orderDetails = [
+      {
+        productId: productId,
+        quantity: quantity,
+        note: "",
+      },
+    ];
+    setOrder(newOrder);
+
     createOrder({ order: order });
   };
 
