@@ -36,7 +36,7 @@ const App: React.FC = () => {
           element={<PayProductPage />}
         />
         <Route
-          path="/san-pham/thanh-toan/thanh-cong"
+          path="/san-pham/:productId/thanh-toan-thanh-cong"
           element={<SuccessOrderPage />}
         />
         <Route path="/" element={<HomePage />} />

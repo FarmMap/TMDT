@@ -110,7 +110,6 @@ const PayProductPage = () => {
     }
   }, [updateUserErr, userUpdated]);
 
-  // thanh toan
   // Use useEffect to update productId when id changes
   useEffect(() => {
     if (params.quantity) {
@@ -174,11 +173,16 @@ const PayProductPage = () => {
 
   useEffect(() => {
     if (isCreated) {
-      navigate("/san-pham/thanh-toan/thanh-cong");
+      navigate(`/san-pham/${product.id}/thanh-toan-thanh-cong`);
     } else if (error) {
       toast.error(error);
     }
   }, [error, isCreated, navigate]);
+
+  // thanh toan
+  const totalPrice = product?.productPrice?.salePrice
+    ? (product?.productPrice?.salePrice || 0) * (quantity || 0)
+    : (product?.productPrice?.retailPrice || 0) * (quantity || 0);
 
   return (
     <DefaultLayOut>
@@ -359,7 +363,7 @@ const PayProductPage = () => {
                       </p>
                     </Grid>
                     <Grid>
-                      <p style={{ color: "#000" }}>x1</p>
+                      <p style={{ color: "#000" }}>x{quantity}</p>
                     </Grid>
                   </Grid>
                 </Grid>
@@ -390,18 +394,10 @@ const PayProductPage = () => {
               <Grid className={cx("total-price")}>
                 <p>Tổng thanh toán</p>
                 <h4>
-                  {product.productPrice?.salePrice
-                    ? product.productPrice?.salePrice.toLocaleString("it-IT", {
-                        style: "currency",
-                        currency: "VND",
-                      })
-                    : product.productPrice?.retailPrice?.toLocaleString(
-                        "it-IT",
-                        {
-                          style: "currency",
-                          currency: "VND",
-                        }
-                      )}
+                  {totalPrice.toLocaleString("it-IT", {
+                    style: "currency",
+                    currency: "VND",
+                  })}
                 </h4>
               </Grid>
 
