@@ -1,8 +1,9 @@
 .wrapper {
   background-color: var(--white-color);
-  padding: 18px 36px;
 }
-
+.content-wrapper{
+  padding: 25px ;
+}
 .content-item {
   p {
     font-size: 1.6rem;
@@ -21,5 +22,20 @@
         text-decoration: underline;
       }
     }
+  }
+}
+.profile-web{
+  background-color: #27343e;
+  padding: 75px 120px;
+  h3,p{
+    line-height: 3.5rem;
+    color: var(--white-color);
+  }
+}
+.map{
+  padding: 25px;
+  h3{
+    line-height: 3.5rem;
+    color: var(--white-color);
   }
 }
