@@ -19,6 +19,7 @@ import AddProductPage from "./presentations/pages/shop/addProductShop/AddProduct
 import PayProductPage from "./presentations/pages/home/components/Pay/PayProductPage";
 import SuccessOrderPage from "./presentations/pages/home/components/Pay/Success/SuccessOrderPage";
 import CartShopPage from "./presentations/pages/home/components/Cart/CartShopPage";
+import OrderShopListPage from "./presentations/pages/home/components/Order/OrderShopListPage";
 //Style
 
 const App: React.FC = () => {
@@ -41,6 +42,7 @@ const App: React.FC = () => {
         />
         <Route path="/" element={<HomePage />} />
         <Route path="/gio-hang" element={<CartShopPage />} />
+        <Route path="/tai-khoan/don-mua" element={<OrderShopListPage />} />
         {/* </Route> */}
         {/* Private Route */}
         <Route path="/" element={<PrivateRoute />}>
