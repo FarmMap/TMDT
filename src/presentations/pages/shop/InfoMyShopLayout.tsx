@@ -56,13 +56,19 @@ const InfoMyShopLayout = (props: InfoMyShopLayoutProps) => {
             </Grid>
             <Grid className={cx("statistical")}>
               <Grid className={cx("order")}>
-                <p>Đơn hàng đã hoàn thành <span style={{color:"red"}}>0</span></p>
+                <p>
+                  Đơn hàng đã hoàn thành <span style={{ color: "red" }}>0</span>
+                </p>
               </Grid>
               <Grid className={cx("order")}>
-                <p>Đơn khiếu nại <span>0</span></p>
-              </Grid >
+                <p>
+                  Đơn khiếu nại <span>0</span>
+                </p>
+              </Grid>
               <Grid className={cx("order")}>
-                <p>Đơn hàng đã hủy <span>0</span></p>
+                <p>
+                  Đơn hàng đã hủy <span>0</span>
+                </p>
               </Grid>
             </Grid>
             {sidebarList.map((sidebar, i) => (
