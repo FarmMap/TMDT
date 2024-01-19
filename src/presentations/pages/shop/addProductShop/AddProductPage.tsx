@@ -73,24 +73,11 @@ const AddProductPage = () => {
     </button>
   );
 
-  const selectAfter = (
-    <Select defaultValue="tan" style={{ width: 60 }}>
-      <Option value="tan">Tấn</Option>
-      <Option value="ta">Tạ</Option>
-      <Option value="yen">Yến</Option>
-      <Option value="kg">Kg</Option>
-      <Option value="gram">Gram</Option>
-      <Option value="trai">Trái</Option>
-      <Option value="cai">Cái</Option>
-    </Select>
-  );
-
   //   end input number
 
   // API
   const [productList, setProductList] = useState<ProductType | undefined>({
-    status: true,
-    approveStatus: "PENDING",
+    isActive: true,
   });
   //   Date
   const { RangePicker } = DatePicker;
@@ -167,7 +154,7 @@ const AddProductPage = () => {
     const categoryId = parseInt(info.key || "", 10); // Convert string to number
     if (!isNaN(categoryId)) {
       let newProducts = { ...productList };
-      newProducts.categoryId = categoryId;
+      newProducts.productCategoryId = categoryId;
       setProductList(newProducts);
 
       // Assuming you get the name from another source, modify this part accordingly
@@ -195,7 +182,7 @@ const AddProductPage = () => {
     error: createProducErr,
     createProductList,
   } = useCreateProductList({
-    idShop: 2,
+    storeId: 2,
   });
   const handleSubmit = () => {
     createProductList({ products: productList });
@@ -208,6 +195,26 @@ const AddProductPage = () => {
       toast.error(createProducErr);
     }
   }, [createProducErr, isCreated]);
+
+  const selectAfter = (
+    <Select
+      onChange={(value) => {
+        let newProductList = { ...productList };
+        newProductList.unit = value;
+        setProductList(newProductList);
+      }}
+      defaultValue="tan"
+      style={{ width: 60 }}
+    >
+      <Option value="tan">Tấn</Option>
+      <Option value="ta">Tạ</Option>
+      <Option value="yen">Yến</Option>
+      <Option value="kg">Kg</Option>
+      <Option value="gram">Gram</Option>
+      <Option value="trai">Trái</Option>
+      <Option value="cai">Cái</Option>
+    </Select>
+  );
 
   return (
     <InfoMyShopLayout>
@@ -234,10 +241,10 @@ const AddProductPage = () => {
                   <p>Số lượng</p>
                   <Input
                     type="number"
-                    value={productList?.quantity ?? ""}
+                    value={productList?.inventory ?? ""}
                     onChange={(e) => {
                       let newProducts = { ...productList };
-                      newProducts.quantity = parseInt(e.currentTarget.value);
+                      newProducts.inventory = parseInt(e.currentTarget.value);
                       setProductList(newProducts);
                     }}
                   />
@@ -247,11 +254,11 @@ const AddProductPage = () => {
                   <InputNumber
                     addonAfter={selectAfter}
                     defaultValue={0}
-                    value={productList?.inventory ?? ""}
+                    value={productList?.weight ?? ""}
                     onChange={(value) => {
                       if (value !== null && value !== undefined) {
                         let newProducts = { ...productList };
-                        newProducts.inventory =
+                        newProducts.weight =
                           parseInt(value.toString(), 10) || 0; // Convert to number
                         setProductList(newProducts);
                       }
@@ -289,10 +296,10 @@ const AddProductPage = () => {
                     <p>Giá</p>
                     <Input
                       type="number"
-                      value={productList?.price ?? ""}
+                      value={productList?.retailPrice ?? ""}
                       onChange={(e) => {
                         let newProducts = { ...productList };
-                        newProducts.price = e.currentTarget.value;
+                        newProducts.retailPrice = e.currentTarget.value;
                         setProductList(newProducts);
                       }}
                     />
@@ -368,12 +375,12 @@ const AddProductPage = () => {
                 <a>Chờ xét duyệt</a>
               </Grid>
               <Grid className={cx("switch")}>
-                <p>Trạng thái sản phẩm</p>
+                <p>Cho phép bán</p>
                 <Switch
                   defaultChecked
                   onChange={(checked) => {
                     let newProducts = { ...productList };
-                    newProducts.status = checked;
+                    newProducts.isActive = checked;
                     setProductList(newProducts);
                   }}
                 />

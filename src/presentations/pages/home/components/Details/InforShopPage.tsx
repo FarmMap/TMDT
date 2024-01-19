@@ -9,10 +9,15 @@ import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import classNames from "classnames/bind";
 import styles from "./InforShopPage.module.scss";
 import images from "../../../../../assets/images";
+import ProductType from "../../../../../data/types/Product/ProductType";
 
 const cx = classNames.bind(styles);
 
-const InforShopPage = () => {
+interface InforShopPageProps {
+  product: ProductType;
+}
+
+const InforShopPage = (props: InforShopPageProps) => {
   // Hàm này tạo mảng StarIcon màu vàng và màu xám dựa trên độ dài của feedBack
   const renderStarIcons = (rating: string | undefined) => {
     const numericRating = parseFloat(rating ? rating : "");
@@ -63,8 +68,8 @@ const InforShopPage = () => {
               <button></button>
             </Grid>
             <Grid className={cx("info")}>
-              <p>Romano</p>
-              <span>TP. Hồ Chí Minh | 4.5</span>
+              <p>{props.product.store?.name}</p>
+              <span>{props.product.store?.provinceCode ?? "TP HCM"}</span>
             </Grid>
           </Grid>
 
@@ -118,21 +123,9 @@ const InforShopPage = () => {
             <Grid className={cx("description-wrap")}>
               <h4>Mô tả sản phẩm</h4>
               <p style={{ lineHeight: "26px" }}>
-                - Kích thước: dài 12cm, rộng 8.5cm, dày 3.5cm. <br /> - Phương
-                pháp sản xuất: THỦ CÔNG <br /> - Chất liệu: 100% DA BÒ <br />-
-                Thiết kế: hiện đại,trẻ trung ,sang trọng chức năng: đựng thẻ
-                ,điện thoại ,tiền ,giấy tờ tùy thân <br /> ROMANO HƯƠNG THÀNH
-                CÔNG - CHẤT ĐÀN ÔNG
-              </p>
-            </Grid>
-            <Grid className={cx("description-wrap")}>
-              <h4>Chi tiết sản phẩm</h4>
-              <p style={{ lineHeight: "26px" }}>
-                - Kích thước: dài 12cm, rộng 8.5cm, dày 3.5cm. <br /> - Phương
-                pháp sản xuất: THỦ CÔNG <br /> - Chất liệu: 100% DA BÒ <br />-
-                Thiết kế: hiện đại,trẻ trung ,sang trọng chức năng: đựng thẻ
-                ,điện thoại ,tiền ,giấy tờ tùy thân <br /> ROMANO HƯƠNG THÀNH
-                CÔNG - CHẤT ĐÀN ÔNG
+                {props.product.description !== "undefined"
+                  ? props.product.description
+                  : "Chưa có mô tả về sản phẩm"}
               </p>
             </Grid>
           </Grid>

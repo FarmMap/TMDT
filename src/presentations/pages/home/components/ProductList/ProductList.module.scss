@@ -7,14 +7,14 @@
 }
 
 .header {
-  color: var(--title-color);
+  color: var(--black-color);
   margin-bottom: 8px;
   font-weight: 600;
   font-size: 1.4rem;
   padding-left: 12px;
 
   h5 {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
 }
 
@@ -53,12 +53,17 @@
 }
 
 .product-img {
+  height: 110px;
   width: 100%;
 }
 
 .product-name {
   color: var(--title-color);
   font-size: 1.4rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .original-price,

@@ -30,9 +30,12 @@ const App: React.FC = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/san-pham" element={<DetailsPage />} />
+        <Route path="/san-pham/:productId" element={<DetailsPage />} />
         <Route path="/san-pham/thanh-toan" element={<PayProductPage />} />
-        <Route path="/san-pham/thanh-toan/thanh-cong" element={<SuccessOrderPage />} />
+        <Route
+          path="/san-pham/thanh-toan/thanh-cong"
+          element={<SuccessOrderPage />}
+        />
         <Route path="/" element={<HomePage />} />
         <Route path="/gio-hang" element={<CartShopPage />} />
         {/* </Route> */}
@@ -41,12 +44,24 @@ const App: React.FC = () => {
           {/* Tai khoan */}
           <Route path="/tai-khoan/trang-ca-nhan" element={<ProfilePage />} />
           <Route path="/tai-khoan/cua-hang" element={<ShopAccountPage />} />
-          
+
           {/* Shop */}
-          <Route path="/cua-hang/cua-hang-cua-toi" element={<InfoMyShopPage />} />
-          <Route path="/cua-hang/danh-sach-don-hang" element={<OrderShopPage/>} />
-          <Route path="/cua-hang/danh-sach-san-pham" element={<ProductShopPage/>} />
-          <Route path="/cua-hang/danh-sach-san-pham/tao-san-pham" element={<AddProductPage/>} />
+          <Route
+            path="/cua-hang/cua-hang-cua-toi"
+            element={<InfoMyShopPage />}
+          />
+          <Route
+            path="/cua-hang/danh-sach-don-hang"
+            element={<OrderShopPage />}
+          />
+          <Route
+            path="/cua-hang/danh-sach-san-pham"
+            element={<ProductShopPage />}
+          />
+          <Route
+            path="/cua-hang/danh-sach-san-pham/tao-san-pham"
+            element={<AddProductPage />}
+          />
         </Route>
       </Routes>
     </div>

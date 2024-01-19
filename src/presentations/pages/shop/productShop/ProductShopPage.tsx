@@ -25,17 +25,19 @@ interface DataType {
   updatedAt?: string;
   id?: number;
   name?: string;
-  price?: string;
+  retailPrice?: string;
   salePrice?: string;
   saleStartDate?: string;
   saleEndDate?: string;
   quantity?: number;
   images?: File[];
-  inventory?: number;
-  status?: boolean;
+  weight?: number;
+  unit?: string;
+  isActive?: boolean;
   approveStatus?: string;
   description?: string;
   rating?: string;
+  productCategoryId?: number;
 }
 
 // Hàm này tạo mảng StarIcon màu vàng và màu xám dựa trên độ dài của feedBack
@@ -124,7 +126,7 @@ const ProductShopPage = () => {
     },
     {
       title: "Giá tiền",
-      dataIndex: "price",
+      dataIndex: "retailPrice",
     },
     {
       title: "Số lượng",
@@ -135,7 +137,7 @@ const ProductShopPage = () => {
       dataIndex: "function",
       render: (text: string, record: DataType) => (
         <span className={cx("feedBack-star")}>
-          {record.status ? "Đang bán" : "Ngừng bán"}
+          {record.isActive ? "Đang bán" : "Ngừng bán"}
         </span>
       ),
     },

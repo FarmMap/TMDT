@@ -28,9 +28,10 @@
 }
 
 .item-heading {
-  color: var(--title-color);
+  color: var(--black-color);
   margin-bottom: 8px;
   font-weight: 600;
+  font-size: 1.6rem;
 }
 
 .product-img {
@@ -40,6 +41,10 @@
 .product-name {
   color: var(--title-color);
   font-size: 1.4rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .original-price,

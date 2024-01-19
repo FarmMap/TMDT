@@ -60,23 +60,38 @@ const ProductListPage = () => {
       <Grid className={cx("container")} container>
         {productList.map(
           (product, i) =>
-            product.approveStatus === "APPROVED" && (
+            product.isActive && (
               <Grid item lg={1.6} className={cx("item")} key={i}>
-                <NavLink to="/san-pham">
+                <NavLink to={`/san-pham/${product.id}`}>
                   <img
-                    src={`${process.env.REACT_APP_API_BASE_URL}${product.images}`}
+                    src={`${process.env.REACT_APP_API_BASE_URL}${product.images?.[0]}`}
                     // src={images.dauGoiDau}
                     className={cx("product-img")}
                     alt={product.name}
                   />
                   <h5 className={cx("product-name")}>{product.name}</h5>
-                  <p className={cx("original-price")}>{product.price}đ</p>
-                  <p className={cx("sale-price")}>{product.salePrice}đ</p>
+                  <p className={cx("original-price")}>
+                    {product.productPrice?.retailPrice ?? "Đang cập nhật..."}đ
+                  </p>
+
+                  <Grid container>
+                    <p className={cx("sale-price")}>
+                      {product.productPrice?.salePrice}đ
+                    </p>
+                    <p className={cx("sale-price")}>
+                      {product.salePrice}{" "}
+                      <span>
+                        {product.weight} {""}
+                        {product.unit}
+                      </span>
+                    </p>
+                  </Grid>
+
                   <p className={cx("feedBack")}>
                     <span className={cx("feedBack-star")}>
                       {renderStarIcons(product.rating)} <br />
                     </span>{" "}
-                    {product.inventory} đã bán
+                    30 đã bán
                   </p>
                 </NavLink>
               </Grid>

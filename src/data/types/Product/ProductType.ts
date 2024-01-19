@@ -1,18 +1,30 @@
+import ShopType from "../Shop/ShopType";
+
 export default interface ProductType {
   createdAt?: string;
   updatedAt?: string;
   id?: number;
   name?: string;
-  price?: string;
+  retailPrice?: string;
   salePrice?: string;
   saleStartDate?: string;
   saleEndDate?: string;
-  quantity?: number;
-  images?: File[];
   inventory?: number;
-  status?: boolean;
+  images?: File[];
+  weight?: number;
+  unit?: string;
+  isActive?: boolean;
   approveStatus?: string;
   description?: string;
   rating?: string;
-  categoryId?: number;
+  productCategoryId?: number;
+  productPrice?: {
+    id?: number;
+    retailPrice?: number;
+    salePrice?: number;
+    saleStartDate?: string;
+    saleEndDate?: string;
+  };
+
+  store?: ShopType;
 }

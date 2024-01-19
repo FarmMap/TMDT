@@ -12,7 +12,7 @@ interface ParamsProductType {
 }
 
 interface useCreateProductListProps {
-  idShop?: number;
+  storeId?: number;
 }
 
 const useCreateProductList = (props: useCreateProductListProps) => {
@@ -27,17 +27,17 @@ const useCreateProductList = (props: useCreateProductListProps) => {
     const FormData = require("form-data");
     var data = new FormData();
     data.append("name", params.products?.name);
-    data.append("price", params.products?.price);
+    data.append("retailPrice", params.products?.retailPrice);
     data.append("salePrice", params.products?.salePrice);
     data.append("saleStartDate", params.products?.saleStartDate);
     data.append("saleEndDate", params.products?.saleEndDate);
 
-    data.append("quantity", params.products?.quantity);
     data.append("inventory", params.products?.inventory);
-    data.append("status", params.products?.status);
-    data.append("approveStatus", params.products?.approveStatus);
+    data.append("weight", params.products?.weight);
+    data.append("unit", params.products?.unit);
+    data.append("isActive", params.products?.isActive);
     data.append("description", params.products?.description);
-    data.append("categoryId", params.products?.categoryId);
+    data.append("productCategoryId", params.products?.productCategoryId);
     if (params.products?.images && params.products?.images.length > 0) {
       params.products?.images.forEach((image) => {
         data.append("images", image);
@@ -47,7 +47,7 @@ const useCreateProductList = (props: useCreateProductListProps) => {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: `${process.env.REACT_APP_API_BASE_URL}products/${props.idShop}`,
+      url: `${process.env.REACT_APP_API_BASE_URL}products/${props.storeId}`,
       headers: {
         accept: "*/*",
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,

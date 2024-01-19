@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import DefaultLayOut from "../../../../components/defaultLayOut/DefaultLayOut";
 import images from "../../../../../assets/images";
@@ -8,8 +8,9 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import Carousel from "react-material-ui-carousel";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import InforShopPage from "./InforShopPage";
+import useFetchProductDetail from "../../../../../data/api/Product/useFetchProductDetail";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./DetailsPage.module.scss";
@@ -17,9 +18,30 @@ import styles from "./DetailsPage.module.scss";
 const cx = classNames.bind(styles);
 
 const DetailsPage = () => {
-  const [mainImageSrc, setMainImageSrc] = useState(images.dauGoiDau);
+  //APi
+  const params = useParams();
 
-  const handleCarouselImageHover = (newSrc: string) => {
+  const [productId, setProductId] = useState<number | undefined>(undefined);
+
+  // Use useEffect to update productId when id changes
+  useEffect(() => {
+    if (params.productId) {
+      const parsedId = parseInt(params.productId, 10);
+      if (!isNaN(parsedId)) {
+        setProductId(parsedId);
+      }
+    }
+  }, [params.productId]);
+
+  const { product } = useFetchProductDetail({
+    id: productId,
+  });
+
+  const [mainImageSrc, setMainImageSrc] = useState<File | undefined>(
+    product.images?.[0]
+  );
+
+  const handleCarouselImageHover = (newSrc: File | undefined) => {
     setMainImageSrc(newSrc);
   };
 
@@ -81,6 +103,13 @@ const DetailsPage = () => {
     }
   };
 
+  const discountPercentage = product.productPrice
+    ? (((product.productPrice.retailPrice || 0) -
+        (product.productPrice.salePrice || 0)) /
+        (product.productPrice.retailPrice || 1)) *
+      100
+    : 0;
+
   return (
     <DefaultLayOut>
       <Grid>
@@ -88,7 +117,15 @@ const DetailsPage = () => {
           <Grid className={cx("container")} container>
             <Grid item className={cx("item", "item-left")} lg={5}>
               <Grid className={cx("main-img-wrap")}>
-                <img className={cx("img-main")} src={mainImageSrc} alt="" />
+                <img
+                  className={cx("img-main")}
+                  src={
+                    mainImageSrc
+                      ? `http://116.118.49.43:3998/${mainImageSrc}`
+                      : `http://116.118.49.43:3998/${product.images?.[0]}`
+                  }
+                  alt=""
+                />
                 <button className={cx("heart-btn")}>
                   <FavoriteBorderIcon />
                 </button>
@@ -103,136 +140,58 @@ const DetailsPage = () => {
                   className={cx("carousel")}
                   height={"100px"}
                 >
-                  <Grid container justifyContent={"space-between"}>
-                    <Grid lg={2}>
-                      <img
-                        onMouseEnter={() =>
-                          handleCarouselImageHover(
-                            "https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lq3fowy6d9si08"
-                          )
-                        }
-                        src="https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lq3fowy6d9si08"
-                        alt=""
-                      />
-                    </Grid>
-                    <Grid lg={2}>
-                      <img
-                        onMouseEnter={() =>
-                          handleCarouselImageHover(
-                            "https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lq3fowxcehx3b7"
-                          )
-                        }
-                        src="https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lq3fowxcehx3b7"
-                        alt=""
-                      />
-                    </Grid>
-                    <Grid lg={2}>
-                      <img
-                        onMouseEnter={() =>
-                          handleCarouselImageHover(
-                            "https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lq3fowyqcgtz1d"
-                          )
-                        }
-                        src="https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lq3fowyqcgtz1d"
-                        alt=""
-                      />
-                    </Grid>
-                    <Grid lg={2}>
-                      <img
-                        onMouseEnter={() =>
-                          handleCarouselImageHover(
-                            "https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lq3fowygcv6afb"
-                          )
-                        }
-                        src="https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lq3fowygcv6afb"
-                        alt=""
-                      />
-                    </Grid>
-                    <Grid lg={2}>
-                      <img
-                        onMouseEnter={() =>
-                          handleCarouselImageHover(
-                            "https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lq3fowygcv6afb"
-                          )
-                        }
-                        src="https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lq3fowygcv6afb"
-                        alt=""
-                      />
-                    </Grid>
-                  </Grid>
-                  <Grid container justifyContent={"space-between"}>
-                    <Grid lg={2}>
-                      <img
-                        onMouseEnter={() =>
-                          handleCarouselImageHover(
-                            "https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lq3fowy6d9si08"
-                          )
-                        }
-                        src="https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lq3fowy6d9si08"
-                        alt=""
-                      />
-                    </Grid>
-                    <Grid lg={2}>
-                      <img
-                        onMouseEnter={() =>
-                          handleCarouselImageHover(
-                            "https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lq3fowxcehx3b7"
-                          )
-                        }
-                        src="https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lq3fowxcehx3b7"
-                        alt=""
-                      />
-                    </Grid>
-                    <Grid lg={2}>
-                      <img
-                        onMouseEnter={() =>
-                          handleCarouselImageHover(
-                            "https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lq3fowyqcgtz1d"
-                          )
-                        }
-                        src="https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lq3fowyqcgtz1d"
-                        alt=""
-                      />
-                    </Grid>
-                    <Grid lg={2}>
-                      <img
-                        onMouseEnter={() =>
-                          handleCarouselImageHover(
-                            "https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lq3fowygcv6afb"
-                          )
-                        }
-                        src="https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lq3fowygcv6afb"
-                        alt=""
-                      />
-                    </Grid>
-                    <Grid lg={2}>
-                      <img
-                        onMouseEnter={() =>
-                          handleCarouselImageHover(
-                            "https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lq3fowygcv6afb"
-                          )
-                        }
-                        src="https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lq3fowygcv6afb"
-                        alt=""
-                      />
-                    </Grid>
-                  </Grid>
+                  {product.images
+                    ?.reduce((acc, img, i) => {
+                      if (i % 5 === 0) {
+                        acc.push([img]); // Tạo một nhóm mới nếu là ảnh đầu tiên hoặc là ảnh thứ 6, 11, ...
+                      } else {
+                        acc[acc.length - 1].push(img); // Thêm ảnh vào nhóm hiện tại
+                      }
+                      return acc;
+                    }, [] as File[][])
+                    .map((imageGroup, groupIndex) => (
+                      <Grid container key={groupIndex}>
+                        {imageGroup.map((img, i) => (
+                          <Grid
+                            item
+                            lg={2}
+                            key={i}
+                            ml={i !== 0 ? "1.8rem" : "0"}
+                          >
+                            <img
+                              onMouseEnter={() => handleCarouselImageHover(img)}
+                              src={`http://116.118.49.43:3998/${img}`}
+                              alt=""
+                            />
+                          </Grid>
+                        ))}
+                      </Grid>
+                    ))}
                 </Carousel>
               </Grid>
             </Grid>
             <Grid item className={cx("item", "item-right")} lg={7}>
               <Grid className={cx("heading")}>
-                <p>
-                  Combo 2 Tắm gội 2 trong 1 Romano
-                  Attitude/Gentleman/Force/Classic 2in1 650g/chai - 4 Mùi hương
-                  có sẵn
-                </p>
+                <p>{product.name}</p>
               </Grid>
               <Grid className={cx("price-wrap")}>
-                <p className={cx("sale-price")}>299.000đ</p>
+                <p className={cx("sale-price")}>
+                  {product.productPrice?.salePrice?.toLocaleString("it-IT", {
+                    style: "currency",
+                    currency: "VND",
+                  })}
+                </p>
                 <Grid className={cx("origin-price-wrapp")}>
-                  <p>650.000đ</p>
-                  <span>Giảm 54%</span>
+                  <p>
+                    {product.productPrice?.retailPrice?.toLocaleString(
+                      "it-IT",
+                      {
+                        style: "currency",
+                        currency: "VND",
+                      }
+                    )}
+                  </p>
+                  <span>Giảm {discountPercentage.toFixed(0)}%</span>
                 </Grid>
               </Grid>
 
@@ -277,10 +236,13 @@ const DetailsPage = () => {
                 </Grid>
 
                 <Grid className={cx("button-wrap")}>
-                  <button className={cx("btn-pay")} style={{ backgroundColor: "#E7E8EA" }}>
+                  <button
+                    className={cx("btn-pay")}
+                    style={{ backgroundColor: "#E7E8EA" }}
+                  >
                     Thêm vào giỏ
                   </button>
-                  <NavLink to ="thanh-toan" className={cx("btn-pay")}>
+                  <NavLink to="thanh-toan" className={cx("btn-pay")}>
                     <button
                       style={{
                         backgroundColor: "var(--primary-color)",
@@ -304,7 +266,7 @@ const DetailsPage = () => {
           </Grid>
 
           <Grid>
-            <InforShopPage />
+            <InforShopPage product={product} />
           </Grid>
         </Grid>
       </Grid>
