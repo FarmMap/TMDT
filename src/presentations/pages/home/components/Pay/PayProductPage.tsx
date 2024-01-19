@@ -1,123 +1,348 @@
-import React, { useState } from 'react'
-import DefaultLayOut from '../../../../components/defaultLayOut/DefaultLayOut';
-import { Grid } from '@mui/material';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import PaymentOutlinedIcon from '@mui/icons-material/PaymentOutlined';
-import LocalAtmOutlinedIcon from '@mui/icons-material/LocalAtmOutlined';
-import LoyaltyOutlinedIcon from '@mui/icons-material/LoyaltyOutlined';
-import InventoryIcon from '@mui/icons-material/Inventory';
-import { Button, Input, Radio, RadioChangeEvent, Space } from 'antd';
-import images from '../../../../../assets/images';
+import React, { useEffect, useState } from "react";
+import DefaultLayOut from "../../../../components/defaultLayOut/DefaultLayOut";
+import { Grid } from "@mui/material";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+
+import LoyaltyOutlinedIcon from "@mui/icons-material/LoyaltyOutlined";
+import InventoryIcon from "@mui/icons-material/Inventory";
+import { Button, Input, RadioChangeEvent } from "antd";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import useFetchMyAccount from "../../../../../data/api/Account/useFetchMyAccount";
+import useFetchProductDetail from "../../../../../data/api/Product/useFetchProductDetail";
+import DefaultModal from "../../../../components/defaultModal/DefaultModal";
+import DefaultDropDown from "../../../../components/defaultDropDown";
+import GetPlaceVietNamPage from "./GetPlaceVietNamPage";
+import OrderType from "../../../../../data/types/Order/OrderType";
+import useFetchProvinceList from "../../../../../data/api/Place/useFetchProvince";
+import useFetchDistrictByProvinceCode from "../../../../../data/api/Place/useFetchDistrictByProvinceCode";
+import useFetchWardByDistrictCode from "../../../../../data/api/Place/useFetchWardByDistrictCode";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./PayProduct.module.scss";
-import { NavLink } from 'react-router-dom';
-
-
-
+import UserAccountType from "../../../../../data/types/UserAccount/UserAccountType";
+import useFetchDistrictList from "../../../../../data/api/Place/useFetchDistrictList";
+import useFetchWardList from "../../../../../data/api/Place/useFetchWardList";
+import useUpdateMyAccount from "../../../../../data/api/Account/useUpdateMyAccount";
+import { toast } from "react-toastify";
+import useCreateOrder from "../../../../../data/api/Order/useCreateOrder";
 
 const cx = classNames.bind(styles);
 const PayProductPage = () => {
   //status checked
-  const [selectedShippingMethod, setSelectedShippingMethod] = useState('express'); // Default to 'express'
-
-  const handleShippingMethodChange = (e: any) => {
-    setSelectedShippingMethod(e.target.value);
-  };
-
-  const [value, setValue] = useState(1);
-  const onChange = (e: RadioChangeEvent) => {
-    console.log('radio checked', e.target.value);
-    setValue(e.target.value);
-  };
   //end status checked
+
+  // API
+  const [refresh, setRefresh] = useState(false);
+
+  const { user } = useFetchMyAccount({
+    shouldRefesh: refresh,
+  });
+  const params = useParams();
+
+  const [productId, setProductId] = useState<number | undefined>(undefined);
+  const [quantity, setQuantity] = useState<number | undefined>(undefined);
+  const [showModal, setShowModal] = useState(false);
+  const [showPlace, setShowPlace] = useState(false);
+
+  const [userUpdate, setUserUpdate] = useState<UserAccountType>({});
+  const { provinceList } = useFetchProvinceList({});
+  const { districtList } = useFetchDistrictList({});
+
+  const { wardList } = useFetchWardByDistrictCode({
+    code: userUpdate.districtCode
+      ? userUpdate.districtCode
+      : user.district?.code,
+  });
+
+  // Use useEffect to update productId when id changes
+  useEffect(() => {
+    if (params.productId) {
+      const parsedId = parseInt(params.productId, 10);
+      if (!isNaN(parsedId)) {
+        setProductId(parsedId);
+      }
+    }
+  }, [params.productId]);
+
+  const { product } = useFetchProductDetail({
+    id: productId,
+  });
+
+  useEffect(() => {
+    if (
+      Object.keys(userUpdate).length === 0 &&
+      userUpdate.constructor === Object
+    ) {
+      setUserUpdate({
+        fullName: user.fullName,
+        provinceCode: user.province?.code,
+        districtCode: user.district?.code,
+        wardCode: user.ward?.code,
+        address: user.address,
+      });
+    }
+  }, [
+    user.address,
+    user.district?.code,
+    user.fullName,
+    user.province?.code,
+    user.ward?.code,
+    userUpdate,
+  ]);
+
+  const {
+    isUpdated: userUpdated,
+    error: updateUserErr,
+    updateUser,
+  } = useUpdateMyAccount();
+
+  const handleUpdateUser = () => {
+    updateUser({ user: userUpdate });
+  };
+
+  useEffect(() => {
+    if (userUpdated) {
+      toast.success("Cập nhật thành công");
+      setRefresh((refresh) => !refresh);
+    } else if (updateUserErr) {
+      toast.error(updateUserErr);
+    }
+  }, [updateUserErr, userUpdated]);
+
+  // thanh toan
+  // Use useEffect to update productId when id changes
+  useEffect(() => {
+    if (params.quantity) {
+      const parsedQuantity = parseInt(params.quantity, 10);
+      if (!isNaN(parsedQuantity)) {
+        setQuantity(parsedQuantity);
+      }
+    }
+  }, [params.quantity]);
+
+  const [order, setOrder] = useState<OrderType>({});
+
+  useEffect(() => {
+    if (Object.keys(order).length === 0 && order.constructor === Object) {
+      setOrder({
+        provinceCode: user.province?.code,
+        districtCode: user.district?.code,
+        wardCode: user.ward?.code,
+        address: user.address,
+        orderDetails: [
+          {
+            productId: productId,
+            quantity: quantity,
+            note: "",
+          },
+        ],
+      });
+    }
+  }, [
+    order,
+    productId,
+    quantity,
+    user.address,
+    user.district?.code,
+    user.province?.code,
+    user.ward?.code,
+    userUpdate.provinceCode,
+  ]);
+
+  const navigate = useNavigate();
+
+  const { isCreated, error, createOrder } = useCreateOrder();
+
+  const handleSubmitOrder = () => {
+    createOrder({ order: order });
+  };
+
+  useEffect(() => {
+    if (isCreated) {
+      navigate("/san-pham/thanh-toan/thanh-cong");
+    } else if (error) {
+      toast.error(error);
+    }
+  }, [error, isCreated, navigate]);
 
   return (
     <DefaultLayOut>
       <Grid>
         <Grid className={cx("wapper")}>
+          {showModal && (
+            <DefaultModal
+              overrideMaxWidth={{
+                lg: "600px",
+              }}
+              title={"Thay đổi địa chỉ"}
+              onClose={() => {
+                setUserUpdate({});
+                setShowModal(false);
+              }}
+            >
+              <Grid>
+                <Grid>
+                  <label htmlFor="name">Họ & tên</label>
+                  <Input
+                    value={userUpdate.fullName ?? user.fullName}
+                    onChange={(e) => {
+                      let newUser = { ...userUpdate };
+                      newUser.fullName = e.currentTarget.value;
+                      setUserUpdate(newUser);
+                    }}
+                    type="text"
+                    id="name"
+                  />
+                </Grid>
+
+                <Grid>
+                  <label htmlFor="">Tỉnh/Thành phố/Quận/Huyện/Phường/Xã</label>
+                  <DefaultDropDown
+                    visible={showPlace}
+                    childrenRender={
+                      <GetPlaceVietNamPage
+                        user={userUpdate}
+                        setUser={setUserUpdate}
+                      />
+                    }
+                  >
+                    <Button
+                      onClick={() => setShowPlace(!showPlace)}
+                      className={cx("addressBtn")}
+                    >
+                      <p>
+                        {provinceList.map((province, i) =>
+                          userUpdate.provinceCode
+                            ? province.code === userUpdate.provinceCode &&
+                              province.name
+                            : province.code === user.province?.code &&
+                              province.name
+                        )}{" "}
+                        {userUpdate.districtCode || user.district ? "/" : ""}
+                        {districtList.map((district, i) =>
+                          userUpdate.districtCode
+                            ? district.code === userUpdate.districtCode &&
+                              district.name
+                            : district.code === user.district?.code &&
+                              district.name
+                        )}
+                        {userUpdate.wardCode || user.ward ? "/" : ""}
+                        {wardList.map((ward, i) =>
+                          userUpdate.wardCode
+                            ? ward.code === userUpdate.wardCode && ward.name
+                            : ward.code === user.ward?.code && ward.name
+                        )}
+                      </p>
+                      <ArrowDropDownIcon />
+                    </Button>
+                  </DefaultDropDown>
+                </Grid>
+                <Grid>
+                  <label htmlFor="name">Địa chỉ chi tiết</label>
+                  <Input
+                    value={userUpdate.address ?? user.address}
+                    onChange={(e) => {
+                      let newUser = { ...userUpdate };
+                      newUser.address = e.currentTarget.value;
+                      setUserUpdate(newUser);
+                    }}
+                    type="text"
+                    id="name"
+                  />
+                </Grid>
+
+                <Grid textAlign={"right"}>
+                  <Button
+                    onClick={handleUpdateUser}
+                    style={{
+                      width: "9.4rem",
+                      background: "var(--primary-color)",
+                      color: "var(--white-color)",
+                    }}
+                  >
+                    Lưu
+                  </Button>
+                </Grid>
+              </Grid>
+            </DefaultModal>
+          )}
+
           <Grid item lg={8} className={cx("part-one")}>
             <Grid className={cx("address")}>
-              <Grid className={cx("location")} >
-                <p><LocationOnIcon /><span>Địa chỉ nhận hàng</span></p>
-                <a href="#">Thay đổi</a>
+              <Grid className={cx("location")}>
+                <p>
+                  <LocationOnIcon />
+                  <span>Địa chỉ nhận hàng</span>
+                </p>
+                <p onClick={() => setShowModal(true)}>Thay đổi</p>
               </Grid>
               <Grid className={cx("profile")}>
-                <h4>Anh A <span>|  038822633</span></h4>
-                <p>47 TRẦN PHÚ, Thị trấn Diêu Trì, Huyện Tuy Phước, Bình Định</p>
-              </Grid>
-            </Grid>
-            <Grid className={cx("delivery")}>
-              <Grid className={cx("location")} >
-                <p><LocalShippingIcon /><span>Phương thức giao hàng</span></p>
-              </Grid>
-              <Grid className={cx("transport")} >
-                <Radio
-                  className={cx("type-one")}
-                  onChange={handleShippingMethodChange}
-                  value="express"
-                  checked={selectedShippingMethod === 'express'}
-                >
-                  <h5><LocalShippingIcon /><span>Giao hàng nhanh</span></h5>
-                  <p>Dự kiến thứ 5, 8/1</p>
-                </Radio>
-                <p>26.000đ</p>
-              </Grid>
-              <Grid className={cx("transport")} >
-                <Radio
-                  className={cx("type-one")}
-                  onChange={handleShippingMethodChange}
-                  value="standard"
-                  checked={selectedShippingMethod === 'standard'}
-                >
-                  <h5><LocalShippingIcon /><span>Giao hàng tiết kiệm</span></h5>
-                  <p>Dự kiến thứ 5, 8/1</p>
-                </Radio>
-                <p></p>
-              </Grid>
-            </Grid>
-            <Grid className={cx("pay")}>
-              <Grid className={cx("location")} >
-                <p><PaymentOutlinedIcon /><span>Phương thức thanh toán</span></p>
-              </Grid>
-              <Grid className={cx("pay-type")}>
-                <Radio.Group onChange={onChange} value={value} style={{ width: "100%" }}>
-                  <Space direction="vertical" style={{ width: "100%" }}>
-                    <Grid className={cx("radio-money")}>
-                      <Radio value={1}>Thanh toán tiền mặt</Radio>
-                      <p><LocalAtmOutlinedIcon /></p>
-                    </Grid>
-                  </Space>
-                </Radio.Group>
+                <h4>
+                  {user.fullName}{" "}
+                  <span>| {user.phone ?? "Vui lòng cập nhật SĐT "}</span>
+                </h4>
+                <p>
+                  {user.province?.name} - {""} {user.district?.name} -{""}{" "}
+                  {user.ward?.name} -{" "}
+                  {user.address ?? "Vui lòng cập nhật địa chỉ chi tiết"}
+                </p>
               </Grid>
             </Grid>
           </Grid>
           <Grid item lg={5} className={cx("part-two")}>
             <Grid className={cx("sales")}>
-              <Grid className={cx("heading-sales")} >
-                <p><LoyaltyOutlinedIcon /><span>Mã ưu đãi</span></p>
+              <Grid className={cx("heading-sales")}>
+                <p>
+                  <LoyaltyOutlinedIcon />
+                  <span>Mã ưu đãi</span>
+                </p>
               </Grid>
               <Grid className={cx("btn-sales")}>
                 <Button block>Chọn mã ưu đãi</Button>
               </Grid>
             </Grid>
             <Grid className={cx("details")}>
-              <Grid className={cx("heading-details")} >
-                <p><InventoryIcon /><span>Thông tin đơn hàng</span></p>
+              <Grid className={cx("heading-details")}>
+                <p>
+                  <InventoryIcon />
+                  <span>Thông tin đơn hàng</span>
+                </p>
               </Grid>
               <Grid className={cx("product-order")}>
                 <Grid className={cx("heading-shop")}>
-                  <p>Cửa hàng : <span>Romanno</span></p>
+                  <p>
+                    Cửa hàng : <span>{product.store?.name}</span>
+                  </p>
                 </Grid>
                 <Grid className={cx("item")}>
                   <Grid>
-                    <img src={images.dauGoiDau} alt="daugoidau" />
+                    <img
+                      src={`http://116.118.49.43:3998/${product.images?.[0]}`}
+                      alt={product.name}
+                    />
                   </Grid>
                   <Grid className={cx("title")}>
                     <Grid>
-                      <h4>Dầu gội đầu Romano</h4>
-                      <p>99.000đ <span>239.000đ</span></p>
+                      <h4>{product.name}</h4>
+                      <p>
+                        {product.productPrice?.salePrice?.toLocaleString(
+                          "it-IT",
+                          {
+                            style: "currency",
+                            currency: "VND",
+                          }
+                        )}{" "}
+                        <span>
+                          {product.productPrice?.retailPrice?.toLocaleString(
+                            "it-IT",
+                            {
+                              style: "currency",
+                              currency: "VND",
+                            }
+                          )}
+                        </span>
+                      </p>
                     </Grid>
                     <Grid>
                       <p style={{ color: "#000" }}>x1</p>
@@ -129,29 +354,54 @@ const PayProductPage = () => {
             <Grid className={cx("order")}>
               <Grid className={cx("price-order")}>
                 <p>Tiền hàng</p>
-                <h4>99.000đ</h4>
+                <h4>
+                  {product.productPrice?.salePrice
+                    ? product.productPrice?.salePrice.toLocaleString("it-IT", {
+                        style: "currency",
+                        currency: "VND",
+                      })
+                    : product.productPrice?.retailPrice?.toLocaleString(
+                        "it-IT",
+                        {
+                          style: "currency",
+                          currency: "VND",
+                        }
+                      )}
+                </h4>
               </Grid>
-              <Grid className={cx("price-ship")}>
-                <p>Phí giao hàng</p>
-                <h4>26.000đ</h4>
+
+              <Grid className={cx("line")}>
+                <span></span>
               </Grid>
-              <Grid className={cx("line")}><span></span></Grid>
               <Grid className={cx("total-price")}>
                 <p>Tổng thanh toán</p>
-                <h4>125.000đ</h4>
+                <h4>
+                  {product.productPrice?.salePrice
+                    ? product.productPrice?.salePrice.toLocaleString("it-IT", {
+                        style: "currency",
+                        currency: "VND",
+                      })
+                    : product.productPrice?.retailPrice?.toLocaleString(
+                        "it-IT",
+                        {
+                          style: "currency",
+                          currency: "VND",
+                        }
+                      )}
+                </h4>
               </Grid>
-              <NavLink to="/san-pham/thanh-toan/thanh-cong">
-                <Grid className={cx("btn-order")}>
-                  <Button block>Đặt mua</Button>
-                </Grid>
-              </NavLink>
 
+              <Grid className={cx("btn-order")}>
+                <Button onClick={handleSubmitOrder} block>
+                  Đặt mua
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
       </Grid>
     </DefaultLayOut>
-  )
-}
+  );
+};
 
-export default PayProductPage
+export default PayProductPage;

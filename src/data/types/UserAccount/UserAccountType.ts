@@ -1,3 +1,5 @@
+import PlaceType from "../Place/PlaceType";
+
 export default interface UserAccountType {
   id?: number;
   fullName?: string;
@@ -7,7 +9,11 @@ export default interface UserAccountType {
   provider?: string;
   roles?: string;
   isNew?: string;
-  province?: string;
-  district?: string;
-  ward?: string;
+  address?: string;
+  provinceCode?: string;
+  districtCode?: string;
+  wardCode?: string;
+  province?: PlaceType;
+  district?: PlaceType;
+  ward?: PlaceType;
 }

@@ -242,7 +242,10 @@ const DetailsPage = () => {
                   >
                     Thêm vào giỏ
                   </button>
-                  <NavLink to="thanh-toan" className={cx("btn-pay")}>
+                  <NavLink
+                    to={`thanh-toan/${product.name}-${quantity}`}
+                    className={cx("btn-pay")}
+                  >
                     <button
                       style={{
                         backgroundColor: "var(--primary-color)",
