@@ -203,6 +203,7 @@ const PayProductPage = () => {
                 <Grid>
                   <label htmlFor="name">Họ & tên</label>
                   <Input
+                    className={cx("input")}
                     value={userUpdate.fullName ?? user.fullName}
                     onChange={(e) => {
                       let newUser = { ...userUpdate };
@@ -259,6 +260,7 @@ const PayProductPage = () => {
                 <Grid>
                   <label htmlFor="name">Địa chỉ chi tiết</label>
                   <Input
+                    className={cx("input")}
                     value={userUpdate.address ?? user.address}
                     onChange={(e) => {
                       let newUser = { ...userUpdate };

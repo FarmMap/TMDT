@@ -30,7 +30,6 @@ const InputSearch = (props) => {
           backgroundColor: backgroundColorInput,
           borderRadius: "0px",
           height: "40px",
-          marginTop: "4px"
         }}
         icon={<SearchOutlined style={{ color: backgroundColorButton }} />}
       >
