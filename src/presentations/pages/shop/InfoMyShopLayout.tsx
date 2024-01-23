@@ -40,7 +40,9 @@ const InfoMyShopLayout = (props: InfoMyShopLayoutProps) => {
                     {" "}
                     <p>{myShop.name ? myShop.name : "Romano"}</p>
                     <p>
-                      {myShop.type == "INDIVIDUAL" ? "Cá nhân" : "Doanh nghiệp"}
+                      {myShop.businessType == "INDIVIDUAL"
+                        ? "Cá nhân"
+                        : "Doanh nghiệp"}
                     </p>
                   </>
                 ) : (

@@ -27,11 +27,11 @@ const GetPlaceVietNamPage = (props: GetPlaceVietNamPageProps) => {
   //   Get province
   const { provinceList } = useFetchProvinceList({});
   const { districtList } = useFetchDistrictByProvinceCode({
-    code: props.shop.provinceCode,
+    code: props.shop.storeLocation?.provinceCode,
   });
 
   const { wardList } = useFetchWardByDistrictCode({
-    code: props.shop.districtCode,
+    code: props.shop.storeLocation?.districtCode,
   });
 
   return (
@@ -76,7 +76,8 @@ const GetPlaceVietNamPage = (props: GetPlaceVietNamPageProps) => {
                 <Button
                   onClick={(e) => {
                     let newShop = { ...props.shop };
-                    newShop.provinceCode = province.code;
+                    newShop.storeLocation = newShop.storeLocation || {}; // Ensure storeLocation is defined
+                    newShop.storeLocation.provinceCode = province.code;
                     props.setShop(newShop);
                     handleChange(e, "2");
                   }}
@@ -94,7 +95,8 @@ const GetPlaceVietNamPage = (props: GetPlaceVietNamPageProps) => {
                 <Button
                   onClick={(e) => {
                     let newShop = { ...props.shop };
-                    newShop.districtCode = district.code;
+                    newShop.storeLocation = newShop.storeLocation || {}; // Ensure storeLocation is defined
+                    newShop.storeLocation.districtCode = district.code;
                     props.setShop(newShop);
                     handleChange(e, "3");
                   }}
@@ -112,7 +114,8 @@ const GetPlaceVietNamPage = (props: GetPlaceVietNamPageProps) => {
                 <Button
                   onClick={(e) => {
                     let newShop = { ...props.shop };
-                    newShop.wardCode = ward.code;
+                    newShop.storeLocation = newShop.storeLocation || {}; // Ensure storeLocation is defined
+                    newShop.storeLocation.wardCode = ward.code;
                     props.setShop(newShop);
                   }}
                   style={{ margin: "0 1.2rem 1.2rem 0" }}

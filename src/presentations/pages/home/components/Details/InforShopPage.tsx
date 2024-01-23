@@ -69,7 +69,9 @@ const InforShopPage = (props: InforShopPageProps) => {
             </Grid>
             <Grid className={cx("info")}>
               <p>{props.product.store?.name}</p>
-              <span>{props.product.store?.provinceCode ?? "TP HCM"}</span>
+              <span>
+                {props.product.store?.storeLocation?.provinceCode ?? "TP HCM"}
+              </span>
             </Grid>
           </Grid>
 

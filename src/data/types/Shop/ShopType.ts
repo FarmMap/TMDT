@@ -5,19 +5,33 @@ export default interface ShopType {
   name?: string;
   email?: string;
   phone?: string;
-  pickupAddress?: string[];
-  shippingMethodIds?: string[];
-  provinceCode?: string;
-  districtCode?: string;
-  wardCode?: string;
-  type?: string;
-  address?: string;
+  collectionLocation?: {
+    provinceCode?: string;
+    districtCode?: string;
+    wardCode?: string;
+    address?: string;
+    type?: string;
+  };
+  storeLocation?: {
+    provinceCode?: string;
+    districtCode?: string;
+    wardCode?: string;
+    address?: string;
+    type?: string;
+  };
+  deliveryMethods?: {
+    id?: string;
+    isLocked?: boolean;
+  }[];
+
+  businessType?: string;
+  emailInvoice?: string;
   taxCode?: string;
   companyName?: string;
-  step?: number;
+  identityType?: string;
   businessLicense?: File;
-  identity?: File;
-  identityCode?: string;
+  identityImage?: File;
+  number?: string;
   fullName?: string;
-  avatar?: File;
+  identityImageHold?: File;
 }

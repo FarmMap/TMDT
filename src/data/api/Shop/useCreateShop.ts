@@ -1,73 +1,111 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useCallback, useState } from "react";
+import ShopType from "../../types/Shop/ShopType";
 
 interface ResponseError {
   code: string;
   message: string;
 }
 
-interface useCreateShopProps {
-  name?: string;
-  pickupAddress?: string[];
-  email?: string;
-  phone?: string;
-  taxCode?: string;
-  shippingMethodIds?: string[];
-  type?: string;
-  companyName?: string;
-  provinceCode?: string;
-  districtCode?: string;
-  wardCode?: string;
-  address?: string;
-  businessLicense?: File;
-  identity?: File;
-  avatar?: File;
+interface ShopParams {
+  shop: ShopType | undefined;
 }
 
-const useCreateShop = (props: useCreateShopProps) => {
+const useCreateShop = () => {
   const [isCreated, setCreated] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setLoading] = useState(false);
 
-  const createShop = useCallback(() => {
+  const createShop = useCallback((params: ShopParams) => {
     setCreated(false);
     setError(null);
     setLoading(true);
     const FormData = require("form-data");
     var data = new FormData();
-    data.append("name", props.name);
-    data.append("pickupAddress", props.pickupAddress);
-    data.append("email", props.email);
-    data.append("phone", props.phone);
-    data.append("taxCode", props.taxCode);
-    if (props.shippingMethodIds) {
-      props.shippingMethodIds.forEach((id, index) => {
-        data.append(`shippingMethodIds`, id);
-      });
-    }
-    // if (props.pickupAddress) {
-    //   props.pickupAddress.forEach((id, index) => {
-    //     data.append(`pickupAddress[${index}]`, id);
-    //   });
-    // }
-    data.append("type", props.type);
-    data.append("companyName", props.companyName);
-    data.append("provinceCode", props.provinceCode);
-    data.append("districtCode", props.districtCode);
-    data.append("wardCode", props.wardCode);
-    data.append("address", props.address);
+    data.append("name", params.shop?.name);
+    data.append("email", params.shop?.email);
+    data.append("phone", params.shop?.phone);
+    data.append("taxCode", params.shop?.taxCode);
+
+    data.append("businessType", params.shop?.businessType);
+    data.append("companyName", params.shop?.companyName);
+    data.append("emailInvoice", params.shop?.emailInvoice);
+    data.append("number", params.shop?.number);
+    data.append("fullName", params.shop?.fullName);
+    data.append("identityType", params.shop?.identityType);
+
     data.append(
       "businessLicense",
-      props.businessLicense,
-      props.businessLicense?.name
+      params.shop?.businessLicense,
+      params.shop?.businessLicense?.name
     );
-    data.append("identity", props.identity, props.identity?.name);
-    data.append("avatar", props.avatar, props.avatar?.name);
+    data.append(
+      "identityImage",
+      params.shop?.identityImage,
+      params.shop?.identityImage?.name
+    );
+    data.append(
+      "identityImageHold",
+      params.shop?.identityImageHold,
+      params.shop?.identityImageHold?.name
+    );
+
+    // Add storeLocation data
+    data.append(
+      "storeLocation.provinceCode",
+      params.shop?.storeLocation?.provinceCode
+    );
+    data.append(
+      "storeLocation.districtCode",
+      params.shop?.storeLocation?.districtCode
+    );
+    data.append("storeLocation.wardCode", params.shop?.storeLocation?.wardCode);
+    data.append("storeLocation.address", params.shop?.storeLocation?.address);
+    data.append("storeLocation.type", params.shop?.storeLocation?.type);
+
+    // Add collectionLocation data
+    data.append(
+      "collectionLocation.provinceCode",
+      params.shop?.collectionLocation?.provinceCode
+    );
+    data.append(
+      "collectionLocation.districtCode",
+      params.shop?.collectionLocation?.districtCode
+    );
+    data.append(
+      "collectionLocation.wardCode",
+      params.shop?.collectionLocation?.wardCode
+    );
+    data.append(
+      "collectionLocation.address",
+      params.shop?.collectionLocation?.address
+    );
+    data.append(
+      "collectionLocation.type",
+      params.shop?.collectionLocation?.type
+    );
+
+    // Append deliveryMethods data
+    if (
+      params.shop?.deliveryMethods &&
+      params.shop.deliveryMethods.length > 0
+    ) {
+      params.shop.deliveryMethods.forEach((method, index) => {
+        data.append(
+          `deliveryMethods[${index}].id`,
+          method.id?.toString() || ""
+        );
+        data.append(
+          `deliveryMethods[${index}].isLocked`,
+          method.isLocked?.toString() || ""
+        );
+      });
+    }
 
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: `${process.env.REACT_APP_API_BASE_URL}shop`,
+      url: `${process.env.REACT_APP_API_BASE_URL}store`,
       headers: {
         accept: "*/*",
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
@@ -96,23 +134,7 @@ const useCreateShop = (props: useCreateShopProps) => {
 
         setLoading(false);
       });
-  }, [
-    props.address,
-    props.avatar,
-    props.businessLicense,
-    props.companyName,
-    props.districtCode,
-    props.email,
-    props.identity,
-    props.name,
-    props.phone,
-    props.pickupAddress,
-    props.provinceCode,
-    props.shippingMethodIds,
-    props.taxCode,
-    props.type,
-    props.wardCode,
-  ]);
+  }, []);
 
   return { isCreated, setCreated, error, isLoading, createShop };
 };

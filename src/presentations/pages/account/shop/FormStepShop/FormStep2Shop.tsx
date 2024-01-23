@@ -26,11 +26,11 @@ const FormStep2Shop = (props: FormStep2ShopProps) => {
   const [showPlace, setShowPlace] = useState(false);
   const { provinceList } = useFetchProvinceList({});
   const { districtList } = useFetchDistrictByProvinceCode({
-    code: props.shop.provinceCode,
+    code: props.shop.storeLocation?.provinceCode,
   });
 
   const { wardList } = useFetchWardByDistrictCode({
-    code: props.shop.districtCode,
+    code: props.shop.storeLocation?.districtCode,
   });
 
   // Ref để tham chiếu tới input file
@@ -50,10 +50,10 @@ const FormStep2Shop = (props: FormStep2ShopProps) => {
             className={cx("radio-btn")}
             type="radio"
             value="Cá nhân"
-            checked={props.shop.type === "INDIVIDUAL"}
+            checked={props.shop.businessType === "INDIVIDUAL"}
             onChange={(e) => {
               let newShop = { ...props.shop };
-              newShop.type = "INDIVIDUAL";
+              newShop.businessType = "INDIVIDUAL";
               props.setShop(newShop);
             }}
             id="ca-nhan"
@@ -66,10 +66,10 @@ const FormStep2Shop = (props: FormStep2ShopProps) => {
             className={cx("radio-btn")}
             type="radio"
             value="Doanh nghiệp"
-            checked={props.shop.type === "ENTERPRISE"}
+            checked={props.shop.businessType === "ENTERPRISE"}
             onChange={(e) => {
               let newShop = { ...props.shop };
-              newShop.type = "ENTERPRISE";
+              newShop.businessType = "ENTERPRISE";
               props.setShop(newShop);
             }}
             id="doanh-nghiep"
@@ -121,26 +121,30 @@ const FormStep2Shop = (props: FormStep2ShopProps) => {
               <p>
                 {provinceList.map(
                   (province, i) =>
-                    province.code == props.shop.provinceCode && province.name
+                    province.code == props.shop.storeLocation?.provinceCode &&
+                    province.name
                 )}{" "}
-                {props.shop.provinceCode && "/"}
+                {props.shop.storeLocation?.provinceCode && "/"}
                 {districtList.map(
                   (district, i) =>
-                    district.code == props.shop.districtCode && district.name
+                    district.code == props.shop.storeLocation?.districtCode &&
+                    district.name
                 )}
-                {props.shop.districtCode && "/"}
+                {props.shop.storeLocation?.districtCode && "/"}
                 {wardList.map(
-                  (ward, i) => ward.code == props.shop.wardCode && ward.name
+                  (ward, i) =>
+                    ward.code == props.shop.storeLocation?.wardCode && ward.name
                 )}
               </p>
               <ArrowDropDownIcon />
             </Button>
           </DefaultDropDown>
           <input
-            value={props.shop.address ? props.shop.address : ""}
+            value={props.shop.storeLocation?.address || ""}
             onChange={(e) => {
               let newShop = { ...props.shop };
-              newShop.address = e.currentTarget.value;
+              newShop.storeLocation = newShop.storeLocation || {}; // Ensure storeLocation is defined
+              newShop.storeLocation.address = e.currentTarget.value;
               props.setShop(newShop);
             }}
             type="text"
@@ -171,13 +175,7 @@ const FormStep2Shop = (props: FormStep2ShopProps) => {
         />
       </Grid>
       <Grid className={cx("input-wrapper")}>
-        <label htmlFor="">
-          {" "}
-          <span style={{ color: "var(--second-color)", marginRight: "0.4rem" }}>
-            *
-          </span>
-          Giấy phép đăng ký kinh doanh
-        </label>
+        <label htmlFor=""> Giấy phép đăng ký kinh doanh (nếu có)</label>
         <Grid display={"flex"} flexDirection={"column"} flex={"0.6"}>
           <label
             htmlFor="file-input"

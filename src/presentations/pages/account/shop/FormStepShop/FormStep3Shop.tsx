@@ -82,7 +82,7 @@ const FormStep3Shop = (props: FormStep3ShopProps) => {
       </Grid>
 
       <Grid className={cx("input-wrapper")}>
-        <label htmlFor="identityCode">
+        <label htmlFor="number">
           {" "}
           <span style={{ color: "var(--second-color)", marginRight: "0.4rem" }}>
             *
@@ -90,14 +90,14 @@ const FormStep3Shop = (props: FormStep3ShopProps) => {
           Số {choosen}
         </label>
         <input
-          value={props.shop.identityCode ?? ""}
+          value={props.shop.number ?? ""}
           type={"number"}
           onChange={(e) => {
             let newShop = { ...props.shop };
-            newShop.identityCode = e.currentTarget.value;
+            newShop.number = e.currentTarget.value;
             props.setShop(newShop);
           }}
-          id="identityCode"
+          id="number"
           placeholder="Nhập vào (12 kí tự)"
         />
       </Grid>
@@ -140,19 +140,19 @@ const FormStep3Shop = (props: FormStep3ShopProps) => {
           <label
             htmlFor="file-input"
             style={{
-              border: props.shop.identity
+              border: props.shop.identityImage
                 ? "none"
                 : "1px dashed var(--border-color) ",
             }}
             className={cx("file-input-label")}
           >
-            {props.shop.identity ? (
+            {props.shop.identityImage ? (
               <Grid width={"100%"} height={"100%"} position={"relative"}>
                 <img
                   src={
-                    props.shop.identity instanceof File
-                      ? URL.createObjectURL(props.shop.identity)
-                      : props.shop.identity || "" // Use an empty string if farm.image is null
+                    props.shop.identityImage instanceof File
+                      ? URL.createObjectURL(props.shop.identityImage)
+                      : props.shop.identityImage || "" // Use an empty string if farm.image is null
                   }
                   alt="Chọn hình ảnh"
                   style={{
@@ -236,19 +236,19 @@ const FormStep3Shop = (props: FormStep3ShopProps) => {
           <label
             htmlFor="file-input2"
             style={{
-              border: props.shop.avatar
+              border: props.shop.identityImageHold
                 ? "none"
                 : "1px dashed var(--border-color) ",
             }}
             className={cx("file-input-label")}
           >
-            {props.shop.avatar ? (
+            {props.shop.identityImageHold ? (
               <Grid width={"100%"} height={"100%"} position={"relative"}>
                 <img
                   src={
-                    props.shop.avatar instanceof File
-                      ? URL.createObjectURL(props.shop.avatar)
-                      : props.shop.avatar || "" // Use an empty string if farm.image is null
+                    props.shop.identityImageHold instanceof File
+                      ? URL.createObjectURL(props.shop.identityImageHold)
+                      : props.shop.identityImageHold || "" // Use an empty string if farm.image is null
                   }
                   alt="Chọn hình ảnh"
                   style={{

@@ -52,58 +52,38 @@ const FormCreateShopPage = (props: FormCreateShopPageProps) => {
   // Validate
   const [isNext, setIsNext] = useState(false);
 
-  useEffect(() => {
-    if (current === 0) {
-      if (
-        shop.name !== "" &&
-        shop.pickupAddress?.map((item) => item[1]) !== undefined &&
-        shop.email !== "" &&
-        shop.phone !== "" &&
-        shop.shippingMethodIds?.length !== 0
-      ) {
-        setIsNext(true);
-      } else {
-        setIsNext(false);
-      }
-    }
-  }, [
-    current,
-    shop.email,
-    shop.name,
-    shop.phone,
-    shop.pickupAddress,
-    shop.shippingMethodIds?.length,
-  ]);
+  // useEffect(() => {
+  //   if (current === 0) {
+  //     if (
+  //       shop.name !== "" &&
+  //       shop.pickupAddress?.map((item) => item[1]) !== undefined &&
+  //       shop.email !== "" &&
+  //       shop.phone !== "" &&
+  //       shop.shippingMethodIds?.length !== 0
+  //     ) {
+  //       setIsNext(true);
+  //     } else {
+  //       setIsNext(false);
+  //     }
+  //   }
+  // }, [
+  //   current,
+  //   shop.email,
+  //   shop.name,
+  //   shop.phone,
+  //   shop.pickupAddress,
+  //   shop.shippingMethodIds?.length,
+  // ]);
 
   console.log(shop);
 
   // end step
 
   // APi
-  const {
-    isCreated,
-    error: createShopErr,
-    createShop,
-  } = useCreateShop({
-    name: shop.name,
-    pickupAddress: shop.pickupAddress,
-    email: shop.email,
-    phone: shop.phone,
-    taxCode: shop.taxCode,
-    shippingMethodIds: shop.shippingMethodIds,
-    type: shop.type,
-    companyName: shop.companyName,
-    provinceCode: shop.provinceCode,
-    districtCode: shop.districtCode,
-    wardCode: shop.wardCode,
-    address: shop.address,
-    businessLicense: shop.businessLicense,
-    identity: shop.identity,
-    avatar: shop.avatar,
-  });
+  const { isCreated, error: createShopErr, createShop } = useCreateShop();
 
   const handleCreateShop = () => {
-    createShop();
+    createShop({ shop: shop });
   };
 
   useEffect(() => {
