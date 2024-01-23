@@ -1,12 +1,17 @@
-import React from "react";
-import { Grid, Button } from "@mui/material";
+import React, { useState } from "react";
+import { Grid } from "@mui/material";
 import ShopType from "../../../../../data/types/Shop/ShopType";
-
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import useFetchShippingMethod from "../../../../../data/api/ShippingMethod/useFetchShippingMethod";
+import DefaultDropDown from "../../../../components/defaultDropDown";
+import GetPlaceVietNamCollection from "./GetPlaceVNCollection";
+import useFetchProvinceList from "../../../../../data/api/Place/useFetchProvince";
+import useFetchDistrictByProvinceCode from "../../../../../data/api/Place/useFetchDistrictByProvinceCode";
+import useFetchWardByDistrictCode from "../../../../../data/api/Place/useFetchWardByDistrictCode";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./FormStepShop.module.scss";
-import useFetchShippingMethod from "../../../../../data/api/ShippingMethod/useFetchShippingMethod";
-import DefaultDropDown from "../../../../components/defaultDropDown";
+import { Button } from "antd";
 
 const cx = classNames.bind(styles);
 
@@ -31,6 +36,16 @@ const FormStep1Shop = (props: FormStep1ShopProps) => {
       deliveryMethods: updatedDeliveryMethods,
     });
   };
+
+  const [showPlace, setShowPlace] = useState(false);
+  const { provinceList } = useFetchProvinceList({});
+  const { districtList } = useFetchDistrictByProvinceCode({
+    code: props.shop.collectionLocation?.provinceCode,
+  });
+
+  const { wardList } = useFetchWardByDistrictCode({
+    code: props.shop.collectionLocation?.districtCode,
+  });
   return (
     <form className={cx("form-wrapper")}>
       <Grid className={cx("input-wrapper")}>
@@ -53,11 +68,22 @@ const FormStep1Shop = (props: FormStep1ShopProps) => {
           placeholder="Nhập tên cửa hàng"
         />
       </Grid>
-      {/* <Grid display={"flex"} flexDirection={"column"} flex={"0.61"}>
+
+      <Grid className={cx("input-wrapper")}>
+        <label htmlFor="address">
+          <span style={{ color: "var(--second-color)", marginRight: "0.4rem" }}>
+            *
+          </span>
+          Địa chỉ lấy hàng
+        </label>
+        <Grid display={"flex"} flexDirection={"column"} flex={"0.61"}>
           <DefaultDropDown
             visible={showPlace}
             childrenRender={
-              <GetPlaceVietNamPage shop={props.shop} setShop={props.setShop} />
+              <GetPlaceVietNamCollection
+                shop={props.shop}
+                setShop={props.setShop}
+              />
             }
           >
             <Button
@@ -67,33 +93,41 @@ const FormStep1Shop = (props: FormStep1ShopProps) => {
               <p>
                 {provinceList.map(
                   (province, i) =>
-                    province.code == props.shop.provinceCode && province.name
+                    province.code ==
+                      props.shop.collectionLocation?.provinceCode &&
+                    province.name
                 )}{" "}
-                {props.shop.provinceCode && "/"}
+                {props.shop.collectionLocation?.provinceCode && "/"}
                 {districtList.map(
                   (district, i) =>
-                    district.code == props.shop.districtCode && district.name
+                    district.code ==
+                      props.shop.collectionLocation?.districtCode &&
+                    district.name
                 )}
-                {props.shop.districtCode && "/"}
+                {props.shop.collectionLocation?.districtCode && "/"}
                 {wardList.map(
-                  (ward, i) => ward.code == props.shop.wardCode && ward.name
+                  (ward, i) =>
+                    ward.code == props.shop.collectionLocation?.wardCode &&
+                    ward.name
                 )}
               </p>
               <ArrowDropDownIcon />
             </Button>
           </DefaultDropDown>
           <input
-            value={props.shop.address ? props.shop.address : ""}
+            value={props.shop.collectionLocation?.address || ""}
             onChange={(e) => {
               let newShop = { ...props.shop };
-              newShop.address = e.currentTarget.value;
+              newShop.collectionLocation = newShop.collectionLocation || {}; // Ensure collectionLocation is defined
+              newShop.collectionLocation.address = e.currentTarget.value;
               props.setShop(newShop);
             }}
             type="text"
             id="address"
             placeholder="Nhập địa chỉ đăng ký kinh doanh"
           />
-        </Grid> */}
+        </Grid>
+      </Grid>
 
       <Grid className={cx("input-wrapper")}>
         <label htmlFor="email">
@@ -166,22 +200,6 @@ const FormStep1Shop = (props: FormStep1ShopProps) => {
               </label>
             </React.Fragment>
           ))}
-
-          <label className={cx("label-radio")} htmlFor="nhanh">
-            {shippingMethod.map((item, i) => i === 0 && item.title)}
-          </label>
-          <input
-            className={cx("radio-btn")}
-            type="checkbox"
-            value="Doanh nghiệp"
-            checked
-            onChange={(e) => {}}
-            id="tiet-kiem"
-            name="tiet-kiem"
-          />
-          <label className={cx("label-radio")} htmlFor="tiet-kiem">
-            {shippingMethod.map((item, i) => i === 1 && item.title)}
-          </label>
         </Grid>
       </Grid>
     </form>

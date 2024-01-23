@@ -70,13 +70,13 @@
 }
 
 .addressBtn {
-  width: 100%;
+  width: 100% !important;
   margin-bottom: 2rem !important;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
   padding: 1.8rem !important;
-  border-radius: 3px;
+  border-radius: 3px !important;
 }
 
 // getPlace

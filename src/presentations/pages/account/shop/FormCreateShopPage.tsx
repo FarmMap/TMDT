@@ -100,7 +100,7 @@ const FormCreateShopPage = (props: FormCreateShopPageProps) => {
       <div style={{ margin: "4rem 0" }}>{steps[current].content}</div>
       <div style={{ marginTop: 24 }}>
         {current < 2 && (
-          <Button disabled={!isNext} type="primary" onClick={() => next()}>
+          <Button type="primary" onClick={() => next()}>
             Tiếp theo
           </Button>
         )}
