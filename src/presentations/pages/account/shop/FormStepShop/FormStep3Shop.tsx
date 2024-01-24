@@ -37,9 +37,12 @@ const FormStep3Shop = (props: FormStep3ShopProps) => {
           <input
             className={cx("radio-btn")}
             type="radio"
-            value="Căn Cước Công Dân"
+            value="CCCD"
             checked={choosen === "Căn Cước Công Dân"}
             onChange={(e) => {
+              let newShop = { ...props.shop };
+              newShop.identityType = e.currentTarget.value;
+              props.setShop(newShop);
               setChoosen("Căn Cước Công Dân");
             }}
             id="cccd"
@@ -55,6 +58,9 @@ const FormStep3Shop = (props: FormStep3ShopProps) => {
             value="CMND"
             checked={choosen === "Chứng Minh Nhân Dân"}
             onChange={(e) => {
+              let newShop = { ...props.shop };
+              newShop.identityType = e.currentTarget.value;
+              props.setShop(newShop);
               setChoosen("Chứng Minh Nhân Dân");
             }}
             id="cmnd"
@@ -67,9 +73,12 @@ const FormStep3Shop = (props: FormStep3ShopProps) => {
             style={{ marginLeft: "9rem" }}
             className={cx("radio-btn")}
             type="radio"
-            value="Hộ chiếu"
+            value="HC"
             checked={choosen === "Hộ Chiếu"}
             onChange={(e) => {
+              let newShop = { ...props.shop };
+              newShop.identityType = e.currentTarget.value;
+              props.setShop(newShop);
               setChoosen("Hộ Chiếu");
             }}
             id="hc"
@@ -152,7 +161,7 @@ const FormStep3Shop = (props: FormStep3ShopProps) => {
                   src={
                     props.shop.identityImage instanceof File
                       ? URL.createObjectURL(props.shop.identityImage)
-                      : props.shop.identityImage || "" // Use an empty string if farm.image is null
+                      : props.shop.identityImage || ""
                   }
                   alt="Chọn hình ảnh"
                   style={{
@@ -193,7 +202,7 @@ const FormStep3Shop = (props: FormStep3ShopProps) => {
                 // Cập nhật state shop.image với File ảnh đã chọn
                 props.setShop((prevShop) => ({
                   ...prevShop,
-                  identity: file, // Set to the selected File object
+                  identityImage: file, // Set to the selected File object
                 }));
               }
             }}
@@ -289,7 +298,7 @@ const FormStep3Shop = (props: FormStep3ShopProps) => {
                 // Cập nhật state shop.image với File ảnh đã chọn
                 props.setShop((prevShop) => ({
                   ...prevShop,
-                  avatar: file, // Set to the selected File object
+                  identityImageHold: file, // Set to the selected File object
                 }));
               }
             }}

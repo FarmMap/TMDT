@@ -52,29 +52,6 @@ const FormCreateShopPage = (props: FormCreateShopPageProps) => {
   // Validate
   const [isNext, setIsNext] = useState(false);
 
-  // useEffect(() => {
-  //   if (current === 0) {
-  //     if (
-  //       shop.name !== "" &&
-  //       shop.pickupAddress?.map((item) => item[1]) !== undefined &&
-  //       shop.email !== "" &&
-  //       shop.phone !== "" &&
-  //       shop.shippingMethodIds?.length !== 0
-  //     ) {
-  //       setIsNext(true);
-  //     } else {
-  //       setIsNext(false);
-  //     }
-  //   }
-  // }, [
-  //   current,
-  //   shop.email,
-  //   shop.name,
-  //   shop.phone,
-  //   shop.pickupAddress,
-  //   shop.shippingMethodIds?.length,
-  // ]);
-
   console.log(shop);
 
   // end step

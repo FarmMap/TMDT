@@ -61,7 +61,7 @@ const useCreateShop = () => {
     );
     data.append("storeLocation.wardCode", params.shop?.storeLocation?.wardCode);
     data.append("storeLocation.address", params.shop?.storeLocation?.address);
-    data.append("storeLocation.type", params.shop?.storeLocation?.type);
+    data.append("storeLocation.type", "STORE");
 
     // Add collectionLocation data
     data.append(
@@ -80,10 +80,7 @@ const useCreateShop = () => {
       "collectionLocation.address",
       params.shop?.collectionLocation?.address
     );
-    data.append(
-      "collectionLocation.type",
-      params.shop?.collectionLocation?.type
-    );
+    data.append("collectionLocation.type", "COLLECTION");
 
     // Append deliveryMethods data
     if (

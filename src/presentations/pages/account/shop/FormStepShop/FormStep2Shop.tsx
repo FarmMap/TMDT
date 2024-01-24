@@ -155,6 +155,27 @@ const FormStep2Shop = (props: FormStep2ShopProps) => {
       </Grid>
 
       <Grid className={cx("input-wrapper")}>
+        <label htmlFor="emailInvoice">
+          {" "}
+          <span style={{ color: "var(--second-color)", marginRight: "0.4rem" }}>
+            *
+          </span>
+          Email nhận hóa đơn điện tử
+        </label>
+        <input
+          value={props.shop.emailInvoice ?? ""}
+          type={"text"}
+          onChange={(e) => {
+            let newShop = { ...props.shop };
+            newShop.emailInvoice = e.currentTarget.value;
+            props.setShop(newShop);
+          }}
+          id="emailInvoice"
+          placeholder="Nhập vào"
+        />
+      </Grid>
+
+      <Grid className={cx("input-wrapper")}>
         <label htmlFor="taxCode">
           {" "}
           <span style={{ color: "var(--second-color)", marginRight: "0.4rem" }}>
@@ -174,6 +195,7 @@ const FormStep2Shop = (props: FormStep2ShopProps) => {
           placeholder="Nhập mã số thuế (14 kí tự)"
         />
       </Grid>
+
       <Grid className={cx("input-wrapper")}>
         <label htmlFor=""> Giấy phép đăng ký kinh doanh (nếu có)</label>
         <Grid display={"flex"} flexDirection={"column"} flex={"0.6"}>
