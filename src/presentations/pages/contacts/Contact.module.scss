@@ -1,0 +1,40 @@
+.wapper{
+    margin: 0;
+    background-color: var(--white-color);
+    .heading{
+        text-align: center;
+        color: var(--black-color);
+    }
+    .section{
+        display: flex;
+        justify-content: space-around;
+        margin-top: 30px;
+        .profile{
+            color: var(--black-color);
+            line-height: 3rem;
+        }
+        .form-contact{
+            color: var(--black-color);
+            Input{
+                margin: 10px 0;
+                border-radius: 3px;
+                height: 40px;
+            }
+            .text{
+                margin: 10px 0;
+                border-radius: 3px;
+            }
+            .btn-send{
+                margin: 10px 0;
+                display: flex;
+                justify-content: center;
+                Button{
+                    background-color: var(--primary-color);
+                    color: var(--white-color);
+                    border: none;
+                    border-radius: 3px;
+                }
+            }
+        }
+    }
+}

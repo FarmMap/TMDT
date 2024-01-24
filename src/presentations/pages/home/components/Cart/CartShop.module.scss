@@ -27,7 +27,7 @@
     width: 38px;
     border-radius: 4px;
     text-align: center;
-    margin: 0 4px;
+    margin: 0 4px !important;
   }
 }
 .shop {
@@ -87,12 +87,22 @@
     text-decoration: line-through;
   }
 }
-.icon {
+.icon-favorite {
   font-size: 0.8rem;
   display: flex;
   justify-content: space-between;
   svg {
     color: var(--black-color);
+    cursor: pointer;
+    font-size: 2rem;
+  }
+}
+.icon-delete {
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  svg {
+    color: var(--second-color);
     cursor: pointer;
     font-size: 2rem;
   }

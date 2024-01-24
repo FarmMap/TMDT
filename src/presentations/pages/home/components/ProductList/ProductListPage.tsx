@@ -60,8 +60,10 @@ const ProductListPage = () => {
       <Grid className={cx("container")} container>
         {productList.map(
           (product, i) =>
-            product.isActive && (
-              <Grid item lg={1.6} className={cx("item")} key={i}>
+            product.isActive &&
+            i !== 0 &&
+            i !== 1 && (
+              <Grid item lg={1.5} className={cx("item")} key={i}>
                 <NavLink to={`/san-pham/${product.id}`}>
                   <img
                     src={`${process.env.REACT_APP_API_BASE_URL}${product.images?.[0]}`}
@@ -70,15 +72,32 @@ const ProductListPage = () => {
                     alt={product.name}
                   />
                   <h5 className={cx("product-name")}>{product.name}</h5>
-                  <p className={cx("original-price")}>
-                    {product.productPrice?.retailPrice ?? "Đang cập nhật..."}đ
+                  <p className={cx("original-price")}
+                  style={{color: product.productPrice?.salePrice ? "var(--text-color)" : "var(--primary-color)"}}>
+                    {product.productPrice?.retailPrice?.toLocaleString(
+                      "it-IT",
+                      {
+                        style: "currency",
+                        currency: "VND",
+                      }
+                    ) ?? "Đang cập nhật..."}
                   </p>
 
                   <Grid container>
-                    <p className={cx("sale-price")}>
-                      {product.productPrice?.salePrice}đ
+                    <p className={cx("sale-price")} 
+                    style={{color: ! product.productPrice?.salePrice ? "var(--text-color)" : "var(--primary-color)"}}>
+                      {product.productPrice?.salePrice?.toLocaleString(
+                        "it-IT",
+                        {
+                          style: "currency",
+                          currency: "VND",
+                        }
+                      )}
                     </p>
-                    <p className={cx("sale-price")}>
+                    <p
+                      className={cx("sale-price")}
+                      style={{color: ! product.productPrice?.salePrice ? "var(--text-color)" : "var(--primary-color)",fontSize: "1.2rem"}}
+                    >
                       {product.salePrice}{" "}
                       <span>
                         {product.weight} {""}

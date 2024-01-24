@@ -19,10 +19,14 @@ import useAuth from "../../../hooks/useAuth";
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 import { NavLink } from "react-router-dom";
+import { useCart } from "../../pages/home/components/Cart/CartContext";
 
 const cx = classNames.bind(styles);
 const Header = () => {
   const [showAccount, setShowAccount] = useState(false);
+  const { cartState } = useCart()
+
+  const { cartItems } = cartState;
 
   const { user: currentUser, isLoading, error } = useFetchMyAccount({});
 
@@ -38,8 +42,9 @@ const Header = () => {
     <Grid className={cx("container")}>
       <Grid className={cx("wrapper")}>
         <Grid className={cx("logo")}>
-          <NavLink style={{ color: "white" }} to="/">
-            AGRIMARKET
+          <NavLink to="/" style={{ display: "flex" }}>
+            <img src={images.logo} alt="logo" />
+
           </NavLink>
         </Grid>
 
@@ -108,10 +113,9 @@ const Header = () => {
               </Tippy>
             </DefaultDropDown>
           )}
-          <Link to="/gio-hang">
-            <LocalMallRoundedIcon
-              style={{ cursor: "pointer", color: "#fff" }}
-            />
+          <Link to="/gio-hang" className={cx("cart-link")}>
+            <LocalMallRoundedIcon style={{ cursor: "pointer", color: "#fff" }} />
+            <p className={cx("total-order")}>{cartItems.length}</p>
           </Link>
         </Grid>
       </Grid>

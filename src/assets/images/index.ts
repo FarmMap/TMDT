@@ -26,6 +26,7 @@ const images = {
   dauGoiDau: require("../images/daugoidau.jpg"),
   stick: require("../images/stick.jpg"),
   bannerlogin: require("../images/bannerlogin.jpg"),
+  logo: require("../images/logo.png"),
   defalutShopAvt:
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk6d0xT7511-bDWKn5-ie9NNqI6x_mZ_KlIvYkemPIQoETP5FA7ealetYxOgdRopg8byE&usqp=CAU",
 };

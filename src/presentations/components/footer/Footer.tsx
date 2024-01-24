@@ -98,9 +98,9 @@ const Footer = () => {
           <p>Kết nối với chúng tôi</p>
           <ul>
             <li>
-              <a href="http://itfsd.com" target="_blank" rel="noreferrer">
+              <NavLink to="/lien-he">
                 Liên hệ
-              </a>
+              </NavLink>
             </li>
           </ul>
         </Grid>
