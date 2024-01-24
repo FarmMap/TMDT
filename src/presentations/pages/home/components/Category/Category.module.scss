@@ -39,7 +39,7 @@
 }
 
 .product-name {
-  color: var(--title-color);
+  color: var(--primary-color);
   font-size: 1.4rem;
   white-space: nowrap;
   overflow: hidden;
@@ -50,6 +50,7 @@
 .original-price,
 .sale-price {
   font-size: 1rem;
+  
 }
 
 .original-price {
@@ -58,7 +59,6 @@
 
 .sale-price {
   color: var(--title-color);
-
   span {
     color: var(--text-color);
     margin-left: 8px;

@@ -38,8 +38,9 @@ const Header = () => {
     <Grid className={cx("container")}>
       <Grid className={cx("wrapper")}>
         <Grid className={cx("logo")}>
-          <NavLink style={{ color: "white" }} to="/">
-            AGRIMARKET
+          <NavLink to="/" style={{display:"flex"}}>
+            <img src={images.logo} alt="logo" />
+            
           </NavLink>
         </Grid>
 

@@ -3,6 +3,7 @@ import Grid from "@mui/material/Grid";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./Footer.module.scss";
+import { NavLink } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
@@ -99,9 +100,9 @@ const Footer = () => {
           <p>Kết nối với chúng tôi</p>
           <ul>
             <li>
-              <a href="http://itfsd.com" target="_blank" rel="noreferrer">
+              <NavLink to="/lien-he">
                 Liên hệ
-              </a>
+              </NavLink>
             </li>
           </ul>
         </Grid>

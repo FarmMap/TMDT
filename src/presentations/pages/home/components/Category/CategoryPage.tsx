@@ -52,10 +52,11 @@ const CategoryPage = () => {
                       <h5 className={cx("product-name")}>
                         {product.productName}
                       </h5>
-                      <p className={cx("original-price")}>
+                      <p className={cx("original-price")} style={{color: product.salePrice ? "var(--text-color)" : "var(--primary-color)"}}>
+                        
                         {product.originalPrice}
                       </p>
-                      <p className={cx("sale-price")}>
+                      <p className={cx("sale-price")} style={{color: !product.salePrice ? "var(--text-color)" : "var(--primary-color)"}}>
                         {product.salePrice} <span>1kg</span>
                       </p>
                       <p className={cx("feedBack")}>
@@ -80,10 +81,10 @@ const CategoryPage = () => {
                       <h5 className={cx("product-name")}>
                         {product.productName}
                       </h5>
-                      <p className={cx("original-price")}>
+                      <p className={cx("original-price")} style={{color: product.salePrice ? "var(--text-color)" : "var(--primary-color)"}}>
                         {product.originalPrice}
                       </p>
-                      <p className={cx("sale-price")}>
+                      <p className={cx("sale-price")} style={{color: !product.salePrice ? "var(--text-color)" : "var(--primary-color)"}}>
                         {product.salePrice} <span>1kg</span>
                       </p>
                       <p className={cx("feedBack")}>

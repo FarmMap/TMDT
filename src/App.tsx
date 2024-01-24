@@ -20,6 +20,7 @@ import PayProductPage from "./presentations/pages/home/components/Pay/PayProduct
 import SuccessOrderPage from "./presentations/pages/home/components/Pay/Success/SuccessOrderPage";
 import CartShopPage from "./presentations/pages/home/components/Cart/CartShopPage";
 import OrderShopListPage from "./presentations/pages/home/components/Order/OrderShopListPage";
+import ContactPage from "./presentations/pages/contacts/ContactPage";
 //Style
 
 const App: React.FC = () => {
@@ -68,6 +69,8 @@ const App: React.FC = () => {
             element={<AddProductPage />}
           />
         </Route>
+        {/* Liên hệ */}
+        <Route path="/lien-he" element={<ContactPage />} />
       </Routes>
     </div>
   );

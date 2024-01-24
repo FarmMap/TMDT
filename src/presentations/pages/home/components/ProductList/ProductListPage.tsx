@@ -63,7 +63,7 @@ const ProductListPage = () => {
             product.isActive &&
             i !== 0 &&
             i !== 1 && (
-              <Grid item lg={1.6} className={cx("item")} key={i}>
+              <Grid item lg={1.5} className={cx("item")} key={i}>
                 <NavLink to={`/san-pham/${product.id}`}>
                   <img
                     src={`${process.env.REACT_APP_API_BASE_URL}${product.images?.[0]}`}
@@ -72,7 +72,8 @@ const ProductListPage = () => {
                     alt={product.name}
                   />
                   <h5 className={cx("product-name")}>{product.name}</h5>
-                  <p className={cx("original-price")}>
+                  <p className={cx("original-price")}
+                  style={{color: product.productPrice?.salePrice ? "var(--text-color)" : "var(--primary-color)"}}>
                     {product.productPrice?.retailPrice?.toLocaleString(
                       "it-IT",
                       {
@@ -83,7 +84,8 @@ const ProductListPage = () => {
                   </p>
 
                   <Grid container>
-                    <p className={cx("sale-price")}>
+                    <p className={cx("sale-price")} 
+                    style={{color: ! product.productPrice?.salePrice ? "var(--text-color)" : "var(--primary-color)"}}>
                       {product.productPrice?.salePrice?.toLocaleString(
                         "it-IT",
                         {
@@ -93,8 +95,8 @@ const ProductListPage = () => {
                       )}
                     </p>
                     <p
-                      style={{ fontSize: "1.2rem" }}
                       className={cx("sale-price")}
+                      style={{color: ! product.productPrice?.salePrice ? "var(--text-color)" : "var(--primary-color)",fontSize: "1.2rem"}}
                     >
                       {product.salePrice}{" "}
                       <span>
