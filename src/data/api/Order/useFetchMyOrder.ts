@@ -1,18 +1,27 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 
-import ShopType from "../../types/Shop/ShopType";
+import OrderType from "../../types/Product/ProductType";
+import Meta from "../../types/Meta/Meta";
+
+interface useFetchMyOrderProps {
+  page?: number;
+  shouldRefesh?: boolean;
+}
+
+interface OrderResponse {
+  meta: Meta;
+  data: OrderType[];
+}
+
 interface ResponseError {
   code: string;
   message: string;
 }
 
-interface useFetchMyShopProps {
-  shouldRefesh?: boolean;
-}
-
-const useFetchMyShop = (props: useFetchMyShopProps) => {
-  let [myShop, setMyShop] = useState<ShopType>({});
+const useFetchMyOrder = (props: useFetchMyOrderProps) => {
+  let [myOrders, setOrderType] = useState<OrderType[]>([]);
+  let [page, setPages] = useState(1);
   let [error, setError] = useState<string | null>(null);
   let [isLoading, setLoading] = useState(false);
 
@@ -22,7 +31,7 @@ const useFetchMyShop = (props: useFetchMyShopProps) => {
 
     var config = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_BASE_URL}store/me`,
+      url: `${process.env.REACT_APP_API_BASE_URL}orders?me?order=ASC&page=${props.page}&take=10`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
@@ -30,9 +39,9 @@ const useFetchMyShop = (props: useFetchMyShopProps) => {
 
     axios(config)
       .then((response: AxiosResponse) => {
-        let data = response.data;
-        setMyShop(data);
-
+        let data: OrderResponse = response.data;
+        setOrderType(data.data);
+        setPages(data.meta.pageCount ?? 0);
         setLoading(false);
       })
       .catch((error: AxiosError) => {
@@ -40,7 +49,7 @@ const useFetchMyShop = (props: useFetchMyShopProps) => {
           let responseError: ResponseError = error.response
             .data as ResponseError;
 
-          setError(responseError.message[0]);
+          setError(responseError.message);
         } else {
           let requestError = error.request;
 
@@ -48,9 +57,9 @@ const useFetchMyShop = (props: useFetchMyShopProps) => {
         }
         setLoading(false);
       });
-  }, [props.shouldRefesh]);
+  }, [props.page, props.shouldRefesh]);
 
-  return { myShop, error, isLoading };
+  return { myOrders, page, error, isLoading };
 };
 
-export default useFetchMyShop;
+export default useFetchMyOrder;

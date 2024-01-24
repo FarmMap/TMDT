@@ -3,12 +3,16 @@ import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
 import { Grid } from "@mui/material";
 import images from "../../../../../assets/images";
 import DefaultAvatar from "../../../../components/defaultAvatar";
+import useFetchMyShop from "../../../../../data/api/Shop/useFetchMyShop";
+import useFetchShippingMethod from "../../../../../data/api/ShippingMethod/useFetchShippingMethod";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./BasicInfoShopPage.module.scss";
 
 const cx = classNames.bind(styles);
 const BasicInfoShopPage = () => {
+  const { myShop } = useFetchMyShop({});
+  const { shippingMethod } = useFetchShippingMethod({});
   return (
     <Grid>
       <Grid className={cx("container")}>
@@ -27,14 +31,14 @@ const BasicInfoShopPage = () => {
               <AddAPhotoOutlinedIcon />
             </label>
             <Grid>
-              <p className={cx("name-shop")}>Romano</p>
+              <p className={cx("name-shop")}>{myShop.name}</p>
               <a
                 className={cx("link-shop")}
                 target="_blank"
                 href={"https://romano.vn/"}
                 rel="noreferrer"
               >
-                https://romano.vn/
+                {`https://${myShop.name}.vn/`}
               </a>
             </Grid>
           </Grid>
@@ -50,7 +54,7 @@ const BasicInfoShopPage = () => {
 
         <Grid className={cx("about-shop-wrap")} style={{ flex: "1" }}>
           <span style={{ color: "var(--primary-color)", fontWeight: "600" }}>
-            Cá nhân
+            {myShop.businessType == "INDIVIDUAL" ? "Cá nhân" : "Doanh nghiệp"}
           </span>
           <span style={{ color: "#000", fontWeight: "600" }}>
             Vận chuyển nhanh - Vận chuyển tiết kiệm

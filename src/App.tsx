@@ -19,6 +19,7 @@ import AddProductPage from "./presentations/pages/shop/addProductShop/AddProduct
 import PayProductPage from "./presentations/pages/home/components/Pay/PayProductPage";
 import SuccessOrderPage from "./presentations/pages/home/components/Pay/Success/SuccessOrderPage";
 import CartShopPage from "./presentations/pages/home/components/Cart/CartShopPage";
+import AboutUsPage from "./presentations/pages/aboutUs/AboutUsPage";
 //Style
 
 const App: React.FC = () => {
@@ -31,16 +32,10 @@ const App: React.FC = () => {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/san-pham/:productId" element={<DetailsPage />} />
-        <Route
-          path="/san-pham/:productId/thanh-toan/:name-:quantity"
-          element={<PayProductPage />}
-        />
-        <Route
-          path="/san-pham/:productId/thanh-toan-thanh-cong"
-          element={<SuccessOrderPage />}
-        />
+
         <Route path="/" element={<HomePage />} />
         <Route path="/gio-hang" element={<CartShopPage />} />
+        <Route path="/ve-chung-toi" element={<AboutUsPage />} />
         {/* </Route> */}
         {/* Private Route */}
         <Route path="/" element={<PrivateRoute />}>
@@ -64,6 +59,15 @@ const App: React.FC = () => {
           <Route
             path="/cua-hang/danh-sach-san-pham/tao-san-pham"
             element={<AddProductPage />}
+          />
+
+          <Route
+            path="/san-pham/:productId/thanh-toan/:name-:quantity"
+            element={<PayProductPage />}
+          />
+          <Route
+            path="/san-pham/:productId/thanh-toan-thanh-cong"
+            element={<SuccessOrderPage />}
           />
         </Route>
       </Routes>
