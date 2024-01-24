@@ -60,7 +60,9 @@ const ProductListPage = () => {
       <Grid className={cx("container")} container>
         {productList.map(
           (product, i) =>
-            product.isActive && (
+            product.isActive &&
+            i !== 0 &&
+            i !== 1 && (
               <Grid item lg={1.6} className={cx("item")} key={i}>
                 <NavLink to={`/san-pham/${product.id}`}>
                   <img
@@ -71,14 +73,29 @@ const ProductListPage = () => {
                   />
                   <h5 className={cx("product-name")}>{product.name}</h5>
                   <p className={cx("original-price")}>
-                    {product.productPrice?.retailPrice ?? "Đang cập nhật..."}đ
+                    {product.productPrice?.retailPrice?.toLocaleString(
+                      "it-IT",
+                      {
+                        style: "currency",
+                        currency: "VND",
+                      }
+                    ) ?? "Đang cập nhật..."}
                   </p>
 
                   <Grid container>
                     <p className={cx("sale-price")}>
-                      {product.productPrice?.salePrice}đ
+                      {product.productPrice?.salePrice?.toLocaleString(
+                        "it-IT",
+                        {
+                          style: "currency",
+                          currency: "VND",
+                        }
+                      )}
                     </p>
-                    <p className={cx("sale-price")}>
+                    <p
+                      style={{ fontSize: "1.2rem" }}
+                      className={cx("sale-price")}
+                    >
                       {product.salePrice}{" "}
                       <span>
                         {product.weight} {""}
