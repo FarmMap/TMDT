@@ -61,4 +61,21 @@
       opacity: 0.8;
     }
   }
+  .cart-link {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .total-order {
+    background-color: var(--second-color);
+    border-radius: 10px;
+    color: var(--white-color);
+    height: 1.8rem;
+    left: 55%;
+    position: absolute;
+    top: 40%;
+    width: auto;
+    padding: 0px 5px 0px 5px;
+    font-size: 1.2rem;
+  }
 }
