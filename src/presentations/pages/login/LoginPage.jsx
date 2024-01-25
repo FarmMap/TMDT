@@ -40,7 +40,7 @@ const LoginPage = () => {
     <div>
       <Grid className={cx("login-header")}>
         <Grid className={cx("header")}>
-          <Link to="/">Agrimaket</Link>
+          <Link to="/">Đặc sản Long An</Link>
           <p>Đăng nhập</p>
         </Grid>
         <a href="#">Bạn cần giúp đỡ ?</a>

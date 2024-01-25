@@ -61,66 +61,46 @@
     font-size: 1.3rem;
     color: #828282;
   }
+  
 }
-
-.delivery {
+.details {
   margin-top: 20px;
   background-color: var(--white-color);
   box-shadow: 0px 0px 3px 0px #b9b5b560;
 
-  .transport {
+  .heading-details {
     display: flex;
     justify-content: space-between;
-    padding: 15px;
-
-    .type-one {
-      h5 {
-        display: flex;
-        align-items: center;
-        font-size: 1.4rem;
-        font-weight: 600;
-
-        svg {
-          padding-right: 5px;
-          color: #1c9a5e;
-          font-size: 2.6rem;
-        }
-      }
-
-      p {
-        color: var(--black-color);
-        font-weight: 600;
-        font-size: 1.3rem;
-      }
-    }
-
-    p {
-      color: var(--primary-color);
-    }
-  }
-}
-
-.pay {
-  margin-top: 20px;
-  background-color: var(--white-color);
-  box-shadow: 0px 0px 3px 0px #b9b5b560;
-
-  .pay-type {
-    width: 100%;
+    background: #6dd4a378;
     padding: 15px 20px;
 
-    .radio-money {
-      padding: 10px;
+    p {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      color: var(--black-color);
+
+      span {
+        padding-left: 10px;
+      }
 
       svg {
-        font-size: 2.6rem;
+        font-size: 1.6rem;
+        color: #1c9a5e;
       }
     }
   }
+
+  .btn-sales {
+    padding: 12px;
+    height: 64.5px;
+
+    Button {
+      border-radius: 0px;
+      border: 1px dashed var(--border-color);
+    }
+  }
 }
+
 
 .part-two {
   width: 35%;
@@ -162,43 +142,7 @@
     }
   }
 
-  .details {
-    margin-top: 20px;
-    background-color: var(--white-color);
-    box-shadow: 0px 0px 3px 0px #b9b5b560;
-
-    .heading-details {
-      display: flex;
-      justify-content: space-between;
-      background: #6dd4a378;
-      padding: 15px 20px;
-
-      p {
-        display: flex;
-        align-items: center;
-        color: var(--black-color);
-
-        span {
-          padding-left: 10px;
-        }
-
-        svg {
-          font-size: 1.6rem;
-          color: #1c9a5e;
-        }
-      }
-    }
-
-    .btn-sales {
-      padding: 12px;
-      height: 64.5px;
-
-      Button {
-        border-radius: 0px;
-        border: 1px dashed var(--border-color);
-      }
-    }
-  }
+  
 }
 
 .product-order {

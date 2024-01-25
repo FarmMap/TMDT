@@ -1,0 +1,68 @@
+.section {
+    display: flex;
+    width: 100%;
+    margin-left: 1rem;
+    .category{
+        text-align: center;
+        font-size: 1.2rem;
+    }
+    .blog {
+        cursor: pointer;
+        margin: 1rem;
+
+        img {
+            height: 200px;
+            width: 410px;
+        }
+
+        .title {
+
+            padding: 0 10px;
+            color: var(--blue-hover-color);
+        }
+
+        .content {
+            color: var(--black-color);
+
+            font-size: 1.2rem;
+            padding: 0 10px;
+            font-weight: 300;
+        }
+
+        &:hover {
+            background-color: #4950571a;
+            border: 1px solid #4950571a;
+        }
+    }
+
+
+}
+
+.details-blog {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding: 0 15px;
+
+    .shop {
+        display: flex;
+        font-size: 1.3rem;
+        color: var(--black-color);
+
+        svg {
+            font-size: 1.7rem;
+            width: 2em;
+        }
+    }
+
+    .date-post {
+        display: flex;
+        font-size: 1.3rem;
+        color: var(--black-color);
+
+        svg {
+            font-size: 1.7rem;
+            width: 2em;
+        }
+    }
+}

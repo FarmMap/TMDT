@@ -79,7 +79,7 @@ const RegisterPage = () => {
     <div>
       <Grid className={cx("login-header")}>
         <Grid className={cx("header")}>
-          <Link to="/">Agrimaket</Link>
+          <Link to="/">Đặc sản Long An</Link>
           <p>Đăng ký</p>
         </Grid>
 

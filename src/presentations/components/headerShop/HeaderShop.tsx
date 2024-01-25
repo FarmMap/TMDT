@@ -30,19 +30,20 @@ const Header = () => {
     <Grid className={cx("container")}>
       <Grid className={cx("wrapper")}>
         <Grid className={cx("logo")}>
-          <NavLink style={{ color: "#53B175" }} to="/">
-            AGRIMARKET
+          <NavLink to="/" style={{ display: "flex" }}>
+            <img src={images.logo} alt="logo" />
+
           </NavLink>
         </Grid>
         <Grid className={cx("icon-wrapper")}>
           <Grid className={cx("icon")} >
-            <HelpOutlineIcon/>Hướng dẫn
+            <HelpOutlineIcon />Hướng dẫn
           </Grid>
           <Grid className={cx("icon")} >
-            <LibraryBooksOutlinedIcon/>Chính sách
+            <LibraryBooksOutlinedIcon />Chính sách
           </Grid>
           <Grid >
-            <NotificationsOutlinedIcon/>
+            <NotificationsOutlinedIcon />
           </Grid>
           {!user ? (
             <Link to="/login">
@@ -64,7 +65,7 @@ const Header = () => {
                 <Button
                   onClick={() => setShowAccount(!showAccount)}
                   className={cx("loginBtn")}
-                  
+
                 >
                   {!isLoading ? (
                     <>
@@ -84,9 +85,9 @@ const Header = () => {
               </Tippy>
             </DefaultDropDown>
           )}
-          
+
         </Grid>
-      </Grid>  
+      </Grid>
     </Grid>
   );
 };
