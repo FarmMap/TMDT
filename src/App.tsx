@@ -22,64 +22,63 @@ import CartShopPage from "./presentations/pages/home/components/Cart/CartShopPag
 import OrderShopListPage from "./presentations/pages/home/components/Order/OrderShopListPage";
 import ContactPage from "./presentations/pages/contacts/ContactPage";
 import { CartProvider } from "./presentations/pages/home/components/Cart/CartContext";
+import AboutUsPage from "./presentations/pages/aboutUs/AboutUsPage";
 //Style
 type User = {
   id?: string;
-    
 };
 const App: React.FC = () => {
-  const user: User = { id: '1' };
+  const user: User = { id: "1" };
   return (
-    
-      <div className="App">
-        <Routes>
-          {/* Public Route */}
-          {/* <Route element={<RedirectRoute path="/" />}> */}
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="*" element={<NotFound />} />
-          <Route path="/san-pham/:productId" element={<DetailsPage />} />
+    <div className="App">
+      <Routes>
+        {/* Public Route */}
+        {/* <Route element={<RedirectRoute path="/" />}> */}
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="*" element={<NotFound />} />
+        <Route path="/san-pham/:productId" element={<DetailsPage />} />
+        <Route
+          path="/san-pham/:productId/thanh-toan/:name-:quantity"
+          element={<PayProductPage />}
+        />
+        <Route
+          path="/san-pham/:productId/thanh-toan-thanh-cong"
+          element={<SuccessOrderPage />}
+        />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/gio-hang" element={<CartShopPage />} />
+        <Route path="/tai-khoan/don-mua" element={<OrderShopListPage />} />
+        <Route path="/ve-chung-toi" element={<AboutUsPage />} />
+        {/* </Route> */}
+        {/* Private Route */}
+        <Route path="/" element={<PrivateRoute />}>
+          {/* Tai khoan */}
+          <Route path="/tai-khoan/trang-ca-nhan" element={<ProfilePage />} />
+          <Route path="/tai-khoan/cua-hang" element={<ShopAccountPage />} />
+
+          {/* Shop */}
           <Route
-            path="/san-pham/:productId/thanh-toan/:name-:quantity"
-            element={<PayProductPage />}
+            path="/cua-hang/cua-hang-cua-toi"
+            element={<InfoMyShopPage />}
           />
           <Route
-            path="/san-pham/:productId/thanh-toan-thanh-cong"
-            element={<SuccessOrderPage />}
+            path="/cua-hang/danh-sach-don-hang"
+            element={<OrderShopPage />}
           />
-          <Route path="/" element={<HomePage />} />
-          <Route path="/gio-hang" element={<CartShopPage />} />
-          <Route path="/tai-khoan/don-mua" element={<OrderShopListPage />} />
-          {/* </Route> */}
-          {/* Private Route */}
-          <Route path="/" element={<PrivateRoute />}>
-            {/* Tai khoan */}
-            <Route path="/tai-khoan/trang-ca-nhan" element={<ProfilePage />} />
-            <Route path="/tai-khoan/cua-hang" element={<ShopAccountPage />} />
-
-            {/* Shop */}
-            <Route
-              path="/cua-hang/cua-hang-cua-toi"
-              element={<InfoMyShopPage />}
-            />
-            <Route
-              path="/cua-hang/danh-sach-don-hang"
-              element={<OrderShopPage />}
-            />
-            <Route
-              path="/cua-hang/danh-sach-san-pham"
-              element={<ProductShopPage />}
-            />
-            <Route
-              path="/cua-hang/danh-sach-san-pham/tao-san-pham"
-              element={<AddProductPage />}
-            />
-          </Route>
-          {/* Liên hệ */}
-          <Route path="/lien-he" element={<ContactPage />} />
-        </Routes>
-      </div>
-
+          <Route
+            path="/cua-hang/danh-sach-san-pham"
+            element={<ProductShopPage />}
+          />
+          <Route
+            path="/cua-hang/danh-sach-san-pham/tao-san-pham"
+            element={<AddProductPage />}
+          />
+        </Route>
+        {/* Liên hệ */}
+        <Route path="/lien-he" element={<ContactPage />} />
+      </Routes>
+    </div>
   );
 };
 
