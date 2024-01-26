@@ -22,6 +22,7 @@ import CartShopPage from "./presentations/pages/home/components/Cart/CartShopPag
 import OrderShopListPage from "./presentations/pages/home/components/Order/OrderShopListPage";
 import ContactPage from "./presentations/pages/contacts/ContactPage";
 import BlogPage from "./presentations/pages/blog/allblog/BlogPage";
+import BlogShopPage from "./presentations/pages/shop/blog/BlogShopPage";
 //Style
 type User = {
   id?: string;
@@ -74,6 +75,10 @@ const App: React.FC = () => {
             <Route
               path="/cua-hang/danh-sach-san-pham/tao-san-pham"
               element={<AddProductPage />}
+            />
+            <Route
+              path="/cua-hang/danh-sach-bai-viet"
+              element={<BlogShopPage />}
             />
           </Route>
           {/* Liên hệ */}
