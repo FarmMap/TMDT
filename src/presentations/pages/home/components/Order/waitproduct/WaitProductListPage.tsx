@@ -16,12 +16,14 @@ import StorefrontIcon from "@mui/icons-material/Storefront";
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
-import useFetchMyOrder from "../../../../../../data/api/Order/useFetchMyOrder";
+// import useFetchMyOrder from "../../../../../../data/api/Order/useFetchMyOrder";
 import useFetcMyAccount from "../../../../../../data/api/Account/useFetchMyAccount";
+import useFetchMyOrder from "../../../../../../data/api/Order/useFetchMyOrder";
 const cx = classNames.bind(styles);
 
 const WaitProductListPage = () => {
   const { myOrders } = useFetchMyOrder({ page: 1 });
+
   const { user } = useFetcMyAccount({});
   return (
     <>
@@ -41,18 +43,59 @@ const WaitProductListPage = () => {
               <p>{user.fullName ? user.fullName : user.email}</p>
             </Grid>
             <Grid className={cx("price")}>
-              <h4>Tổng tiền : {item.total}</h4>
+              <h4>
+                Tổng tiền :{" "}
+                {parseFloat(item.total || "").toLocaleString("vi-VN", {
+                  style: "currency",
+                  currency: "VND",
+                })}{" "}
+              </h4>
             </Grid>
           </Grid>
           <Grid className={cx("details-product")}>
             <Grid display={"flex"}>
-              <img src={images.dauGoiDau} alt="" />
+              <img
+                src={
+                  item &&
+                  item.orderDetails &&
+                  item.orderDetails[0] &&
+                  item.orderDetails[0].product &&
+                  item.orderDetails[0].product.images &&
+                  item.orderDetails[0].product.images[0]
+                    ? `http://116.118.49.43:3998/${item.orderDetails[0].product.images[0]}`
+                    : ""
+                }
+                alt=""
+              />
+
               <Grid className={cx("title")}>
-                <h4>Dầu gội đầu Romano</h4>
+                <h4>
+                  {item &&
+                    item.orderDetails &&
+                    item.orderDetails[0] &&
+                    item.orderDetails[0].product &&
+                    item.orderDetails[0].product.name &&
+                    item.orderDetails[0].product?.name}
+                </h4>
                 <p>
-                  Shop : <span>Romaano</span>
+                  Shop :{" "}
+                  <span>
+                    {item &&
+                      item.orderDetails &&
+                      item.orderDetails[0] &&
+                      item.orderDetails[0].product &&
+                      item.orderDetails[0].product.store &&
+                      item.orderDetails[0].product.store.name &&
+                      item.orderDetails[0].product?.store.name}
+                  </span>
                 </p>
-                <Grid className={cx("status")}>Chờ xác nhận</Grid>
+                <Grid className={cx("status")}>
+                  {item.status === "PENDING"
+                    ? "Chờ xác nhận"
+                    : item.status === "APPROVED"
+                    ? "Đã xác nhận"
+                    : "Đã hủy"}
+                </Grid>
               </Grid>
             </Grid>
             <Grid>
