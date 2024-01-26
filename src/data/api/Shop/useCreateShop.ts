@@ -51,53 +51,19 @@ const useCreateShop = () => {
     );
 
     // Add storeLocation data
-    data.append(
-      "storeLocation.provinceCode",
-      params.shop?.storeLocation?.provinceCode
-    );
-    data.append(
-      "storeLocation.districtCode",
-      params.shop?.storeLocation?.districtCode
-    );
-    data.append("storeLocation.wardCode", params.shop?.storeLocation?.wardCode);
-    data.append("storeLocation.address", params.shop?.storeLocation?.address);
-    data.append("storeLocation.type", "STORE");
+    data.append("storeLocation", JSON.stringify(params.shop?.storeLocation));
 
     // Add collectionLocation data
     data.append(
-      "collectionLocation.provinceCode",
-      params.shop?.collectionLocation?.provinceCode
+      "collectionLocation",
+      JSON.stringify(params.shop?.collectionLocation)
     );
-    data.append(
-      "collectionLocation.districtCode",
-      params.shop?.collectionLocation?.districtCode
-    );
-    data.append(
-      "collectionLocation.wardCode",
-      params.shop?.collectionLocation?.wardCode
-    );
-    data.append(
-      "collectionLocation.address",
-      params.shop?.collectionLocation?.address
-    );
-    data.append("collectionLocation.type", "COLLECTION");
 
     // Append deliveryMethods data
-    if (
-      params.shop?.deliveryMethods &&
-      params.shop.deliveryMethods.length > 0
-    ) {
-      params.shop.deliveryMethods.forEach((method, index) => {
-        data.append(
-          `deliveryMethods[${index}].id`,
-          method.id?.toString() || ""
-        );
-        data.append(
-          `deliveryMethods[${index}].isLocked`,
-          method.isLocked?.toString() || ""
-        );
-      });
-    }
+    data.append(
+      "deliveryMethods",
+      JSON.stringify(params.shop?.deliveryMethods)
+    );
 
     let config = {
       method: "post",

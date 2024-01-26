@@ -1,68 +1,66 @@
 .section {
-    display: flex;
-    width: 100%;
-    margin-left: 1rem;
-    .category{
-        text-align: center;
-        font-size: 1.2rem;
-    }
-    .blog {
-        cursor: pointer;
-        margin: 1rem;
+  display: flex !important;
+  width: 100% !important;
+  margin-left: 1rem !important;
+  .category {
+    text-align: center !important;
+    font-size: 1.2rem !important;
+  }
+  .blog {
+    cursor: pointer !important;
 
-        img {
-            height: 200px;
-            width: 410px;
-        }
-
-        .title {
-
-            padding: 0 10px;
-            color: var(--blue-hover-color);
-        }
-
-        .content {
-            color: var(--black-color);
-
-            font-size: 1.2rem;
-            padding: 0 10px;
-            font-weight: 300;
-        }
-
-        &:hover {
-            background-color: #4950571a;
-            border: 1px solid #4950571a;
-        }
+    img {
+      height: 200px !important;
+      width: 100% !important;
+      object-fit: cover;
+      object-position: center;
     }
 
+    .title {
+      padding: 0 10px !important;
+      color: var(--blue-hover-color) !important;
+    }
 
+    .content {
+      color: var(--black-color) !important;
+
+      font-size: 1.2rem !important;
+      padding: 0 10px !important;
+      font-weight: 300 !important;
+    }
+
+    &:hover {
+      background-color: #4950571a !important;
+      border: 1px solid #4950571a !important;
+    }
+  }
 }
 
 .details-blog {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
-    padding: 0 15px;
+  display: flex !important;
+  justify-content: space-between !important;
+  margin-top: 2rem !important;
+  padding: 0 15px !important;
 
-    .shop {
-        display: flex;
-        font-size: 1.3rem;
-        color: var(--black-color);
+  .shop {
+    display: flex !important;
+    font-size: 1.3rem !important;
+    color: var(--black-color) !important;
 
-        svg {
-            font-size: 1.7rem;
-            width: 2em;
-        }
+    svg {
+      font-size: 1.7rem !important;
+      width: 2em !important;
     }
+  }
 
-    .date-post {
-        display: flex;
-        font-size: 1.3rem;
-        color: var(--black-color);
+  .date-post {
+    display: flex !important;
+    font-size: 1.3rem !important;
+    color: var(--black-color) !important;
 
-        svg {
-            font-size: 1.7rem;
-            width: 2em;
-        }
+    svg {
+      font-size: 1.7rem !important;
+      width: 2em !important;
     }
+  }
 }
