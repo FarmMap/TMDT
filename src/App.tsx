@@ -22,6 +22,7 @@ import CartShopPage from "./presentations/pages/home/components/Cart/CartShopPag
 import OrderShopListPage from "./presentations/pages/home/components/Order/OrderShopListPage";
 import ContactPage from "./presentations/pages/contacts/ContactPage";
 import { CartProvider } from "./presentations/pages/home/components/Cart/CartContext";
+import AboutUsPage from "./presentations/pages/aboutUs/AboutUsPage";
 //Style
 type User = {
   id?: string;
@@ -48,6 +49,7 @@ const App: React.FC = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/gio-hang" element={<CartShopPage />} />
         <Route path="/tai-khoan/don-mua" element={<OrderShopListPage />} />
+        <Route path="/ve-chung-toi" element={<AboutUsPage />} />
         {/* </Route> */}
         {/* Private Route */}
         <Route path="/" element={<PrivateRoute />}>
