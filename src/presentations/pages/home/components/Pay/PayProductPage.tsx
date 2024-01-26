@@ -281,7 +281,7 @@ const PayProductPage = () => {
                       color: "var(--white-color)",
                     }}
                   >
-                    Lưu
+                    Cập nhật
                   </Button>
                 </Grid>
               </Grid>
@@ -307,19 +307,6 @@ const PayProductPage = () => {
                   {user.ward?.name} -{" "}
                   {user.address ?? "Vui lòng cập nhật địa chỉ chi tiết"}
                 </p>
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item lg={5} className={cx("part-two")}>
-            <Grid className={cx("sales")}>
-              <Grid className={cx("heading-sales")}>
-                <p>
-                  <LoyaltyOutlinedIcon />
-                  <span>Mã ưu đãi</span>
-                </p>
-              </Grid>
-              <Grid className={cx("btn-sales")}>
-                <Button block>Chọn mã ưu đãi</Button>
               </Grid>
             </Grid>
             <Grid className={cx("details")}>
@@ -371,6 +358,20 @@ const PayProductPage = () => {
                 </Grid>
               </Grid>
             </Grid>
+          </Grid>
+          <Grid item lg={5} className={cx("part-two")}>
+            <Grid className={cx("sales")}>
+              <Grid className={cx("heading-sales")}>
+                <p>
+                  <LoyaltyOutlinedIcon />
+                  <span>Mã ưu đãi</span>
+                </p>
+              </Grid>
+              <Grid className={cx("btn-sales")}>
+                <Button block>Chọn mã ưu đãi</Button>
+              </Grid>
+            </Grid>
+            
             <Grid className={cx("order")}>
               <Grid className={cx("price-order")}>
                 <p>Tiền hàng</p>

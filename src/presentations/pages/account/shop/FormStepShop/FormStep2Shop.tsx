@@ -145,6 +145,7 @@ const FormStep2Shop = (props: FormStep2ShopProps) => {
               let newShop = { ...props.shop };
               newShop.storeLocation = newShop.storeLocation || {}; // Ensure storeLocation is defined
               newShop.storeLocation.address = e.currentTarget.value;
+              newShop.storeLocation.type = "STORE";
               props.setShop(newShop);
             }}
             type="text"

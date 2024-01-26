@@ -120,6 +120,7 @@ const FormStep1Shop = (props: FormStep1ShopProps) => {
               let newShop = { ...props.shop };
               newShop.collectionLocation = newShop.collectionLocation || {}; // Ensure collectionLocation is defined
               newShop.collectionLocation.address = e.currentTarget.value;
+              newShop.collectionLocation.type = "COLLECTION";
               props.setShop(newShop);
             }}
             type="text"

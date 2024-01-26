@@ -24,8 +24,11 @@
   align-items: center;
 }
 .logo {
-  font-weight: 600;
   margin-left: 80px;
+  img{
+    height:70px;
+    width: 70px;
+  }
 }
 
 .search-wrapper {

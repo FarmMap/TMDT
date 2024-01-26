@@ -89,7 +89,7 @@ const Footer = () => {
             </li>
             <li>
               <a href="http://itfsd.com" target="_blank" rel="noreferrer">
-                Mở shop trên AgriMarket
+                Mở shop trên Đặc sản Long An
               </a>
             </li>
           </ul>
@@ -98,31 +98,28 @@ const Footer = () => {
           <p>Kết nối với chúng tôi</p>
           <ul>
             <li>
-              <NavLink to="/lien-he">
-                Liên hệ
-              </NavLink>
+              <NavLink to="/lien-he">Liên hệ</NavLink>
             </li>
           </ul>
         </Grid>
       </Grid>
-      <Grid display={"flex"} style={{ backgroundColor: "#27343e" }}>
+      <Grid
+        display={"flex"}
+        justifyContent={"space-evenly"}
+        style={{ backgroundColor: "#27343e" }}
+      >
         <Grid className={cx("profile-web")}>
-          <h3>Công ty Cổ phần AgriMarket</h3>
+          <h3>CLB Đầu Tư Và Khởi Nghiệp Tỉnh Long An</h3>
           <p>
-            Số ĐKKD: 03589669 - Ngày cấp: 13/05/2014, được sửa đổi lần thứ 10,
-            ngày 26/04/2022.
+            Địa chỉ: 51/19, Nguyễn Văn Tiếp, Phường 5, Tân An, Long An, Việt
+            Nam.
           </p>
-          <p>Cơ quan cấp: Sở Kế hoạch và Đầu tư TPHCM.</p>
-          <p>
-            Địa chỉ: 10/9 Linh Trung , Khu chế xuất Tân Thuận, Phường Tân Thuận
-            Đông, Quận 7, Thành phố Hồ Chí Minh, Việt Nam.
-          </p>
-          <p>Email: AgriMaket@gmail.com</p>
+          <p>SĐT: 0909831994</p>
         </Grid>
         <Grid className={cx("map")}>
           <h3>Bản đồ</h3>
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2720818624816!2d106.70849617405355!3d10.790461089359118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528b29af3c117%3A0xd41d6a60e0a9fc5e!2zNzlhIFBo4bqhbSBWaeG6v3QgQ2jDoW5oLCBQaMaw4budbmcgMTksIELDrG5oIFRo4bqhbmgsIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1705653912711!5m2!1svi!2s"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3922.3301548553786!2d106.42068997404947!3d10.553316589582225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310ac9e5fc7ce163%3A0xabd4bad60bd198a9!2zNTEgTmd1eeG7hW4gVsSDbiBUaeG6v3AsIFBoxrDhu51uZyA1LCBUw6JuIEFuLCBMb25nIEFuLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1706180886148!5m2!1svi!2s"
             width="400"
             height="250"
             style={{ border: "0" }}

@@ -341,7 +341,7 @@ const FormStep3Shop = (props: FormStep3ShopProps) => {
         />
         <p style={{ marginLeft: "0.8rem" }}>
           Tôi xác nhận tất cả dữ liệu đã cung cấp là chính xác và trung thực.
-          Tôi đã đọc và đồng ý với Chính Sách Bảo Mật của AgriMarket.
+          Tôi đã đọc và đồng ý với Chính Sách Bảo Mật của Đặc sản Long An.
         </p>
       </Grid>
     </form>

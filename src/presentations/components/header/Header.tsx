@@ -14,12 +14,12 @@ import Tippy from "@tippyjs/react";
 import DefaultDropDown from "../defaultDropDown";
 import AccountInfo from "./components/AccountInfo";
 import useAuth from "../../../hooks/useAuth";
-
+import { NavLink } from "react-router-dom";
+import { useCart } from "../../pages/home/components/Cart/CartContext";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
-import { NavLink } from "react-router-dom";
-import { useCart } from "../../pages/home/components/Cart/CartContext";
+
 
 const cx = classNames.bind(styles);
 const Header = () => {
@@ -42,9 +42,8 @@ const Header = () => {
     <Grid className={cx("container")}>
       <Grid className={cx("wrapper")}>
         <Grid className={cx("logo")}>
-          <NavLink to="/" style={{ display: "flex" }}>
+          <NavLink to="/" style={{ display: "flex", alignItems: "center" }} >
             <img src={images.logo} alt="logo" />
-
           </NavLink>
         </Grid>
 
@@ -63,11 +62,13 @@ const Header = () => {
               <span>Trang chủ </span>
             </Button>
           </NavLink>
+          <NavLink to="/tin-tuc">
+            <Button className={cx("loginBtn")} variant="contained">
+              <CurrencyExchangeRoundedIcon />
+              <span>Tin tức </span>
+            </Button>
+          </NavLink>
 
-          <Button className={cx("loginBtn")} variant="contained">
-            <CurrencyExchangeRoundedIcon />
-            <span>Giao thương </span>
-          </Button>
 
           {!user ? (
             <Link to="/login">

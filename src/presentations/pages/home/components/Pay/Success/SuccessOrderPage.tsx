@@ -48,7 +48,7 @@ const SuccessOrderPage = () => {
           </Grid>
           <Grid item lg={8} style={{ width: "55%" }}>
             <h3>Đặt hàng thành công</h3>
-            <p>Cảm ơn bạn đã mua hàng tại AgriMarket. </p>
+            <p>Cảm ơn bạn đã mua hàng tại Đặc sản Long An. </p>
             <Grid className={cx("code-order")}>
               <p>Mã đơn hàng</p>
               <h4>15296963</h4>
