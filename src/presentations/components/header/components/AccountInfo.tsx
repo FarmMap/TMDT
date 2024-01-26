@@ -72,7 +72,12 @@ const AccountInfo = (props: AccountInfoProps) => {
         <div className={cx("change-pass-icon")}>
           <SellRoundedIcon />
         </div>
-        <div className={cx("change-pass-title")}>
+        <div
+          onClick={() => {
+            window.location.href = "/tai-khoan/don-mua";
+          }}
+          className={cx("change-pass-title")}
+        >
           <p>Đơn mua</p>
         </div>
       </div>
