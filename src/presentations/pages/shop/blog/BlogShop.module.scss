@@ -1,82 +1,84 @@
 .wapper {
-    margin: 20px;
+  margin: 20px;
 
-    h3 {
-        color: var(--black-color);
-        font-size: 2rem;
-    }
+  h3 {
+    color: var(--black-color);
+    font-size: 2rem;
+  }
 
-    .container {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-
-        .tools {
-            display: flex;
-
-            Input {
-                border-radius: 3px;
-                width: 200px;
-            }
-
-            Button {
-                border-radius: 3px;
-                margin-left: 1rem;
-                width: 200px;
-            }
-
-            .title-category {
-                display: flex;
-                justify-content: space-between;
-            }
-        }
-    }
-
-    .btn-add {
-        Button {
-            border-radius: 3px;
-            background-color: var(--primary-color);
-            color: var(--white-color);
-            border: none;
-            &:hover {
-                background-color: var(--primary-color) !important;
-                color: var(--white-color) !important;
-            }
-        }
-    }
-}
-.content{
+  .container {
     display: flex;
     justify-content: space-between;
-    .blog{
-        margin: 1rem;
-        border: 1px solid var(--border-color);
+    margin-top: 20px;
+
+    .tools {
+      display: flex;
+
+      Input {
         border-radius: 3px;
-        width: 32%;
-        img{
-            height: 150px;
-            width: 330px;
-        }
-        h4,p{
-            color: var(--black-color);
-            padding: 0.5rem;
-        }
-    }
-    .btn-tools{
+        width: 200px;
+      }
+
+      Button {
+        border-radius: 3px;
+        margin-left: 1rem;
+        width: 200px;
+      }
+
+      .title-category {
         display: flex;
-        justify-content: space-around;
-        margin: 20px;
-        .btn-edit,.btn-delete{
-            border: none;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid var(--black-color) !important;
-            border-radius: 0px;
-            box-shadow: none;
-            &:hover{
-                color: var(--primary-color) !important;
-                box-shadow: none !important;
-            }
-        }
+        justify-content: space-between;
+      }
     }
+  }
+
+  .btn-add {
+    Button {
+      border-radius: 3px;
+      background-color: var(--primary-color);
+      color: var(--white-color);
+      border: none;
+      &:hover {
+        background-color: var(--primary-color) !important;
+        color: var(--white-color) !important;
+      }
+    }
+  }
+}
+.content {
+  display: flex;
+  justify-content: space-between;
+  .blog {
+    margin: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    width: 32%;
+    img {
+      height: 150px;
+      width: 100%;
+    }
+    h4,
+    p {
+      color: var(--black-color);
+      padding: 0.5rem;
+    }
+  }
+  .btn-tools {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+    .btn-edit,
+    .btn-delete {
+      border: none;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--black-color) !important;
+      border-radius: 0px;
+      box-shadow: none;
+      &:hover {
+        color: var(--primary-color) !important;
+        box-shadow: none !important;
+      }
+    }
+  }
 }

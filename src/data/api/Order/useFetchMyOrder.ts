@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 
-import OrderType from "../../types/Product/ProductType";
+import OrderType from "../../types/Order/OrderType";
 import Meta from "../../types/Meta/Meta";
 
 interface useFetchMyOrderProps {
@@ -31,7 +31,7 @@ const useFetchMyOrder = (props: useFetchMyOrderProps) => {
 
     var config = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_BASE_URL}orders?me?order=ASC&page=${props.page}&take=10`,
+      url: `${process.env.REACT_APP_API_BASE_URL}orders/me?order=ASC&page=${props.page}&take=10`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
