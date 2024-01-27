@@ -44,6 +44,7 @@ const Header = () => {
         <Grid className={cx("logo")}>
           <NavLink to="/" style={{ display: "flex", alignItems: "center" }} >
             <img src={images.logo} alt="logo" />
+            <p style={{color:"var(--white-color)", fontSize:"1rem", marginTop:"0.5rem", marginRight:"1rem"}}>Đặc sản <br/> Long An</p>
           </NavLink>
         </Grid>
 

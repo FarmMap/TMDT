@@ -1,12 +1,12 @@
 import React from 'react'
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import TodayIcon from '@mui/icons-material/Today';
-import classNames from "classnames/bind";
-import styles from "./Blog.module.scss";
 import BlogPageLayout from '../BlogPageLayout';
 import { Grid } from '@mui/material';
-import images from '../../../../assets/images';
 import { BlogList } from '../DataBlog';
+import classNames from "classnames/bind";
+import styles from "./Blog.module.scss";
+
 
 
 const cx = classNames.bind(styles);
