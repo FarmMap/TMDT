@@ -114,7 +114,12 @@ const Footer = () => {
             Địa chỉ: 51/19, Nguyễn Văn Tiếp, Phường 5, Tân An, Long An, Việt
             Nam.
           </p>
-          <p>SĐT: 0909831994</p>
+          <p>Số điện thoại: 0909831994</p>
+          <p>Email: dacsanlongan@gmail.com</p>
+          <p>
+            Thiết kế bởi{" "}
+            <strong>Khoa Công nghệ thông tin - Đại học Lạc Hồng</strong>
+          </p>
         </Grid>
         <Grid className={cx("map")}>
           <h3>Bản đồ</h3>
