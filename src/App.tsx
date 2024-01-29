@@ -71,40 +71,40 @@ const App: React.FC = () => {
           <Route path="/gio-hang" element={<CartShopPage />} />
           <Route path="/tin-tuc" element={<BlogPage />} />
           <Route path="/tai-khoan/don-mua" element={<OrderShopListPage />} />
-          {/* </Route> */}
-          {/* Private Route */}
-          <Route path="/" element={<PrivateRoute />}>
-            {/* Tai khoan */}
-            <Route path="/tai-khoan/trang-ca-nhan" element={<ProfilePage />} />
-            <Route path="/tai-khoan/cua-hang" element={<ShopAccountPage />} />
+        </Route>
+        {/* </Route> */}
+        {/* Private Route */}
+        <Route path="/" element={<PrivateRoute />}>
+          {/* Tai khoan */}
+          <Route path="/tai-khoan/trang-ca-nhan" element={<ProfilePage />} />
+          <Route path="/tai-khoan/cua-hang" element={<ShopAccountPage />} />
 
-            {/* Shop */}
-            <Route
-              path="/cua-hang/cua-hang-cua-toi"
-              element={<InfoMyShopPage />}
-            />
-            <Route
-              path="/cua-hang/danh-sach-don-hang"
-              element={<OrderShopPage />}
-            />
-            <Route
-              path="/cua-hang/danh-sach-san-pham"
-              element={<ProductShopPage />}
-            />
-            <Route
-              path="/cua-hang/danh-sach-san-pham/tao-san-pham"
-              element={<AddProductPage />}
-            />
-            <Route
-              path="/cua-hang/danh-sach-bai-viet"
-              element={<BlogShopPage />}
-            />
-          </Route>
+          {/* Shop */}
+          <Route
+            path="/cua-hang/cua-hang-cua-toi"
+            element={<InfoMyShopPage />}
+          />
+          <Route
+            path="/cua-hang/danh-sach-don-hang"
+            element={<OrderShopPage />}
+          />
+          <Route
+            path="/cua-hang/danh-sach-san-pham"
+            element={<ProductShopPage />}
+          />
+          <Route
+            path="/cua-hang/danh-sach-san-pham/tao-san-pham"
+            element={<AddProductPage />}
+          />
+          <Route
+            path="/cua-hang/danh-sach-bai-viet"
+            element={<BlogShopPage />}
+          />
           {/* Liên hệ */}
           <Route path="/lien-he" element={<ContactPage />} />
-        </Routes>
-      </div>
-
+        </Route>
+      </Routes>
+    </div>
   );
 };
 

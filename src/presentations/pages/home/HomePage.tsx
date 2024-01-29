@@ -1,6 +1,6 @@
 // External files
 import Grid from "@mui/material/Grid";
-import React from "react";
+import React, { useState } from "react";
 import Carousel from "react-material-ui-carousel";
 import DefaultLayOut from "../../components/defaultLayOut/DefaultLayOut";
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
@@ -13,11 +13,17 @@ import useFetchProductPorfolio from "../../../data/api/ProductPorfolio/useFetchP
 // Styles
 import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
+import { NavLink } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
 const HomePage = () => {
   const { productPort } = useFetchProductPorfolio({});
+  const [categoryName, setCategoryName] = useState("");
+  const [productCategoryId, setProductCategoryId] = useState<
+    number | undefined
+  >(undefined);
+  const [shouldRefresh, setShouldRefresh] = useState(false);
   return (
     <DefaultLayOut>
       <Grid>
@@ -25,7 +31,16 @@ const HomePage = () => {
           <Grid item lg={3}>
             <Grid className={cx("heading-sidebar")}> Danh mục</Grid>
             {productPort.map((sidebar, i) => (
-              <Grid className={cx("sidebar-item")} key={i}>
+              <a
+                href={`#${sidebar.name}`}
+                className={cx("sidebar-item")}
+                onClick={() => {
+                  setCategoryName(`${sidebar.name}`);
+                  setProductCategoryId(sidebar.id);
+                  setShouldRefresh((refresh) => !refresh);
+                }}
+                key={i}
+              >
                 <img
                   src={`${process.env.REACT_APP_API_BASE_URL}${sidebar.image}`}
                   alt="ITFS sidebar"
@@ -34,7 +49,7 @@ const HomePage = () => {
                   {sidebar.name}
                   <KeyboardArrowRightRoundedIcon />
                 </span>
-              </Grid>
+              </a>
             ))}
 
             <Grid className={cx("sidebar-item")}>
@@ -57,12 +72,15 @@ const HomePage = () => {
           </Grid>
         </Grid>
 
-        <Grid>
+        <Grid id={categoryName}>
           <CategoryPage />
         </Grid>
 
         <Grid>
-          <ProductListPage />
+          <ProductListPage
+            productCategoryId={productCategoryId}
+            shouldRefesh={shouldRefresh}
+          />
         </Grid>
       </Grid>
     </DefaultLayOut>

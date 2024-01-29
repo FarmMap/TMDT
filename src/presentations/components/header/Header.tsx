@@ -20,11 +20,10 @@ import { useCart } from "../../pages/home/components/Cart/CartContext";
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 
-
 const cx = classNames.bind(styles);
 const Header = () => {
   const [showAccount, setShowAccount] = useState(false);
-  const { cartState } = useCart()
+  const { cartState } = useCart();
 
   const { cartItems } = cartState;
 
@@ -42,9 +41,8 @@ const Header = () => {
     <Grid className={cx("container")}>
       <Grid className={cx("wrapper")}>
         <Grid className={cx("logo")}>
-          <NavLink to="/" style={{ display: "flex", alignItems: "center" }} >
+          <NavLink to="/" style={{ display: "flex", alignItems: "center" }}>
             <img src={images.logo} alt="logo" />
-            <p style={{color:"var(--white-color)", fontSize:"1rem", marginTop:"0.5rem", marginRight:"1rem"}}>Đặc sản <br/> Long An</p>
           </NavLink>
         </Grid>
 
@@ -69,7 +67,6 @@ const Header = () => {
               <span>Tin tức </span>
             </Button>
           </NavLink>
-
 
           {!user ? (
             <Link to="/login">
@@ -116,7 +113,9 @@ const Header = () => {
             </DefaultDropDown>
           )}
           <Link to="/gio-hang" className={cx("cart-link")}>
-            <LocalMallRoundedIcon style={{ cursor: "pointer", color: "#fff" }} />
+            <LocalMallRoundedIcon
+              style={{ cursor: "pointer", color: "#fff" }}
+            />
             <p className={cx("total-order")}>{cartItems.length}</p>
           </Link>
         </Grid>

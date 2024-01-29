@@ -14,10 +14,17 @@ import images from "../../../../../assets/images";
 
 const cx = classNames.bind(styles);
 
-const ProductListPage = () => {
+interface ProductListPageProps {
+  productCategoryId?: number;
+  shouldRefesh?: boolean;
+}
+
+const ProductListPage = (props: ProductListPageProps) => {
   const [page, setPage] = useState(1);
   const { productList } = useFetchProductList({
     page: page,
+    productCategoryId: props.productCategoryId,
+    shouldRefesh: props.shouldRefesh,
   });
 
   // Hàm này tạo mảng StarIcon màu vàng và màu xám dựa trên độ dài của feedBack
@@ -60,9 +67,7 @@ const ProductListPage = () => {
       <Grid className={cx("container")} container>
         {productList.map(
           (product, i) =>
-            product.isActive &&
-            i !== 0 &&
-            i !== 1 && (
+            product.isActive && (
               <Grid item lg={1.5} className={cx("item")} key={i}>
                 <NavLink to={`/san-pham/${product.id}`}>
                   <img
@@ -72,8 +77,14 @@ const ProductListPage = () => {
                     alt={product.name}
                   />
                   <h5 className={cx("product-name")}>{product.name}</h5>
-                  <p className={cx("original-price")}
-                  style={{color: product.productPrice?.salePrice ? "var(--text-color)" : "var(--primary-color)"}}>
+                  <p
+                    className={cx("original-price")}
+                    style={{
+                      color: product.productPrice?.salePrice
+                        ? "var(--text-color)"
+                        : "var(--primary-color)",
+                    }}
+                  >
                     {product.productPrice?.retailPrice?.toLocaleString(
                       "it-IT",
                       {
@@ -84,8 +95,14 @@ const ProductListPage = () => {
                   </p>
 
                   <Grid container>
-                    <p className={cx("sale-price")} 
-                    style={{color: ! product.productPrice?.salePrice ? "var(--text-color)" : "var(--primary-color)"}}>
+                    <p
+                      className={cx("sale-price")}
+                      style={{
+                        color: !product.productPrice?.salePrice
+                          ? "var(--text-color)"
+                          : "var(--primary-color)",
+                      }}
+                    >
                       {product.productPrice?.salePrice?.toLocaleString(
                         "it-IT",
                         {
@@ -96,7 +113,12 @@ const ProductListPage = () => {
                     </p>
                     <p
                       className={cx("sale-price")}
-                      style={{color: ! product.productPrice?.salePrice ? "var(--text-color)" : "var(--primary-color)",fontSize: "1.2rem"}}
+                      style={{
+                        color: !product.productPrice?.salePrice
+                          ? "var(--text-color)"
+                          : "var(--primary-color)",
+                        fontSize: "1.2rem",
+                      }}
                     >
                       {product.salePrice}{" "}
                       <span>

@@ -17,6 +17,10 @@
   align-items: center;
   color: var(--black-color);
 
+  &:hover {
+    background-color: var(--hover-black);
+  }
+
   img {
     width: 27px;
     height: 27px;
