@@ -10,7 +10,7 @@ const images = {
   giavi: require("../images/giavi.png"),
   douong: require("../images/douong.png"),
   sua: require("../images/sua.png"),
-  banner: require("../images/banner.jpg"),
+  banner: require("../images/banner.png"),
   banner1: require("../images/banner1.jpg"),
   banner2: require("../images/banner2.jpg"),
   rauSach: require("../images/rauSach.png"),
