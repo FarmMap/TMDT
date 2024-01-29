@@ -112,35 +112,34 @@ const DetailsPage = () => {
       100
     : 0;
 
-    //thêm vào giỏ hàng
-    const { dispatch } = useCart();
+  //thêm vào giỏ hàng
+  const { dispatch } = useCart();
 
-    const handleAddToCart = () => {
-      // Check if the product name is defined
-      if (!product || !product.name) {
-        // Handle case when product name is undefined or falsy
-        toast.error("Thêm sản phẩm thất bại")
-        return;
-      }
-      
-      const productToAdd: Product = {
-        id: product.id?.toString() || '',
-        name: product.name,
-        image: product.images?.[0] || '',
-        price: product.productPrice?.retailPrice ||0 ,
-        priceSale: product.productPrice?.salePrice ||0,
-        weight : product.weight || 0,
-        unit : product.unit || '',
-        quantityProduct : quantity ,
-        imageStore : product.images?.[0] || '',
-        nameStore : product.store?.name || '',
+  const handleAddToCart = () => {
+    // Check if the product name is defined
+    if (!product || !product.name) {
+      // Handle case when product name is undefined or falsy
+      toast.error("Thêm sản phẩm thất bại");
+      return;
+    }
 
-      };
-  
-      dispatch({ type: 'ADD_TO_CART', payload: productToAdd });
-      
-      toast.success("Sản phẩm đã được thêm vào giỏ hàng")
+    const productToAdd: Product = {
+      id: product.id?.toString() || "",
+      name: product.name,
+      image: product.images?.[0] || "",
+      price: product.productPrice?.retailPrice || 0,
+      priceSale: product.productPrice?.salePrice || 0,
+      weight: product.weight || 0,
+      unit: product.unit || "",
+      quantityProduct: quantity,
+      imageStore: product.images?.[0] || "",
+      nameStore: product.store?.name || "",
     };
+
+    dispatch({ type: "ADD_TO_CART", payload: productToAdd });
+
+    toast.success("Sản phẩm đã được thêm vào giỏ hàng");
+  };
   return (
     <DefaultLayOut>
       <Grid>
@@ -207,7 +206,7 @@ const DetailsPage = () => {
               </Grid>
               <Grid className={cx("price-wrap")}>
                 <p className={cx("sale-price")}>
-                  {product.productPrice?.salePrice?.toLocaleString("it-IT", {
+                  {product.productPrice?.salePrice?.toLocaleString("vi-VN", {
                     style: "currency",
                     currency: "VND",
                   })}
@@ -215,7 +214,7 @@ const DetailsPage = () => {
                 <Grid className={cx("origin-price-wrapp")}>
                   <p>
                     {product.productPrice?.retailPrice?.toLocaleString(
-                      "it-IT",
+                      "vi-VN",
                       {
                         style: "currency",
                         currency: "VND",

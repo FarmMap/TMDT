@@ -334,7 +334,7 @@ const PayProductPage = () => {
                       <h4>{product.name}</h4>
                       <p>
                         {product.productPrice?.salePrice?.toLocaleString(
-                          "it-IT",
+                          "vi-VN",
                           {
                             style: "currency",
                             currency: "VND",
@@ -342,7 +342,7 @@ const PayProductPage = () => {
                         )}{" "}
                         <span>
                           {product.productPrice?.retailPrice?.toLocaleString(
-                            "it-IT",
+                            "vi-VN",
                             {
                               style: "currency",
                               currency: "VND",
@@ -371,18 +371,18 @@ const PayProductPage = () => {
                 <Button block>Chọn mã ưu đãi</Button>
               </Grid>
             </Grid>
-            
+
             <Grid className={cx("order")}>
               <Grid className={cx("price-order")}>
                 <p>Tiền hàng</p>
                 <h4>
                   {product.productPrice?.salePrice
-                    ? product.productPrice?.salePrice.toLocaleString("it-IT", {
+                    ? product.productPrice?.salePrice.toLocaleString("vi-VN", {
                         style: "currency",
                         currency: "VND",
                       })
                     : product.productPrice?.retailPrice?.toLocaleString(
-                        "it-IT",
+                        "vi-VN",
                         {
                           style: "currency",
                           currency: "VND",
@@ -397,7 +397,7 @@ const PayProductPage = () => {
               <Grid className={cx("total-price")}>
                 <p>Tổng thanh toán</p>
                 <h4>
-                  {totalPrice.toLocaleString("it-IT", {
+                  {totalPrice.toLocaleString("vi-VN", {
                     style: "currency",
                     currency: "VND",
                   })}

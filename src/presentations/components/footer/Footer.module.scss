@@ -1,8 +1,8 @@
 .wrapper {
   background-color: var(--white-color);
 }
-.content-wrapper{
-  padding: 25px ;
+.content-wrapper {
+  padding: 25px;
 }
 .content-item {
   p {
@@ -24,17 +24,19 @@
     }
   }
 }
-.profile-web{
+.profile-web {
   background-color: #27343e;
   padding: 75px 120px;
-  h3,p{
+  h3,
+  p {
+    font-size: 1.4rem;
     line-height: 3.5rem;
     color: var(--white-color);
   }
 }
-.map{
+.map {
   padding: 25px;
-  h3{
+  h3 {
     line-height: 3.5rem;
     color: var(--white-color);
   }

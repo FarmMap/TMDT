@@ -21,7 +21,8 @@ import SuccessOrderPage from "./presentations/pages/home/components/Pay/Success/
 import CartShopPage from "./presentations/pages/home/components/Cart/CartShopPage";
 import OrderShopListPage from "./presentations/pages/home/components/Order/OrderShopListPage";
 import ContactPage from "./presentations/pages/contacts/ContactPage";
-import { CartProvider } from "./presentations/pages/home/components/Cart/CartContext";
+import BlogPage from "./presentations/pages/blog/allblog/BlogPage";
+import BlogShopPage from "./presentations/pages/shop/blog/BlogShopPage";
 import AboutUsPage from "./presentations/pages/aboutUs/AboutUsPage";
 //Style
 type User = {
@@ -66,19 +67,44 @@ const App: React.FC = () => {
             path="/cua-hang/danh-sach-don-hang"
             element={<OrderShopPage />}
           />
-          <Route
-            path="/cua-hang/danh-sach-san-pham"
-            element={<ProductShopPage />}
-          />
-          <Route
-            path="/cua-hang/danh-sach-san-pham/tao-san-pham"
-            element={<AddProductPage />}
-          />
-        </Route>
-        {/* Liên hệ */}
-        <Route path="/lien-he" element={<ContactPage />} />
-      </Routes>
-    </div>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/gio-hang" element={<CartShopPage />} />
+          <Route path="/tin-tuc" element={<BlogPage />} />
+          <Route path="/tai-khoan/don-mua" element={<OrderShopListPage />} />
+          {/* </Route> */}
+          {/* Private Route */}
+          <Route path="/" element={<PrivateRoute />}>
+            {/* Tai khoan */}
+            <Route path="/tai-khoan/trang-ca-nhan" element={<ProfilePage />} />
+            <Route path="/tai-khoan/cua-hang" element={<ShopAccountPage />} />
+
+            {/* Shop */}
+            <Route
+              path="/cua-hang/cua-hang-cua-toi"
+              element={<InfoMyShopPage />}
+            />
+            <Route
+              path="/cua-hang/danh-sach-don-hang"
+              element={<OrderShopPage />}
+            />
+            <Route
+              path="/cua-hang/danh-sach-san-pham"
+              element={<ProductShopPage />}
+            />
+            <Route
+              path="/cua-hang/danh-sach-san-pham/tao-san-pham"
+              element={<AddProductPage />}
+            />
+            <Route
+              path="/cua-hang/danh-sach-bai-viet"
+              element={<BlogShopPage />}
+            />
+          </Route>
+          {/* Liên hệ */}
+          <Route path="/lien-he" element={<ContactPage />} />
+        </Routes>
+      </div>
+
   );
 };
 
