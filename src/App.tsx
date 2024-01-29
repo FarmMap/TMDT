@@ -24,6 +24,7 @@ import ContactPage from "./presentations/pages/contacts/ContactPage";
 import BlogPage from "./presentations/pages/blog/allblog/BlogPage";
 import BlogShopPage from "./presentations/pages/shop/blog/BlogShopPage";
 import AboutUsPage from "./presentations/pages/aboutUs/AboutUsPage";
+import ProductSearchPage from "./presentations/pages/product/ProductSearchPage";
 //Style
 type User = {
   id?: string;
@@ -51,6 +52,10 @@ const App: React.FC = () => {
         <Route path="/gio-hang" element={<CartShopPage />} />
         <Route path="/tai-khoan/don-mua" element={<OrderShopListPage />} />
         <Route path="/ve-chung-toi" element={<AboutUsPage />} />
+        <Route
+          path="/san-pham/tim-kiem-san-pham/:productName"
+          element={<ProductSearchPage />}
+        />
         {/* </Route> */}
         {/* Private Route */}
         <Route path="/" element={<PrivateRoute />}>

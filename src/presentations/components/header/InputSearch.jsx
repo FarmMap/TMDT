@@ -1,6 +1,7 @@
-import React from "react";
+import { useState } from "react";
 import { Input, Button } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 const InputSearch = (props) => {
   const {
     size,
@@ -10,12 +11,23 @@ const InputSearch = (props) => {
     backgroundColorInput = "#fff",
     backgroundColorButton = "#000",
   } = props;
+
+  const [search, setSearch] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleSearchProduct = () => {
+    navigate(`/san-pham/tim-kiem-san-pham/${search}`);
+  };
+
   return (
     <div style={{ display: "flex" }}>
       <Input
         placeholder={placeholder}
         bordered={bordered}
         size={size}
+        value={search}
+        onChange={(e) => setSearch(e.currentTarget.value)}
         style={{
           backgroundColor: backgroundColorInput,
           borderRadius: "0px",
@@ -26,6 +38,7 @@ const InputSearch = (props) => {
       <Button
         size="size"
         bordered={bordered}
+        onClick={handleSearchProduct}
         style={{
           backgroundColor: backgroundColorInput,
           borderRadius: "0px",

@@ -65,7 +65,11 @@ const HomePage = () => {
               {imageList.map((image, index) => (
                 <Grid key={index}>
                   {" "}
-                  <img src={image} alt="ITFSD-banner" />
+                  <img
+                    src={image}
+                    alt="ITFSD-banner"
+                    className={cx("img-banner")}
+                  />
                 </Grid>
               ))}
             </Carousel>

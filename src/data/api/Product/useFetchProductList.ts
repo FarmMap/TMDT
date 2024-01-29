@@ -7,6 +7,7 @@ import Meta from "../../types/Meta/Meta";
 interface UseFetchProductListProps {
   page?: number;
   shouldRefesh?: boolean;
+  search?: string;
   productCategoryId?: number;
 }
 
@@ -34,7 +35,9 @@ const useFetchProductList = (props: UseFetchProductListProps) => {
       method: "GET",
       url: `${process.env.REACT_APP_API_BASE_URL}products?order=ASC&page=${
         props.page
-      }&take=10&productCategoryId=${props.productCategoryId ?? ""}`,
+      }&take=10&productCategoryId=${props.productCategoryId ?? ""}&search=${
+        props.search ?? ""
+      }`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },

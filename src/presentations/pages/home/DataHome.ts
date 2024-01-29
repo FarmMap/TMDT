@@ -1,6 +1,6 @@
 import images from "../../../assets/images";
 
-const imageList = [images.banner, images.banner, images.banner];
+const imageList = [images.banner, images.banner1, images.banner2];
 
 const sidebarList = [
   {
