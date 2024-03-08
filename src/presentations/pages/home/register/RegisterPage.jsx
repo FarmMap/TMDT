@@ -165,7 +165,7 @@ const RegisterPage = () => {
           </Grid>
         </Grid>
       </form>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
