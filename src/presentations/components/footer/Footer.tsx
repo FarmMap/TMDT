@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/iframe-has-title */
 import React from "react";
 import Grid from "@mui/material/Grid";
 // Styles
@@ -106,7 +107,7 @@ const Footer = () => {
       <Grid
         display={"flex"}
         justifyContent={"space-evenly"}
-        style={{ backgroundColor: "#27343e" }}
+        style={{ backgroundColor: "var(--primary-color)" }}
       >
         <Grid className={cx("profile-web")}>
           <h3>CLB Đầu Tư Và Khởi Nghiệp Tỉnh Long An</h3>

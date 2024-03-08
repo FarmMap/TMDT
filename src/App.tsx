@@ -2,7 +2,7 @@
 import { Routes, Route } from "react-router-dom";
 
 // Internal files
-import LoginPage from "./presentations/pages/login";
+import LoginPage from "./presentations/pages/login/LoginPage";
 import NotFound from "./presentations/components/notFound";
 import HomePage from "./presentations/pages/home/HomePage";
 import RegisterPage from "./presentations/pages/home/register/RegisterPage";
@@ -25,6 +25,7 @@ import BlogPage from "./presentations/pages/blog/allblog/BlogPage";
 import BlogShopPage from "./presentations/pages/shop/blog/BlogShopPage";
 import AboutUsPage from "./presentations/pages/aboutUs/AboutUsPage";
 import ProductSearchPage from "./presentations/pages/product/ProductSearchPage";
+import LoginSMS from "./presentations/pages/login/LoginSMS";
 //Style
 type User = {
   id?: string;
@@ -36,8 +37,9 @@ const App: React.FC = () => {
       <Routes>
         {/* Public Route */}
         {/* <Route element={<RedirectRoute path="/" />}> */}
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/dang-nhap" element={<LoginPage />} />
+        <Route path="/dang-nhap-so-dien-thoai" element={<LoginSMS />} />
+        <Route path="/dang-ky" element={<RegisterPage />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/san-pham/:productId" element={<DetailsPage />} />
         <Route

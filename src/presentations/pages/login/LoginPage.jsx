@@ -6,11 +6,12 @@ import { Link, useNavigate } from "react-router-dom";
 import GoogleIcon from "@mui/icons-material/Google";
 import { auth } from "../../../config/firebase";
 import { toast } from "react-toastify";
+import Footer from "../../components/footer/Footer";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./LoginPage.module.scss";
 import { signInWithEmailAndPassword } from "@firebase/auth";
-import Footer from "../../components/footer/Footer";
+import { NavLink } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
@@ -70,28 +71,28 @@ const LoginPage = () => {
               <span>Đăng nhập</span>
             </Button>
             <Grid className={cx("forget-pass")}>
-              <a href="#">Quên mật khẩu</a>
-              <a href="#">Đăng nhập với SMS</a>
+              <a href="#">{/* Quên mật khẩu */}</a>
+              <NavLink to="/dang-nhap-so-dien-thoai">Đăng nhập với SMS</NavLink>
             </Grid>
             <Grid className={cx("or-login")}>
               <div className={cx("line")}></div>
               <span>HOẶC</span>
               <div className={cx("line")}></div>
             </Grid>
-            <Grid className={cx("btn-google")}>
+            {/* <Grid className={cx("btn-google")}>
               <Button variant="outlined">
                 <GoogleIcon />
                 oogle
               </Button>
-            </Grid>
+            </Grid> */}
             <Grid className={cx("btn-register")}>
               <span>Bạn chưa có tài khoản ?</span>
-              <a href="/register">Đăng ký</a>
+              <a href="/dang-ky">Đăng ký</a>
             </Grid>
           </Grid>
         </Grid>
       </form>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

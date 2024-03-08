@@ -45,7 +45,7 @@ const PrivateRoute = () => {
       </UserContext.Provider>
     );
   } else {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/dang-nhap" replace />;
   }
 };
 

@@ -69,7 +69,7 @@ const Header = () => {
           </NavLink>
 
           {!user ? (
-            <Link to="/login">
+            <Link to="/dang-nhap">
               <Button className={cx("loginBtn")} variant="contained">
                 <SentimentSatisfiedAltRoundedIcon />
                 <span>Tài khoản </span>

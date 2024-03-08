@@ -3,20 +3,20 @@ import Grid from "@mui/material/Grid";
 import { Input } from "antd";
 import Button from "@mui/material/Button";
 import { Link, useNavigate } from "react-router-dom";
-import GoogleIcon from "@mui/icons-material/Google";
+// import GoogleIcon from "@mui/icons-material/Google";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
-import { auth } from "../../../../config/firebase";
+import { auth } from "../../../config/firebase";
+import Footer from "../../components/footer/Footer";
+
 // Styles
 import classNames from "classnames/bind";
-import styles from "./RegisterPage.module.scss";
+import styles from "./LoginSMS.module.scss";
 import { toast } from "react-toastify";
-import Footer from "../../../components/footer/Footer";
-
 const cx = classNames.bind(styles);
 
-const RegisterPage = () => {
+const LoginSMS = () => {
   const [number, setNumber] = useState("");
   const [flag, setFlag] = useState(false);
   const [otp, setOtp] = useState("");
@@ -83,7 +83,7 @@ const RegisterPage = () => {
       <Grid className={cx("login-header")}>
         <Grid className={cx("header")}>
           <Link to="/">Đặc sản Long An</Link>
-          <p>Đăng ký</p>
+          <p>Đăng nhập</p>
         </Grid>
 
         <a href="#">Bạn cần giúp đỡ ?</a>
@@ -94,7 +94,7 @@ const RegisterPage = () => {
       >
         <Grid className={cx("login-table")}>
           <Grid className={cx("form-login")}>
-            <p>Đăng ký</p>
+            <p>Đăng nhập</p>
             <PhoneInput
               defaultCountry="VN"
               className={cx("input-user")}
@@ -122,7 +122,7 @@ const RegisterPage = () => {
               </Button>
             </Grid> */}
             <Grid className={cx("btn-register")}>
-              <span>Bạn đã có tài khoản ?</span>
+              <span>Đăng nhập bằng email ?</span>
               <a href="/dang-nhap">Đăng nhập</a>
             </Grid>
           </Grid>
@@ -164,7 +164,7 @@ const RegisterPage = () => {
               </Button>
             </Grid> */}
             <Grid className={cx("btn-register")}>
-              <span>Bạn đã có tài khoản ?</span>
+              <span>Đăng nhập bằng email ?</span>
               <a href="/dang-nhap">Đăng nhập</a>
             </Grid>
           </Grid>
@@ -174,4 +174,4 @@ const RegisterPage = () => {
     </div>
   );
 };
-export default RegisterPage;
+export default LoginSMS;
