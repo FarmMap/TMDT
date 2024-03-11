@@ -4,12 +4,12 @@ import LocalAtmOutlinedIcon from "@mui/icons-material/LocalAtmOutlined";
 import { Grid } from "@mui/material";
 import images from "../../../../../../assets/images";
 import { Button } from "antd";
+import { NavLink, useParams } from "react-router-dom";
 
+import useFetchMyOrderLatest from "../../../../../../data/api/Order/useFetchMyOrderLatest";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./SuccessOrder.module.scss";
-import { NavLink, useParams } from "react-router-dom";
-import useFetchProductDetail from "../../../../../../data/api/Product/useFetchProductDetail";
 
 const cx = classNames.bind(styles);
 
@@ -35,9 +35,7 @@ const SuccessOrderPage = () => {
     }
   }, [params.quantity]);
 
-  const { product } = useFetchProductDetail({
-    id: productId,
-  });
+  const { myOrdersLatest } = useFetchMyOrderLatest({});
 
   return (
     <DefaultLayOut>
@@ -51,7 +49,7 @@ const SuccessOrderPage = () => {
             <p>Cảm ơn bạn đã mua hàng tại Đặc sản Long An. </p>
             <Grid className={cx("code-order")}>
               <p>Mã đơn hàng</p>
-              <h4>15296963</h4>
+              <h4>{myOrdersLatest.id}</h4>
             </Grid>
             <Grid className={cx("pay")}>
               <p>Phương thức thanh toán</p>
@@ -62,7 +60,7 @@ const SuccessOrderPage = () => {
             </Grid>
             <Grid className={cx("total-price")}>
               <p>Tổng thanh toán</p>
-              <h4>10.000 VND</h4>
+              <h4>{myOrdersLatest.total}</h4>
             </Grid>
             <Grid className={cx("line")}>
               <span></span>

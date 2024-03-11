@@ -168,7 +168,8 @@ const PayProductPage = () => {
     ];
     setOrder(newOrder);
 
-    createOrder({ order: order });
+    createOrder({ order: newOrder });
+    localStorage.setItem("don-hang", JSON.stringify(newOrder.id));
   };
 
   useEffect(() => {
@@ -177,7 +178,7 @@ const PayProductPage = () => {
     } else if (error) {
       toast.error(error);
     }
-  }, [error, isCreated, navigate]);
+  }, [error, isCreated]);
 
   // thanh toan
   const totalPrice = product?.productPrice?.salePrice
