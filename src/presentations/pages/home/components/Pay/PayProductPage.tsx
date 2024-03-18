@@ -300,7 +300,7 @@ const PayProductPage = () => {
               </Grid>
               <Grid className={cx("profile")}>
                 <h4>
-                  {user.fullName}{" "}
+                  {user.fullName ?? "Người dùng Argi"}{" "}
                   <span>| {user.phone ?? "Vui lòng cập nhật SĐT "}</span>
                 </h4>
                 <p>

@@ -37,7 +37,7 @@ const useCreateShop = () => {
     data.append(
       "businessLicense",
       params.shop?.businessLicense,
-      params.shop?.businessLicense?.name
+      params.shop?.businessLicense?.name ?? ""
     );
     data.append(
       "identityImage",

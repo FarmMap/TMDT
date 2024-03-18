@@ -42,17 +42,9 @@ const App: React.FC = () => {
         <Route path="/dang-ky" element={<RegisterPage />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/san-pham/:productId" element={<DetailsPage />} />
-        <Route
-          path="/san-pham/:productId/thanh-toan/:name-:quantity"
-          element={<PayProductPage />}
-        />
-        <Route
-          path="/san-pham/:productId/thanh-toan-thanh-cong"
-          element={<SuccessOrderPage />}
-        />
+
         <Route path="/" element={<HomePage />} />
-        <Route path="/gio-hang" element={<CartShopPage />} />
-        <Route path="/tai-khoan/don-mua" element={<OrderShopListPage />} />
+
         <Route path="/ve-chung-toi" element={<AboutUsPage />} />
         <Route
           path="/san-pham/tim-kiem-san-pham/:productName"
@@ -66,6 +58,14 @@ const App: React.FC = () => {
           <Route path="/tai-khoan/cua-hang" element={<ShopAccountPage />} />
 
           {/* Shop */}
+          <Route
+            path="/san-pham/:productId/thanh-toan/:name-:quantity"
+            element={<PayProductPage />}
+          />
+          <Route
+            path="/san-pham/:productId/thanh-toan-thanh-cong"
+            element={<SuccessOrderPage />}
+          />
           <Route
             path="/cua-hang/cua-hang-cua-toi"
             element={<InfoMyShopPage />}
@@ -99,6 +99,8 @@ const App: React.FC = () => {
             path="/cua-hang/danh-sach-san-pham"
             element={<ProductShopPage />}
           />
+          <Route path="/gio-hang" element={<CartShopPage />} />
+          <Route path="/tai-khoan/don-mua" element={<OrderShopListPage />} />
           <Route
             path="/cua-hang/danh-sach-san-pham/tao-san-pham"
             element={<AddProductPage />}

@@ -48,7 +48,7 @@ const AccountInfo = (props: AccountInfoProps) => {
               {user
                 ? currentUser.fullName
                   ? currentUser.fullName
-                  : currentUser.email
+                  : "Người dùng Argi"
                 : "Phiên đăng nhập đã hết hạn"}
             </span>
           </Tippy>

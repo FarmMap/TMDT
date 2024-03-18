@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import FormStep1Shop from "./FormStepShop/FormStep1Shop";
 import FormStep2Shop from "./FormStepShop/FormStep2Shop";
 import FormStep3Shop from "./FormStepShop/FormStep3Shop";
+import { useNavigate } from "react-router-dom";
 
 interface FormCreateShopPageProps {
   setIsCreateShop: React.Dispatch<React.SetStateAction<boolean>>;
@@ -31,10 +32,6 @@ const FormCreateShopPage = (props: FormCreateShopPageProps) => {
       title: "Thông tin định danh",
       content: <FormStep3Shop shop={shop} setShop={setShop} />,
     },
-    {
-      title: "Hoàn tất",
-      content: "Last-content",
-    },
   ];
 
   const [current, setCurrent] = useState(0);
@@ -58,6 +55,7 @@ const FormCreateShopPage = (props: FormCreateShopPageProps) => {
 
   // APi
   const { isCreated, error: createShopErr, createShop } = useCreateShop();
+  const navigate = useNavigate();
 
   const handleCreateShop = () => {
     createShop({ shop: shop });
@@ -65,11 +63,12 @@ const FormCreateShopPage = (props: FormCreateShopPageProps) => {
 
   useEffect(() => {
     if (isCreated) {
-      toast.success("Thao tác thành công");
+      toast.success("Thao tác thành công, vui lòng chờ xét duyệt");
+      setTimeout(() => navigate("/"), 3000);
     } else if (createShopErr) {
       toast.error(createShopErr);
     }
-  }, [createShopErr, isCreated]);
+  }, [createShopErr, isCreated, navigate]);
 
   return (
     <Grid>

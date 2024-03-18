@@ -81,7 +81,7 @@ const Header = () => {
               visible={showAccount}
             >
               <Tippy
-                content={`${currentUser.email}`}
+                content={`${currentUser.email ?? currentUser.phone}`}
                 placement="bottom"
                 theme="light"
               >
@@ -95,7 +95,7 @@ const Header = () => {
                       <DefaultAvatar avatar={images.avatar} small />
                       <span>
                         {user
-                          ? currentUser.email
+                          ? currentUser.fullName ?? "Người dùng..."
                           : "Phiên đăng nhập đã hết hạn"}
                       </span>
                     </>
