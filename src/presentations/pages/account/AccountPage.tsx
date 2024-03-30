@@ -15,6 +15,7 @@ import { CircularProgress } from "@mui/material";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./AccountPage.module.scss";
+import useFetchMyShop from "../../../data/api/Shop/useFetchMyShop";
 
 const cx = classNames.bind(styles);
 interface AccountPageProps {
@@ -29,6 +30,8 @@ const AccountPage = (props: AccountPageProps) => {
     else if (user.roles === "SHOP") setRole("Người bán");
     else setRole("Người mua");
   }, [user.roles]);
+
+  const { myShop } = useFetchMyShop({});
 
   return (
     <DefaultLayOut>
@@ -46,7 +49,7 @@ const AccountPage = (props: AccountPageProps) => {
                 {!isLoading ? (
                   <>
                     {" "}
-                    <p>{user.fullName}</p>
+                    <p>{user.fullName ?? "Người dùng A..."}</p>
                     <p> {role}</p>
                   </>
                 ) : (
@@ -72,11 +75,7 @@ const AccountPage = (props: AccountPageProps) => {
                 </NavLink>
               ) : (
                 <NavLink
-                  to={
-                    user.roles != "SHOP"
-                      ? sidebar.path
-                      : "/cua-hang/cua-hang-cua-toi"
-                  }
+                  to={!myShop.id ? sidebar.path : "/cua-hang/cua-hang-cua-toi"}
                   className={cx("sidebar-item")}
                   key={i}
                 >

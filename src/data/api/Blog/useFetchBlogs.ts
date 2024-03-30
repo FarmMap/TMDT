@@ -1,19 +1,19 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 
-import ProductList from "../../types/Product/ProductType";
+import BlogType from "../../types/Blog/BlogType";
 import Meta from "../../types/Meta/Meta";
 
-interface UseFetchProductListProps {
+interface UseFetchBlogsProps {
   page?: number;
   shouldRefesh?: boolean;
   search?: string;
-  productCategoryId?: number;
+  //   productCategoryId?: number;
 }
 
-interface ProductListResponse {
+interface BlogTypeResponse {
   meta: Meta;
-  data: ProductList[];
+  data: BlogType[];
 }
 
 interface ResponseError {
@@ -21,8 +21,8 @@ interface ResponseError {
   message: string;
 }
 
-const useFetchProductList = (props: UseFetchProductListProps) => {
-  let [productList, setProductList] = useState<ProductList[]>([]);
+const useFetchBlogs = (props: UseFetchBlogsProps) => {
+  let [blogs, setBlogs] = useState<BlogType[]>([]);
   let [page, setPages] = useState(1);
   let [error, setError] = useState<string | null>(null);
   let [isLoading, setLoading] = useState(false);
@@ -33,11 +33,9 @@ const useFetchProductList = (props: UseFetchProductListProps) => {
 
     var config = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_BASE_URL}products?order=ASC&page=${
+      url: `${process.env.REACT_APP_API_BASE_URL}articles?order=ASC&page=${
         props.page
-      }&take=10&productCategoryId=${props.productCategoryId ?? ""}&search=${
-        props.search ?? ""
-      }`,
+      }&take=10&search=${props.search ?? ""}&`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
@@ -45,8 +43,8 @@ const useFetchProductList = (props: UseFetchProductListProps) => {
 
     axios(config)
       .then((response: AxiosResponse) => {
-        let data: ProductListResponse = response.data;
-        setProductList(data.data);
+        let data: BlogTypeResponse = response.data;
+        setBlogs(data.data);
         setPages(data.meta.pageCount ?? 0);
         setLoading(false);
       })
@@ -63,9 +61,9 @@ const useFetchProductList = (props: UseFetchProductListProps) => {
         }
         setLoading(false);
       });
-  }, [props.page, props.productCategoryId, props.search, props.shouldRefesh]);
+  }, [props.page, props.search, props.shouldRefesh]);
 
-  return { productList, page, error, isLoading };
+  return { blogs, page, error, isLoading };
 };
 
-export default useFetchProductList;
+export default useFetchBlogs;

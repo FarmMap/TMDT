@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import InfoMyShopLayout from "../InfoMyShopLayout";
-import { Grid } from "@mui/material";
+import { Grid, Pagination } from "@mui/material";
 import { DownOutlined } from "@ant-design/icons";
 import {
   Button,
@@ -13,13 +13,14 @@ import {
 } from "antd";
 import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import TextEditTorShopPage from "./TextEditorShopPage";
+import AccountPage from "../../account/AccountPage";
+import useFetchMyBlog from "../../../../data/api/Blog/useFetchMyBlog";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./BlogShop.module.scss";
-import images from "../../../../assets/images";
-import TextEditTorShopPage from "./TextEditorShopPage";
-
 const cx = classNames.bind(styles);
+
 const BlogShopPage = () => {
   const handleMenuClick: MenuProps["onClick"] = (e) => {
     message.info("Click on menu item.");
@@ -38,10 +39,21 @@ const BlogShopPage = () => {
   };
 
   const [isOpen, setIsOpen] = useState(false);
+  const [page, setPage] = useState(1);
+  // handle Pagination
+  const handlePaginationChange = (event: any, value: number) => setPage(value);
+
+  const {
+    myBlogs,
+    page: pages,
+    isLoading,
+  } = useFetchMyBlog({
+    page: page,
+  });
 
   return (
-    <InfoMyShopLayout>
-      <Grid>
+    <AccountPage>
+      <Grid padding={"1.2rem"}>
         {isOpen && <TextEditTorShopPage onClose={() => setIsOpen(false)} />}
         {!isOpen && (
           <Grid className={cx("wapper")}>
@@ -64,34 +76,50 @@ const BlogShopPage = () => {
             </Grid>
             <Divider />
             <Grid className={cx("content")}>
-              <Grid className={cx("blog")}>
-                <img src={images.bannerlogin} alt="" />
-                <h4>
-                  Đến năm 2050, Việt Nam trở thành nước có nền nông nghiệp hàng
-                  đầu thế giới{" "}
-                </h4>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Animi dolor, non nobis magnam assumenda beatae fugit neque est
-                  doloribus fuga ipsam odit consequuntur fugiat iure voluptatem
-                  error voluptas ea corporis!
-                </p>
-                <Grid className={cx("btn-tools")}>
-                  <Button className={cx("btn-edit")}>
-                    <BorderColorOutlinedIcon />
-                    Chỉnh sửa
-                  </Button>
-                  <Button className={cx("btn-delete")}>
-                    <DeleteOutlinedIcon />
-                    Xóa
-                  </Button>
+              {myBlogs.map((blog, i) => (
+                <Grid key={i} className={cx("blog")}>
+                  <img
+                    src={`${process.env.REACT_APP_API_BASE_URL}${blog.image}`}
+                    alt="error"
+                  />
+                  <h4>{blog.title}</h4>
+                  {/* <div
+                    className={cx("content")}
+                    dangerouslySetInnerHTML={{ __html: blog.content ?? "" }}
+                  /> */}
+                  <p className={cx("description")}>{blog.description}</p>
+                  <Grid className={cx("btn-tools")}>
+                    <Button className={cx("btn-delete")}>
+                      <DeleteOutlinedIcon />
+                      Xóa
+                    </Button>
+                  </Grid>
                 </Grid>
-              </Grid>
+              ))}
             </Grid>
+            {!isLoading && (
+              <Pagination
+                count={pages}
+                page={page}
+                defaultPage={1}
+                variant="outlined"
+                color="primary"
+                shape="rounded"
+                onChange={handlePaginationChange}
+                sx={{
+                  marginTop: {
+                    lg: "0",
+                    md: "0",
+                    sm: "30px",
+                    xs: "30px",
+                  },
+                }}
+              />
+            )}
           </Grid>
         )}
       </Grid>
-    </InfoMyShopLayout>
+    </AccountPage>
   );
 };
 

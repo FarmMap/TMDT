@@ -34,11 +34,12 @@ const useCreateShop = () => {
     data.append("fullName", params.shop?.fullName);
     data.append("identityType", params.shop?.identityType);
 
-    data.append(
-      "businessLicense",
-      params.shop?.businessLicense,
-      params.shop?.businessLicense?.name ?? ""
-    );
+    if (params.shop?.businessLicense?.name !== undefined) {
+      data.append("businessLicense", params.shop?.businessLicense);
+    } else {
+      data.append("businessLicense", "");
+    }
+
     data.append(
       "identityImage",
       params.shop?.identityImage,

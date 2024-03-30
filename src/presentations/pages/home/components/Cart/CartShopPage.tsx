@@ -16,7 +16,7 @@ import { toast } from "react-toastify";
 const cx = classNames.bind(styles);
 
 const CartShopPage = () => {
-  const { cartState, dispatch } = useCart()
+  const { cartState, dispatch } = useCart();
   const [selectAll, setSelectAll] = useState(false);
   const { cartItems } = cartState;
   const [showDeleteAll, setShowDeleteAll] = useState(false); // Added state
@@ -25,16 +25,16 @@ const CartShopPage = () => {
   );
   //delete đơn hàng
   const handleDelete = (index: number) => {
-    dispatch({ type: 'REMOVE_FROM_CART', payload: cartItems[index].id });
+    dispatch({ type: "REMOVE_FROM_CART", payload: cartItems[index].id });
     setCheckedItems((prevCheckedItems) => {
       const updatedCheckedItems = { ...prevCheckedItems };
       delete updatedCheckedItems[index];
       return updatedCheckedItems;
     });
-    toast.success("Sản phẩm đã được xóa khỏi giỏ hàng")
+    toast.success("Sản phẩm đã được xóa khỏi giỏ hàng");
   };
   //remove all đơn hàng
-  
+
   const handleDeleteAll = () => {
     // Implement logic to delete selected items here
     const selectedItems = Object.entries(checkedItems)
@@ -43,7 +43,7 @@ const CartShopPage = () => {
 
     // Dispatch action to remove selected items
     selectedItems.forEach((index) => {
-      dispatch({ type: 'REMOVE_FROM_CART', payload: cartItems[index].id });
+      dispatch({ type: "REMOVE_FROM_CART", payload: cartItems[index].id });
     });
 
     setCheckedItems({}); // Clear the checked items
@@ -138,7 +138,6 @@ const CartShopPage = () => {
             display={"flex"}
           >
             <Grid className={cx("product-order")} item lg={8}>
-
               {cartItems.map((cart, i) => (
                 <Grid
                   key={i}
@@ -147,7 +146,10 @@ const CartShopPage = () => {
                 >
                   <Grid className={cx("shop")}>
                     <Grid className={cx("avatar-shop")}>
-                      <img src={`http://116.118.49.43:3998/${cart.imageStore}`} alt="" />
+                      <img
+                        src={`${process.env.REACT_APP_API_BASE_URL}${cart.imageStore}`}
+                        alt=""
+                      />
                       <p>{cart.nameStore}</p>
                     </Grid>
                     <p style={{ display: "flex", alignItems: "center" }}>
@@ -156,17 +158,20 @@ const CartShopPage = () => {
                     </p>
                   </Grid>
                   <Grid className={cx("details-product")}>
-
                     <Checkbox
                       checked={checkedItems[i]}
-                      onChange={() => onChangeCheckbox(i)}>
+                      onChange={() => onChangeCheckbox(i)}
+                    >
                       <Grid className={cx("checkbox")}>
-                        <img src={`http://116.118.49.43:3998/${cart.image}`} alt="trung" />
+                        <img
+                          src={`${process.env.REACT_APP_API_BASE_URL}${cart.image}`}
+                          alt="trung"
+                        />
                         <Grid>
-                          <p style={{ fontWeight: "bold" }}>
-                            {cart.name}
+                          <p style={{ fontWeight: "bold" }}>{cart.name}</p>
+                          <p>
+                            {cart.weight} {cart.unit}
                           </p>
-                          <p>{cart.weight}{" "}{cart.unit}</p>
                         </Grid>
                       </Grid>
                     </Checkbox>
@@ -180,14 +185,14 @@ const CartShopPage = () => {
                     >
                       <Grid className={cx("price")}>
                         <h3>
-                          {(cart.price)?.toLocaleString("it-IT", {
+                          {cart.price?.toLocaleString("it-IT", {
                             style: "currency",
                             currency: "VND",
                           })}
                         </h3>
 
                         <p>
-                          {(cart.priceSale)?.toLocaleString("it-IT", {
+                          {cart.priceSale?.toLocaleString("it-IT", {
                             style: "currency",
                             currency: "VND",
                           })}
@@ -209,7 +214,10 @@ const CartShopPage = () => {
                       <Grid className={cx("icon-favorite")}>
                         <FavoriteBorderIcon />
                       </Grid>
-                      <Grid onClick={() => handleDelete(i)} className={cx("icon-delete")}>
+                      <Grid
+                        onClick={() => handleDelete(i)}
+                        className={cx("icon-delete")}
+                      >
                         <DeleteIcon />
                       </Grid>
                     </Grid>
@@ -217,17 +225,28 @@ const CartShopPage = () => {
                 </Grid>
               ))}
               {cartItems.length > 0 && (
-                <Grid 
+                <Grid
                   display={"flex"}
-                  alignItems={"center"} 
-                  justifyContent={"space-between"} 
-                  style={{background:"var(--white-color)",  padding:"1rem 2rem"}}>
+                  alignItems={"center"}
+                  justifyContent={"space-between"}
+                  style={{
+                    background: "var(--white-color)",
+                    padding: "1rem 2rem",
+                  }}
+                >
                   <Checkbox onChange={handleSelectAll} checked={selectAll}>
                     Chọn tất cả
                   </Checkbox>
                   {showDeleteAll && ( // Conditionally render the "Xóa tất cả" button
                     <Button
-                      style={{background: "var(--second-color)", borderRadius:"0.3rem",border:"none",color:"var(--white-color)", height:"2.7rem", fontSize:"1.2rem"}} 
+                      style={{
+                        background: "var(--second-color)",
+                        borderRadius: "0.3rem",
+                        border: "none",
+                        color: "var(--white-color)",
+                        height: "2.7rem",
+                        fontSize: "1.2rem",
+                      }}
                       onClick={handleDeleteAll}
                     >
                       Xóa tất cả

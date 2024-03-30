@@ -137,7 +137,6 @@ const AddProductPage = () => {
       setProductList(newProducts);
     }
   };
-  console.log();
 
   // Get category
   const { productPort } = useFetchProductPorfolio({});
@@ -319,7 +318,7 @@ const AddProductPage = () => {
                   </Grid>
                 </Grid>
 
-                <Grid >
+                <Grid>
                   <p>Ngày bắt đầu / kết thúc khuyến mãi</p>
                   <RangePicker onChange={onRangeChange} />
                 </Grid>

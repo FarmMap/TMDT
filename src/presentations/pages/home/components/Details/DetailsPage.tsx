@@ -151,8 +151,8 @@ const DetailsPage = () => {
                   className={cx("img-main")}
                   src={
                     mainImageSrc
-                      ? `http://116.118.49.43:3998/${mainImageSrc}`
-                      : `http://116.118.49.43:3998/${product.images?.[0]}`
+                      ? `${process.env.REACT_APP_API_BASE_URL}${mainImageSrc}`
+                      : `${process.env.REACT_APP_API_BASE_URL}${product.images?.[0]}`
                   }
                   alt=""
                 />
@@ -190,7 +190,7 @@ const DetailsPage = () => {
                           >
                             <img
                               onMouseEnter={() => handleCarouselImageHover(img)}
-                              src={`http://116.118.49.43:3998/${img}`}
+                              src={`${process.env.REACT_APP_API_BASE_URL}${img}`}
                               alt=""
                             />
                           </Grid>

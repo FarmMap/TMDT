@@ -70,7 +70,7 @@ const Header = () => {
                   {!isLoading ? (
                     <>
                       <DefaultAvatar avatar={images.avatar} small />
-                      <span>{currentUser.fullName}</span>
+                      <span>{currentUser.fullName ?? "Người dùng A..."}</span>
                     </>
                   ) : (
                     <CircularProgress

@@ -95,7 +95,7 @@ const Header = () => {
                       <DefaultAvatar avatar={images.avatar} small />
                       <span>
                         {user
-                          ? currentUser.fullName ?? "Người dùng..."
+                          ? currentUser.fullName ?? "Người dùng A..."
                           : "Phiên đăng nhập đã hết hạn"}
                       </span>
                     </>

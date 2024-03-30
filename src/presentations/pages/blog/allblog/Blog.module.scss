@@ -1,7 +1,6 @@
 .section {
   display: flex !important;
   width: 100% !important;
-  margin-left: 1rem !important;
   .category {
     text-align: center !important;
     font-size: 1.2rem !important;
@@ -19,11 +18,16 @@
     .title {
       padding: 0 10px !important;
       color: var(--blue-hover-color) !important;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
 
     .content {
       color: var(--black-color) !important;
-
+      height: 6em; /* Chiều cao tương đương khoảng 3 dòng */
+      line-height: 1.5; /* Đặt line-height theo đơn vị em */
+      overflow: hidden; /* Ẩn phần dư thừa nếu văn bản quá dài */
       font-size: 1.2rem !important;
       padding: 0 10px !important;
       font-weight: 300 !important;

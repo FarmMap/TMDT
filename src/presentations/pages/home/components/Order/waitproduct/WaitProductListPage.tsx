@@ -1,15 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./WaitProductList.module.scss";
-import { Grid } from "@mui/material";
-import images from "../../../../../../assets/images";
-import {
-  LoadingOutlined,
-  SmileOutlined,
-  SolutionOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { Grid, Pagination } from "@mui/material";
+
 import { Button, Steps } from "antd";
 import TimerIcon from "@mui/icons-material/Timer";
 import StorefrontIcon from "@mui/icons-material/Storefront";
@@ -22,9 +16,13 @@ import useFetchMyOrder from "../../../../../../data/api/Order/useFetchMyOrder";
 const cx = classNames.bind(styles);
 
 const WaitProductListPage = () => {
-  const { myOrders } = useFetchMyOrder({ page: 1 });
+  const [page, setPage] = useState(1);
+  const { myOrders, isLoading, page: pages } = useFetchMyOrder({ page: page });
 
   const { user } = useFetcMyAccount({});
+
+  // handle Pagination
+  const handlePaginationChange = (event: any, value: number) => setPage(value);
   return (
     <>
       {myOrders.map((item, i) => (
@@ -62,7 +60,7 @@ const WaitProductListPage = () => {
                   item.orderDetails[0].product &&
                   item.orderDetails[0].product.images &&
                   item.orderDetails[0].product.images[0]
-                    ? `http://116.118.49.43:3998/${item.orderDetails[0].product.images[0]}`
+                    ? `${process.env.REACT_APP_API_BASE_URL}${item.orderDetails[0].product.images[0]}`
                     : ""
                 }
                 alt=""
@@ -149,6 +147,25 @@ const WaitProductListPage = () => {
           </Grid>
         </Grid>
       ))}
+      {!isLoading && (
+        <Pagination
+          count={pages}
+          page={page}
+          defaultPage={1}
+          variant="outlined"
+          color="primary"
+          shape="rounded"
+          onChange={handlePaginationChange}
+          sx={{
+            marginTop: {
+              lg: "0",
+              md: "0",
+              sm: "30px",
+              xs: "30px",
+            },
+          }}
+        />
+      )}
     </>
   );
 };

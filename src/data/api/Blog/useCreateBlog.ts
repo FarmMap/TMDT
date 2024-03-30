@@ -21,7 +21,18 @@ const useCreateBlog = () => {
     setError(null);
     setLoading(true);
     const FormData = require("form-data");
-    var data = JSON.stringify(params.blogs);
+    var data = new FormData();
+    data.append("title", params.blogs?.title);
+    data.append("content", params.blogs?.content);
+    data.append("description", params.blogs?.description);
+    data.append("articleCategories", params.blogs?.articleCategories);
+    if (params.blogs?.image?.name !== undefined) {
+      console.log("succ", params.blogs.image);
+      data.append("image", params.blogs?.image);
+    } else {
+      console.log("err", params.blogs?.image);
+      data.append("image", "");
+    }
 
     let config = {
       method: "post",
@@ -30,7 +41,7 @@ const useCreateBlog = () => {
       headers: {
         accept: "*/*",
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
       },
       data: data,
     };

@@ -105,10 +105,7 @@ const App: React.FC = () => {
             path="/cua-hang/danh-sach-san-pham/tao-san-pham"
             element={<AddProductPage />}
           />
-          <Route
-            path="/cua-hang/danh-sach-bai-viet"
-            element={<BlogShopPage />}
-          />
+          <Route path="/tai-khoan/bai-viet" element={<BlogShopPage />} />
           {/* Liên hệ */}
           <Route path="/lien-he" element={<ContactPage />} />
         </Route>
