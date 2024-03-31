@@ -175,7 +175,6 @@ const AddProductPage = () => {
 
   const menuProps = {
     items,
-
     onClick: handleMenuClick,
   };
 

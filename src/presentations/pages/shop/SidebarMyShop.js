@@ -20,11 +20,7 @@ export const sidebarList = [
         path: "/cua-hang/danh-sach-san-pham",
         icon: <ProductionQuantityLimitsOutlinedIcon />
     },
-    {
-        title: "Danh sách bài viết",
-        path: "/cua-hang/danh-sach-bai-viet",
-        icon: <FeedOutlinedIcon />
-    },
+  
     {
         title: "Dánh sách danh mục",
         path: "/cua-hang/danh-sach-danh-muc",

@@ -6,8 +6,8 @@ import {
   Dropdown,
   Input,
   MenuProps,
-  Popconfirm,
   Space,
+  Spin,
   message,
 } from "antd";
 import AddIcon from "@mui/icons-material/Add";
@@ -20,6 +20,8 @@ import useFetchProductList from "../../../../data/api/Product/useFetchProductLis
 import { NavLink } from "react-router-dom";
 import ProductType from "../../../../data/types/Product/ProductType";
 import useFetchMyShop from "../../../../data/api/Shop/useFetchMyShop";
+import useFetchProductPorfolio from "../../../../data/api/ProductPorfolio/useFetchProductPortfolio";
+import { Console } from "console";
 
 const cx = classNames.bind(styles);
 
@@ -54,40 +56,36 @@ const renderStarIcons = (rating: string | undefined) => {
   return starIcons;
 };
 
-const items: MenuProps["items"] = [
-  {
-    label: "1st menu item",
-    key: "1",
-  },
-  {
-    label: "2nd menu item",
-    key: "2",
-  },
-  {
-    label: "3rd menu item",
-    key: "3",
 
-    danger: true,
-  },
-  {
-    label: "4rd menu item",
-    key: "4",
-  },
-];
-const handleMenuClick: MenuProps["onClick"] = (e) => {
-  message.info("Click on menu item.");
-  // console.log("click", e);
-};
-const menuProps = {
-  items,
-  onClick: handleMenuClick,
-};
 
 const ProductShopPage = () => {
+   // Search
+   const [search,setSearch] = useState("")
+   const [searchDebounce,setSearchDebounce] = useState("")
+   const [refresh,setRefresh] = useState(false)
+
+   // Get category
+ const { productPort, isLoading } = useFetchProductPorfolio({});
+ const items: MenuProps["items"] = productPort.map((item) => ({
+   label: item.name,
+   key: item.id !== undefined ? item.id.toString() : "", // Convert to string if id is defined
+ }));
+ 
+ const handleMenuClick: MenuProps["onClick"] = (e) => {
+   message.info("Click on menu item.");
+ };
+ const menuProps = {
+   items,
+   onClick: handleMenuClick,
+ };
   const { myShop } = useFetchMyShop({});
+
+  // Call api
   const { productList } = useFetchProductList({
     page: 1,
     storeId: myShop.id,
+    search:search,
+    shouldRefesh:refresh
   });
 
   const columns: ColumnsType<ProductType> = [
@@ -96,12 +94,15 @@ const ProductShopPage = () => {
       render: (text: string, record: ProductType) => (
         // eslint-disable-next-line jsx-a11y/alt-text
         <img
-          src={`${(record.images || [])
-            .map(
-              (item, i) =>
-                (i === 0 && process.env.REACT_APP_API_BASE_URL) || item
-            )
-            .join("")}`}
+          src={record.images?.length===1 ? `${process.env.REACT_APP_API_BASE_URL}${record.images?.map(
+            (item, i) =>
+              (i === 0 &&  item)
+          )}` : `${(record.images || [])
+              .map(
+                (item, i) =>
+                  (i === 0 && process.env.REACT_APP_API_BASE_URL) || item
+              )
+              .join("")}`}
           className={cx("product-img")}
           alt="Lỗi"
         />
@@ -167,6 +168,8 @@ const ProductShopPage = () => {
       ),
     },
   ];
+
+ 
   return (
     <InfoMyShopLayout>
       <Grid>
@@ -184,41 +187,25 @@ const ProductShopPage = () => {
             <Input
               className={cx("input-search")}
               placeholder="Tìm kiếm theo tên sản phẩm, mã sản phẩm"
-              prefix={<SearchOutlined rev={undefined} />}
+              value={searchDebounce}
+              onChange={(e)=>{
+                setSearchDebounce(e.currentTarget.value)
+                setSearch(searchDebounce)
+                // setTimeout(()=>{
+                // },3000)
+              }}
+              prefix={isLoading ? <Spin/> : <SearchOutlined rev={undefined} />}
             />
             <Space.Compact>
               <Dropdown menu={menuProps}>
                 <Button className={cx("dropdown")}>
                   <Space>
-                    Loại sản phẩm
+                    Danh mục sản phẩm
                     <DownOutlined rev={undefined} />
                   </Space>
                 </Button>
               </Dropdown>
-              <Dropdown menu={menuProps}>
-                <Button className={cx("dropdown")}>
-                  <Space>
-                    Ngày tạo
-                    <DownOutlined rev={undefined} />
-                  </Space>
-                </Button>
-              </Dropdown>
-              <Dropdown menu={menuProps}>
-                <Button className={cx("dropdown")}>
-                  <Space>
-                    Nhãn hiệu
-                    <DownOutlined rev={undefined} />
-                  </Space>
-                </Button>
-              </Dropdown>
-              <Dropdown menu={menuProps}>
-                <Button className={cx("dropdown")}>
-                  <Space>
-                    Bộ lọc khác
-                    <DownOutlined rev={undefined} />
-                  </Space>
-                </Button>
-              </Dropdown>
+              
             </Space.Compact>
           </Grid>
           <Grid className={cx("table-list")}>
