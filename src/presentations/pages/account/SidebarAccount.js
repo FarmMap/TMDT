@@ -1,7 +1,7 @@
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import SellOutlinedIcon from '@mui/icons-material/SellOutlined';
 import AddBusinessOutlinedIcon from '@mui/icons-material/AddBusinessOutlined';
-import WarehouseOutlinedIcon from '@mui/icons-material/WarehouseOutlined';
+
 import FeedOutlinedIcon from '@mui/icons-material/FeedOutlined';
 
 
@@ -21,11 +21,7 @@ export const sidebarList = [
         path: "/tai-khoan/cua-hang",
         icon: <AddBusinessOutlinedIcon />
     },
-    {
-        title: "Kho",
-        path: "/tai-khoan/kho",
-        icon: <WarehouseOutlinedIcon />
-    },
+
     {
         title: "Bài viết",
         path: "/tai-khoan/bai-viet",

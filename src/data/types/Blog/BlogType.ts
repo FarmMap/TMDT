@@ -1,4 +1,5 @@
 import UserAccountType from "../UserAccount/UserAccountType";
+import BlogCategoryType from "./BlogCategoryType";
 
 export default interface BlogType {
   id?: number;
@@ -10,4 +11,5 @@ export default interface BlogType {
   articleCategories?: string;
   image?: File;
   user?: UserAccountType;
+  categories?: BlogCategoryType[];
 }

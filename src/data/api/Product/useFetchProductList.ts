@@ -9,6 +9,7 @@ interface UseFetchProductListProps {
   shouldRefesh?: boolean;
   search?: string;
   productCategoryId?: number;
+  storeId?: number;
 }
 
 interface ProductListResponse {
@@ -37,7 +38,7 @@ const useFetchProductList = (props: UseFetchProductListProps) => {
         props.page
       }&take=10&productCategoryId=${props.productCategoryId ?? ""}&search=${
         props.search ?? ""
-      }`,
+      }&storeId=${props.storeId ?? ""}`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
@@ -63,7 +64,13 @@ const useFetchProductList = (props: UseFetchProductListProps) => {
         }
         setLoading(false);
       });
-  }, [props.page, props.productCategoryId, props.search, props.shouldRefesh]);
+  }, [
+    props.page,
+    props.productCategoryId,
+    props.search,
+    props.shouldRefesh,
+    props.storeId,
+  ]);
 
   return { productList, page, error, isLoading };
 };

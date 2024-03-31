@@ -18,27 +18,10 @@ import Table, { ColumnsType } from "antd/es/table";
 import StarIcon from "@mui/icons-material/Star";
 import useFetchProductList from "../../../../data/api/Product/useFetchProductList";
 import { NavLink } from "react-router-dom";
+import ProductType from "../../../../data/types/Product/ProductType";
+import useFetchMyShop from "../../../../data/api/Shop/useFetchMyShop";
 
 const cx = classNames.bind(styles);
-interface DataType {
-  createdAt?: string;
-  updatedAt?: string;
-  id?: number;
-  name?: string;
-  retailPrice?: string;
-  salePrice?: string;
-  saleStartDate?: string;
-  saleEndDate?: string;
-  quantity?: number;
-  images?: File[];
-  weight?: number;
-  unit?: string;
-  isActive?: boolean;
-  approveStatus?: string;
-  description?: string;
-  rating?: string;
-  productCategoryId?: number;
-}
 
 // Hàm này tạo mảng StarIcon màu vàng và màu xám dựa trên độ dài của feedBack
 const renderStarIcons = (rating: string | undefined) => {
@@ -71,16 +54,6 @@ const renderStarIcons = (rating: string | undefined) => {
   return starIcons;
 };
 
-const rowSelection = {
-  onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
-    // console.log(
-    //   `selectedRowKeys: ${selectedRowKeys}`,
-    //   "selectedRows: ",
-    //   selectedRows
-    // );
-  },
-};
-
 const items: MenuProps["items"] = [
   {
     label: "1st menu item",
@@ -111,14 +84,28 @@ const menuProps = {
 };
 
 const ProductShopPage = () => {
-  const [selectionType] = useState<"checkbox" | "radio">("checkbox");
+  const { myShop } = useFetchMyShop({});
   const { productList } = useFetchProductList({
     page: 1,
+    storeId: myShop.id,
   });
-  const columns: ColumnsType<DataType> = [
+
+  const columns: ColumnsType<ProductType> = [
     {
-      title: "Mã đơn hàng",
-      dataIndex: "id",
+      title: "Hình ảnh",
+      render: (text: string, record: ProductType) => (
+        // eslint-disable-next-line jsx-a11y/alt-text
+        <img
+          src={`${(record.images || [])
+            .map(
+              (item, i) =>
+                (i === 0 && process.env.REACT_APP_API_BASE_URL) || item
+            )
+            .join("")}`}
+          className={cx("product-img")}
+          alt="Lỗi"
+        />
+      ),
     },
     {
       title: "Tên sản phẩm",
@@ -126,16 +113,28 @@ const ProductShopPage = () => {
     },
     {
       title: "Giá tiền",
-      dataIndex: "retailPrice",
+      render: (text: string, record: ProductType) => (
+        <span className={cx("feedBack-star")}>
+          {record.productPrice?.retailPrice?.toLocaleString("it-IT", {
+            style: "currency",
+            currency: "VND",
+          }) ?? "Đang cập nhật..."}
+        </span>
+      ),
     },
     {
       title: "Số lượng",
-      dataIndex: "quantity",
+      render: (text: string, record: ProductType) => (
+        <span className={cx("feedBack-star")}>
+          {record.weight} {record.unit}
+        </span>
+      ),
     },
+
     {
       title: "Trạng thái",
       dataIndex: "function",
-      render: (text: string, record: DataType) => (
+      render: (text: string, record: ProductType) => (
         <span className={cx("feedBack-star")}>
           {record.isActive ? "Đang bán" : "Ngừng bán"}
         </span>
@@ -144,7 +143,7 @@ const ProductShopPage = () => {
     {
       title: "Trạng thái duyệt sản phẩm",
       dataIndex: "function",
-      render: (text: string, record: DataType) => (
+      render: (text: string, record: ProductType) => (
         <span className={cx("feedBack-star")}>
           {record.approveStatus === "PENDING" ? (
             <span style={{ color: "var(--yellow-color)" }}>Chưa phê duyệt</span>
@@ -159,7 +158,7 @@ const ProductShopPage = () => {
     {
       title: "Đánh giá",
       dataIndex: "function",
-      render: (text: string, record: DataType) => (
+      render: (text: string, record: ProductType) => (
         <p className={cx("feedBack")}>
           <span className={cx("feedBack-star")}>
             {renderStarIcons(record.rating)} <br />
@@ -225,10 +224,6 @@ const ProductShopPage = () => {
           <Grid className={cx("table-list")}>
             <Table
               size="small"
-              rowSelection={{
-                type: selectionType,
-                ...rowSelection,
-              }}
               columns={columns}
               dataSource={productList}
               className={cx("table-row")}

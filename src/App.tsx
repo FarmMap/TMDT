@@ -26,12 +26,10 @@ import BlogShopPage from "./presentations/pages/shop/blog/BlogShopPage";
 import AboutUsPage from "./presentations/pages/aboutUs/AboutUsPage";
 import ProductSearchPage from "./presentations/pages/product/ProductSearchPage";
 import LoginSMS from "./presentations/pages/login/LoginSMS";
+import DetailsBlogPage from "./presentations/pages/blog/detailsblog/DetailsBlogPage";
 //Style
-type User = {
-  id?: string;
-};
+
 const App: React.FC = () => {
-  const user: User = { id: "1" };
   return (
     <div className="App">
       <Routes>
@@ -50,6 +48,7 @@ const App: React.FC = () => {
           path="/san-pham/tim-kiem-san-pham/:productName"
           element={<ProductSearchPage />}
         />
+        <Route path="/tin-tuc/noi-dung/:blogId" element={<DetailsBlogPage />} />
         {/* </Route> */}
         {/* Private Route */}
         <Route path="/" element={<PrivateRoute />}>

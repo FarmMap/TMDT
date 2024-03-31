@@ -25,6 +25,8 @@ import TextArea from "antd/es/input/TextArea";
 import useFetchProductPorfolio from "../../../../data/api/ProductPorfolio/useFetchProductPortfolio";
 import useCreateProductList from "../../../../data/api/Product/useCreateProductList";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import useFetchMyShop from "../../../../data/api/Shop/useFetchMyShop";
 
 const cx = classNames.bind(styles);
 
@@ -51,6 +53,7 @@ const AddProductPage = () => {
       url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
     },
   ]);
+  const navigate = useNavigate();
 
   const handleCancel = () => setPreviewOpen(false);
 
@@ -78,6 +81,7 @@ const AddProductPage = () => {
   // API
   const [productList, setProductList] = useState<ProductType | undefined>({
     isActive: true,
+    inventory: 0,
   });
   //   Date
   const { RangePicker } = DatePicker;
@@ -176,12 +180,13 @@ const AddProductPage = () => {
   };
 
   // submit
+  const { myShop } = useFetchMyShop({});
   const {
     isCreated,
     error: createProducErr,
     createProductList,
   } = useCreateProductList({
-    storeId: 2,
+    storeId: myShop.id,
   });
   const handleSubmit = () => {
     createProductList({ products: productList });
@@ -190,6 +195,7 @@ const AddProductPage = () => {
   useEffect(() => {
     if (isCreated) {
       toast.success("Tạo sản phẩm thành công");
+      navigate("/cua-hang/danh-sach-san-pham");
     } else if (createProducErr) {
       toast.error(createProducErr);
     }
@@ -236,7 +242,7 @@ const AddProductPage = () => {
                 />
               </Grid>
               <Grid className={cx("product-code")}>
-                <Grid className={cx("type-input")}>
+                {/* <Grid className={cx("type-input")}>
                   <p>Số lượng</p>
                   <Input
                     type="number"
@@ -247,7 +253,7 @@ const AddProductPage = () => {
                       setProductList(newProducts);
                     }}
                   />
-                </Grid>
+                </Grid> */}
                 <Grid className={cx("type-input")}>
                   <p>Khối lượng</p>
                   <InputNumber

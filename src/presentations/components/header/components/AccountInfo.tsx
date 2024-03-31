@@ -3,8 +3,9 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import Tippy from "@tippyjs/react";
 import "tippy.js/themes/light.css";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
-import RecordVoiceOverIcon from "@mui/icons-material/RecordVoiceOver";
+import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
 import SellRoundedIcon from "@mui/icons-material/SellRounded";
+import CallIcon from "@mui/icons-material/Call";
 // Internal
 import DefaultAvatar from "../../defaultAvatar";
 import images from "../../../../assets/images";
@@ -84,16 +85,17 @@ const AccountInfo = (props: AccountInfoProps) => {
       <div
         className={cx("change-pass")}
         onClick={() => {
-          window.location.href = "/tu-van";
+          window.location.href = "/lien-he";
         }}
       >
         <div className={cx("change-pass-icon")}>
-          <RecordVoiceOverIcon />
+          <CallIcon />
         </div>
         <div className={cx("change-pass-title")}>
-          <p>Trợ giúp và tư vấn</p>
+          <p>Liên hệ</p>
         </div>
       </div>
+
       <div className={cx("change-pass")} onClick={handleLogOut}>
         <div className={cx("change-pass-icon")}>
           <LogoutIcon />
