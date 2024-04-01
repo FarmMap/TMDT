@@ -21,9 +21,5 @@ export const sidebarList = [
         icon: <ProductionQuantityLimitsOutlinedIcon />
     },
   
-    {
-        title: "Dánh sách danh mục",
-        path: "/cua-hang/danh-sach-danh-muc",
-        icon: <GridViewIcon />
-    },
+ 
 ]
