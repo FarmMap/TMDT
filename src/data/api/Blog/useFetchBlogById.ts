@@ -2,17 +2,11 @@ import axios, { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 
 import BlogType from "../../types/Blog/BlogType";
-import Meta from "../../types/Meta/Meta";
 
-interface UseFetchBlogsProps {
+interface useFetchBlogByIdProps {
   page?: number;
   shouldRefesh?: boolean;
-  search?: string;
-}
-
-interface BlogTypeResponse {
-  meta: Meta;
-  data: BlogType[];
+  blogId?:number;
 }
 
 interface ResponseError {
@@ -20,9 +14,8 @@ interface ResponseError {
   message: string;
 }
 
-const useFetchBlogs = (props: UseFetchBlogsProps) => {
-  let [blogs, setBlogs] = useState<BlogType[]>([]);
-  let [page, setPages] = useState(1);
+const useFetchBlogById = (props: useFetchBlogByIdProps) => {
+  let [blogId, setBlogId] = useState<BlogType>({});
   let [error, setError] = useState<string | null>(null);
   let [isLoading, setLoading] = useState(false);
 
@@ -32,9 +25,7 @@ const useFetchBlogs = (props: UseFetchBlogsProps) => {
 
     var config = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_BASE_URL}articles?order=ASC&page=${
-        props.page
-      }&take=10&search=${props.search ?? ""}&`,
+      url: `${process.env.REACT_APP_API_BASE_URL}articles/article/${props.blogId}`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
@@ -42,9 +33,8 @@ const useFetchBlogs = (props: UseFetchBlogsProps) => {
 
     axios(config)
       .then((response: AxiosResponse) => {
-        let data: BlogTypeResponse = response.data;
-        setBlogs(data.data);
-        setPages(data.meta.pageCount ?? 0);
+        let data = response.data;
+        setBlogId(data);
         setLoading(false);
       })
       .catch((error: AxiosError) => {
@@ -60,9 +50,9 @@ const useFetchBlogs = (props: UseFetchBlogsProps) => {
         }
         setLoading(false);
       });
-  }, [props.page, props.search, props.shouldRefesh]);
+  }, [props.blogId, props.page, props.shouldRefesh]);
 
-  return { blogs, page, error, isLoading };
+  return { blogId, error, isLoading };
 };
 
-export default useFetchBlogs;
+export default useFetchBlogById;

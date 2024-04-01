@@ -22,6 +22,7 @@ import ProductType from "../../../../data/types/Product/ProductType";
 import useFetchMyShop from "../../../../data/api/Shop/useFetchMyShop";
 import useFetchProductPorfolio from "../../../../data/api/ProductPorfolio/useFetchProductPortfolio";
 import { Console } from "console";
+import useDebounce from "../../../../hooks/useDebounce";
 
 const cx = classNames.bind(styles);
 
@@ -61,7 +62,7 @@ const renderStarIcons = (rating: string | undefined) => {
 const ProductShopPage = () => {
    // Search
    const [search,setSearch] = useState("")
-   const [searchDebounce,setSearchDebounce] = useState("")
+   const searchDebounce = useDebounce(search,700)
    const [refresh,setRefresh] = useState(false)
 
    // Get category
@@ -84,7 +85,7 @@ const ProductShopPage = () => {
   const { productList } = useFetchProductList({
     page: 1,
     storeId: myShop.id,
-    search:search,
+    search:searchDebounce,
     shouldRefesh:refresh
   });
 
@@ -187,12 +188,11 @@ const ProductShopPage = () => {
             <Input
               className={cx("input-search")}
               placeholder="Tìm kiếm theo tên sản phẩm, mã sản phẩm"
-              value={searchDebounce}
+              value={search}
               onChange={(e)=>{
-                setSearchDebounce(e.currentTarget.value)
-                setSearch(searchDebounce)
-                // setTimeout(()=>{
-                // },3000)
+               
+                setSearch(e.currentTarget.value)
+            
               }}
               prefix={isLoading ? <Spin/> : <SearchOutlined rev={undefined} />}
             />

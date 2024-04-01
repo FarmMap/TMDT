@@ -20,4 +20,27 @@ const STATUSPRODUCT = [
     },
 ]
 
-export { TYPESHOP, STATUSPRODUCT }
+const STATUSORDER = [
+    {
+        value:"PENDING",
+        name:"Chờ phê duyệt"
+    },
+    {
+        value:"CONFIRMED",
+        name:"Đã phê duyệt"
+    },
+    {
+        value:"DELIVERING",
+        name:"Đang vận chuyển"
+    },
+    {
+        value:"DELIVERED",
+        name:"Đã nhận hàng"
+    },
+    {
+        value:"CANCELED",
+        name:"Đã hủy"
+    },
+]
+
+export { TYPESHOP, STATUSPRODUCT,STATUSORDER }

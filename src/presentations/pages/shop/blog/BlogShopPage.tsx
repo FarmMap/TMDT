@@ -19,9 +19,13 @@ import useFetchMyBlog from "../../../../data/api/Blog/useFetchMyBlog";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./BlogShop.module.scss";
+import useDebounce from "../../../../hooks/useDebounce";
 const cx = classNames.bind(styles);
 
 const BlogShopPage = () => {
+  const [refresh, setRefresh] = useState(false);
+  const [search, setSearch] = useState("");
+  const searchDebounce = useDebounce(search, 700);
   const handleMenuClick: MenuProps["onClick"] = (e) => {
     message.info("Click on menu item.");
     console.log("click", e);
@@ -49,18 +53,29 @@ const BlogShopPage = () => {
     isLoading,
   } = useFetchMyBlog({
     page: page,
+    shouldRefesh: refresh,
+    search: searchDebounce,
   });
 
   return (
     <AccountPage>
       <Grid padding={"1.2rem"}>
-        {isOpen && <TextEditTorShopPage onClose={() => setIsOpen(false)} />}
+        {isOpen && (
+          <TextEditTorShopPage
+            setRefresh={setRefresh}
+            onClose={() => setIsOpen(false)}
+          />
+        )}
         {!isOpen && (
           <Grid className={cx("wapper")}>
             <h3>Danh sách bài viết</h3>
             <Grid className={cx("container")}>
               <Grid className={cx("tools")}>
-                <Input placeholder="Tìm kiếm tên bài viết..." />
+                <Input
+                  value={search}
+                  onChange={(e) => setSearch(e.currentTarget.value)}
+                  placeholder="Tìm kiếm tên bài viết..."
+                />
                 <Dropdown menu={menuProps}>
                   <Button className={cx("dropdown")}>
                     <Space className={cx("title-category")}>
@@ -83,10 +98,7 @@ const BlogShopPage = () => {
                     alt="error"
                   />
                   <h4>{blog.title}</h4>
-                  {/* <div
-                    className={cx("content")}
-                    dangerouslySetInnerHTML={{ __html: blog.content ?? "" }}
-                  /> */}
+
                   <p className={cx("description")}>{blog.description}</p>
                   <Grid className={cx("btn-tools")}>
                     <Button className={cx("btn-delete")}>

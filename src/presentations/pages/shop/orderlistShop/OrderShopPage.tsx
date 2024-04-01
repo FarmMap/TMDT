@@ -109,66 +109,7 @@ const OrderShopPage = () => {
             </Button>
           </Grid>
           <Grid className={cx("tab-wrapper")}>
-            <Box width={"100%"} height={"100%"}>
-              <TabContext value={value}>
-                <Box
-                  sx={{
-                    borderBottom: 1,
-                    borderColor: "divider",
-                  }}
-                >
-                  <TabList
-                    variant="scrollable"
-                    scrollButtons
-                    allowScrollButtonsMobile
-                    sx={{ xs: { lg: "block" } }}
-                    onChange={handleChange}
-                  >
-                    <Tab
-                      label="Tất cả"
-                      style={{ fontSize: "1.2rem", textTransform: "unset" }}
-                      value="1"
-                    />
-
-                    <Tab
-                      label="Chờ xác nhận"
-                      style={{ fontSize: "1.2rem", textTransform: "unset" }}
-                      value="2"
-                    />
-                    <Tab
-                      label="Vận chuyển"
-                      style={{ fontSize: "1.2rem", textTransform: "unset" }}
-                      value="3"
-                    />
-                    <Tab
-                      label="Gặp sự cố"
-                      style={{ fontSize: "1.2rem", textTransform: "unset" }}
-                      value="4"
-                    />
-                    <Tab
-                      label="Đơn hoàn tất"
-                      style={{ fontSize: "1.2rem", textTransform: "unset" }}
-                      value="5"
-                    />
-                  </TabList>
-                </Box>
-                <TabPanel value="1">
-                  <AllOrderShopPage />
-                </TabPanel>
-                <TabPanel value="2">
-                  <WaitOrderShopPage />
-                </TabPanel>
-                <TabPanel value="3">
-                  <ConvertOrderShopPage />
-                </TabPanel>
-                <TabPanel value="4">
-                  <WaitOrderShopPage />
-                </TabPanel>
-                <TabPanel value="5">
-                  <WaitOrderShopPage />
-                </TabPanel>
-              </TabContext>
-            </Box>
+            <AllOrderShopPage />
           </Grid>
         </Grid>
       </Grid>

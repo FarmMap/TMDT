@@ -19,7 +19,7 @@ import classNames from "classnames/bind";
 import styles from "./BlogShop.module.scss";
 const cx = classNames.bind(styles);
 
-const TextEditTorShopPage = ({ onClose }) => {
+const TextEditTorShopPage = ({ onClose, setRefresh }) => {
   const props = {
     action: "http://localhost:3000/",
     listType: "picture",
@@ -75,11 +75,12 @@ const TextEditTorShopPage = ({ onClose }) => {
     if (isCreated) {
       toast.success("Thêm bài viết thành công");
       setBlog({});
+      setRefresh((refresh)=>!refresh)
       onClose();
     } else if (error) {
       toast.error(error);
     }
-  }, [isCreated, error]);
+  }, [isCreated, error, setRefresh, onClose]);
 
   return (
     <>

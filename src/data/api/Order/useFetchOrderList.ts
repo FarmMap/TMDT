@@ -1,18 +1,18 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 
-import BlogType from "../../types/Blog/BlogType";
+import OrderType from "../../types/Product/ProductType";
 import Meta from "../../types/Meta/Meta";
 
-interface UseFetchBlogsProps {
+interface UseFetchOrderListProps {
   page?: number;
   shouldRefesh?: boolean;
-  search?: string;
+  storeId?: number;
 }
 
-interface BlogTypeResponse {
+interface OrderTypeResponse {
   meta: Meta;
-  data: BlogType[];
+  data: OrderType[];
 }
 
 interface ResponseError {
@@ -20,8 +20,8 @@ interface ResponseError {
   message: string;
 }
 
-const useFetchBlogs = (props: UseFetchBlogsProps) => {
-  let [blogs, setBlogs] = useState<BlogType[]>([]);
+const useFetchOrderList = (props: UseFetchOrderListProps) => {
+  let [orderList, setOrderList] = useState<OrderType[]>([]);
   let [page, setPages] = useState(1);
   let [error, setError] = useState<string | null>(null);
   let [isLoading, setLoading] = useState(false);
@@ -32,9 +32,9 @@ const useFetchBlogs = (props: UseFetchBlogsProps) => {
 
     var config = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_BASE_URL}articles?order=ASC&page=${
+      url: `${process.env.REACT_APP_API_BASE_URL}orders?order=ASC&page=${
         props.page
-      }&take=10&search=${props.search ?? ""}&`,
+      }&take=10&&storeId=${props.storeId ?? ""}`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
@@ -42,8 +42,8 @@ const useFetchBlogs = (props: UseFetchBlogsProps) => {
 
     axios(config)
       .then((response: AxiosResponse) => {
-        let data: BlogTypeResponse = response.data;
-        setBlogs(data.data);
+        let data: OrderTypeResponse = response.data;
+        setOrderList(data.data);
         setPages(data.meta.pageCount ?? 0);
         setLoading(false);
       })
@@ -60,9 +60,13 @@ const useFetchBlogs = (props: UseFetchBlogsProps) => {
         }
         setLoading(false);
       });
-  }, [props.page, props.search, props.shouldRefesh]);
+  }, [
+    props.page,
+    props.shouldRefesh,
+    props.storeId,
+  ]);
 
-  return { blogs, page, error, isLoading };
+  return { orderList, page, error, isLoading };
 };
 
-export default useFetchBlogs;
+export default useFetchOrderList;
