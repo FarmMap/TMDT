@@ -9,6 +9,7 @@ import DefaultLayOut from "../../components/defaultLayOut/DefaultLayOut";
 import classNames from "classnames/bind";
 import styles from "./BlogPageLayout.module.scss";
 import { newsBlog } from "./DataBlog";
+import useFetchNewBlogs from "../../../data/api/Blog/useFetchNewBlog";
 
 const cx = classNames.bind(styles);
 interface BlogPageLayoutProps {
@@ -17,6 +18,7 @@ interface BlogPageLayoutProps {
 const BlogPageLayout = (props: BlogPageLayoutProps) => {
   const { Search } = Input;
   const onSearch = () => {};
+  const { newblogs } = useFetchNewBlogs({});
 
   return (
     <DefaultLayOut>
@@ -36,10 +38,18 @@ const BlogPageLayout = (props: BlogPageLayoutProps) => {
         <Grid className={cx("section")}>{props.children}</Grid>
         <Grid className={cx("news-blog")}>
           <h3>Tin mới nhất</h3>
-          {newsBlog.map((news, i) => (
-            <Grid key={i} className={cx("news")}>
-              <img src={news.img} alt="" />
-              <p>{news.name}</p>
+          {newblogs.map((news, i) => (
+            <Grid key={i}>
+              <NavLink
+                className={cx("news")}
+                to={`/tin-tuc/noi-dung/${news.id}`}
+              >
+                <img
+                  src={`${process.env.REACT_APP_API_BASE_URL}${news.image}`}
+                  alt="lỗi"
+                />
+                <p>{news.title}</p>
+              </NavLink>
             </Grid>
           ))}
         </Grid>

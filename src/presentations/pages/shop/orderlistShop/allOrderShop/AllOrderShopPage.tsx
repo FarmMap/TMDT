@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import { Dropdown, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
@@ -11,18 +11,26 @@ import useFetchOrderList from "../../../../../data/api/Order/useFetchOrderList";
 import useFetchMyShop from "../../../../../data/api/Shop/useFetchMyShop";
 import { toReadableDate } from "../../../../../hooks/useReadableDate";
 import { STATUSORDER } from "../../../../../constants/Constant";
+import useUpdateOrderStatus from "../../../../../data/api/Order/useUpdateOrderStatus";
+import { toast } from "react-toastify";
 const cx = classNames.bind(styles);
 
 const AllOrderShopPage = () => {
+  const [idOrder, setIdOrder] = useState(0);
+  const [refresh, setRefresh] = useState(false);
   const items = STATUSORDER.map((item) => ({
     label: item.name,
     key: item.value, // Convert to string if id is defined
   }));
 
+  // Update status order
+  const { isUpdated, updateUser, error } = useUpdateOrderStatus({
+    id: idOrder,
+  });
+
   const handleMenuClick = (info: any) => {
-    const categoryId = parseInt(info.key || "", 10); // Convert string to number
-    if (!isNaN(categoryId)) {
-    }
+    console.log(info.key);
+    updateUser({ status: info.key });
   };
 
   const menuProps = {
@@ -56,7 +64,13 @@ const AllOrderShopPage = () => {
     {
       title: "Trạng thái đơn hàng",
       render: (text: string, record: OrderType) => (
-        <Dropdown menu={menuProps}>
+        <Dropdown
+          className={cx("dropdown-status")}
+          onOpenChange={() => {
+            setIdOrder(record.id ?? 0);
+          }}
+          menu={menuProps}
+        >
           <Button className={cx("dropdown")}>
             <Space className={cx("title-category")}>
               <p>
@@ -113,22 +127,22 @@ const AllOrderShopPage = () => {
   const { myShop } = useFetchMyShop({});
   const [page, setPage] = useState(1);
   const { orderList, page: pages } = useFetchOrderList({
-    storeId: 2,
+    storeId: myShop.id,
     page: page,
+    shouldRefesh: refresh,
   });
+
+  useEffect(() => {
+    if (isUpdated) {
+      toast.success("Cập nhật thành công");
+      setRefresh((refresh) => !refresh);
+    } else if (error) {
+      toast.error(error);
+    }
+  }, [error, isUpdated]);
   return (
     <Grid className={cx("wapper")}>
       <Grid className={cx("menu-item")}>
-        <Grid className={cx("show-quantity")}>
-          <p>Hiển thị</p>
-          <Button className={cx("dropdown")}>
-            <Space>
-              0
-              <DownOutlined rev={undefined} />
-            </Space>
-          </Button>
-          <p>0/0 trên 0 đơn hàng</p>
-        </Grid>
         <Grid className={cx("time-order")}>
           <p>Thời gian đặt hàng</p>
           <Button className={cx("dropdown")}>

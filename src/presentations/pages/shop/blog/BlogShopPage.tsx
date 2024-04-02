@@ -90,9 +90,9 @@ const BlogShopPage = () => {
               </Grid>
             </Grid>
             <Divider />
-            <Grid className={cx("content")}>
+            <Grid container className={cx("content")}>
               {myBlogs.map((blog, i) => (
-                <Grid key={i} className={cx("blog")}>
+                <Grid item lg={3.7} key={i} className={cx("blog")}>
                   <img
                     src={`${process.env.REACT_APP_API_BASE_URL}${blog.image}`}
                     alt="error"

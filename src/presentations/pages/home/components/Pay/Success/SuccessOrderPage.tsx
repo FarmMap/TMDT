@@ -72,7 +72,7 @@ const SuccessOrderPage = () => {
                 <NavLink to="/">Tiếp tục mua sắm</NavLink>
               </Button>
               <Button className={cx("btn-details")} block>
-                Chi tiết đơn hàng
+                <NavLink to="/tai-khoan/don-mua">Chi tiết đơn hàng</NavLink>
               </Button>
             </Grid>
           </Grid>

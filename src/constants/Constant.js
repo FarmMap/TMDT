@@ -23,7 +23,7 @@ const STATUSPRODUCT = [
 const STATUSORDER = [
     {
         value:"PENDING",
-        name:"Chờ phê duyệt"
+        name:"Chờ xác nhận"
     },
     {
         value:"CONFIRMED",

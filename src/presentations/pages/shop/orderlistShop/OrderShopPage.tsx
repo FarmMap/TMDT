@@ -83,31 +83,6 @@ const OrderShopPage = () => {
       <Grid>
         <Grid className={cx("wapper")}>
           <h4 className={cx("heading")}>Danh sách đơn hàng</h4>
-          <Grid className={cx("menu-item")}>
-            <Grid className={cx("menu-input")}>
-              <Space.Compact size="large">
-                <Input placeholder="Mã đơn hàng" />
-                <RangePicker presets={rangePresets} onChange={onRangeChange} />
-                <Dropdown menu={menuProps}>
-                  <Button className={cx("dropdown")}>
-                    <Space>
-                      Bộ lọc nâng cao
-                      <DownOutlined rev={undefined} />
-                    </Space>
-                  </Button>
-                </Dropdown>
-              </Space.Compact>
-            </Grid>
-            <Button
-              className={cx("reload")}
-              type="primary"
-              icon={<ReloadOutlined rev={undefined} />}
-              size="large"
-            />
-            <Button className={cx("seacrh")} type="primary">
-              Tìm kiếm
-            </Button>
-          </Grid>
           <Grid className={cx("tab-wrapper")}>
             <AllOrderShopPage />
           </Grid>

@@ -90,13 +90,17 @@ const WaitProductListPage = () => {
                 <Grid className={cx("status")}>
                   {item.status === "PENDING"
                     ? "Chờ xác nhận"
-                    : item.status === "APPROVED"
-                    ? "Đã xác nhận"
-                    : "Đã hủy"}
+                    : item.status === "CONFIRMED"
+                      ? "Đã xác nhận"
+                      : item.status === "DELIVERING"
+                        ? "Đang vận chuyển"
+                        : item.status === "DELIVERED"
+                          ? "Đã nhận hàng"
+                          : "Đã hủy"}
                 </Grid>
               </Grid>
             </Grid>
-            <Grid>
+            <Grid width={"580px"}>
               <Steps
                 size="small"
                 items={[
@@ -127,7 +131,7 @@ const WaitProductListPage = () => {
                   },
                   {
                     title: "Hoàn tất",
-                    status: "wait",
+                    status: "finish",
                     icon: (
                       <CheckCircleIcon
                         style={{ width: "2rem", height: "2rem" }}
@@ -137,13 +141,6 @@ const WaitProductListPage = () => {
                 ]}
               />
             </Grid>
-          </Grid>
-          <Grid className={cx("btn-product")}>
-            <Button className={cx("btn-shop")}>
-              <StorefrontIcon />
-              Vào Shop
-            </Button>
-            <Button className={cx("btn-details")}>Theo dõi đơn hàng</Button>
           </Grid>
         </Grid>
       ))}
