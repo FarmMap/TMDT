@@ -43,9 +43,9 @@ const Header = () => {
             <LibraryBooksOutlinedIcon />
             Chính sách
           </Grid>
-          <Grid>
+          {/* <Grid>
             <NotificationsOutlinedIcon />
-          </Grid>
+          </Grid> */}
           {!user ? (
             <Link to="/dang-nhap">
               <Button className={cx("loginBtn")} variant="contained">

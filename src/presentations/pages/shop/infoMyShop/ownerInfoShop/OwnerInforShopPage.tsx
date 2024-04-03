@@ -5,9 +5,11 @@ import { Button, Input } from "antd";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./OwnerInforShopPage.module.scss";
+import useFetchMyShop from "../../../../../data/api/Shop/useFetchMyShop";
 
 const cx = classNames.bind(styles);
 const OwnerInforShopPage = () => {
+  const { myShop } = useFetchMyShop({});
   return (
     <Grid>
       <form action="">
@@ -18,27 +20,18 @@ const OwnerInforShopPage = () => {
               style={{ marginTop: "6px", background: "#fff", color: "#000" }}
               disabled
               id="name"
-              value={"Nguyễn Thiên Ân"}
+              value={`${myShop.identity?.fullName}`}
             />
           </Grid>
           <Grid lg={5} ml={"4rem"}>
             <label htmlFor="phone">Số điện thoại</label>
             <Grid display={"flex"} alignItems={"center"} width={"419px"}>
               <Input
-                style={{ marginTop: "6px", color: "var(--text-color)" }}
+                style={{ marginTop: "6px", background: "#fff", color: "#000" }}
                 id="phone"
                 disabled
-                value={"0984752384"}
+                value={`${myShop.phone}`}
               />
-              <Button
-                style={{
-                  margin: "0.5rem 0 0 1.2rem",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <EditIcon />
-              </Button>
             </Grid>
           </Grid>
         </Grid>
@@ -50,27 +43,18 @@ const OwnerInforShopPage = () => {
               style={{ marginTop: "6px", background: "#fff", color: "#000" }}
               disabled
               id="cmnd"
-              value={"05489921556"}
+              value={`${myShop.identity?.number}`}
             />
           </Grid>
           <Grid lg={5} ml={"4rem"}>
             <label htmlFor="email">Địa chỉ email</label>
             <Grid display={"flex"} alignItems={"center"} width={"419px"}>
               <Input
-                style={{ marginTop: "6px", color: "var(--text-color)" }}
+                style={{ marginTop: "6px", background: "#fff", color: "#000" }}
                 id="email"
                 disabled
-                value={"an@gmail.com"}
+                value={`${myShop.user?.email}`}
               />
-              <Button
-                style={{
-                  margin: "0.5rem 0 0 1.2rem",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <EditIcon />
-              </Button>
             </Grid>
           </Grid>
         </Grid>
@@ -82,7 +66,7 @@ const OwnerInforShopPage = () => {
               style={{ marginTop: "6px", background: "#fff", color: "#000" }}
               disabled
               id="name"
-              value={"384912"}
+              value={`${myShop.taxCode}`}
             />
           </Grid>
         </Grid>

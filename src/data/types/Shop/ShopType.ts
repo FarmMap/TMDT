@@ -1,3 +1,5 @@
+import PlaceType from "../Place/PlaceType";
+import UserAccountType from "../UserAccount/UserAccountType";
 export default interface ShopType {
   createdAt?: string;
   updatedAt?: string;
@@ -34,4 +36,31 @@ export default interface ShopType {
   number?: string;
   fullName?: string;
   identityImageHold?: File;
+  deliveryOptions?:{
+    id?: number,
+    isLocked?: boolean,
+    deliveryMethod: {
+      id?: 1,
+      title?: string,
+      description?: string
+    }
+  }[]
+  locations?:{
+    id?: number,
+    address?: string,
+    type?: string,
+    province?:PlaceType
+    district?:PlaceType
+    ward?:PlaceType
+  }[]
+
+  identity?: {
+    id?: number,
+    identityType?: string,
+    number?: string,
+    fullName?: string,
+    identityImage?: File;
+    identityImageHold?: File
+  }
+  user?:UserAccountType
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
-import { Dropdown, Table } from "antd";
+import { Dropdown, Spin, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import classNames from "classnames/bind";
 import styles from "./AllOrderShop.module.scss";
@@ -126,7 +126,11 @@ const AllOrderShopPage = () => {
   ];
   const { myShop } = useFetchMyShop({});
   const [page, setPage] = useState(1);
-  const { orderList, page: pages } = useFetchOrderList({
+  const {
+    orderList,
+    page: pages,
+    isLoading: fetchLoading,
+  } = useFetchOrderList({
     storeId: myShop.id,
     page: page,
     shouldRefesh: refresh,
@@ -154,7 +158,11 @@ const AllOrderShopPage = () => {
         </Grid>
       </Grid>
       <Grid className={cx("table-list")}>
-        <Table columns={columns} dataSource={orderList} />
+        {!fetchLoading ? (
+          <Table columns={columns} dataSource={orderList} />
+        ) : (
+          <Spin />
+        )}
       </Grid>
     </Grid>
   );

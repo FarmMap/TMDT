@@ -61,10 +61,7 @@ const InforShopPage = (props: InforShopPageProps) => {
           </Grid>
           <Grid className={cx("info-shop-wrap")}>
             <Grid className={cx("avatar-wrap")}>
-              <DefaultAvatar
-                large
-                avatar="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk6d0xT7511-bDWKn5-ie9NNqI6x_mZ_KlIvYkemPIQoETP5FA7ealetYxOgdRopg8byE&usqp=CAU"
-              />
+              <DefaultAvatar large avatar={images.defalutShopAvt} />
               <button></button>
             </Grid>
             <Grid className={cx("info")}>
@@ -78,27 +75,19 @@ const InforShopPage = (props: InforShopPageProps) => {
           <Grid container className={cx("about-wrap")}>
             <Grid item lg={1.9}>
               <p>4 năm</p>
-              <span
-                style={{ textAlign: "center", display: "block", width: "100%" }}
-              >
-                Hoạt động
-              </span>
+              <span>Hoạt động</span>
             </Grid>
             <Grid item lg={1.9}>
               <p>302</p>
-              <span
-                style={{ textAlign: "center", display: "block", width: "100%" }}
-              >
-                Sản phẩm
-              </span>
+              <span>Sản phẩm</span>
             </Grid>
             <Grid item lg={1.9}>
-              <p>1 ngày</p>
-              <span>Chuẩn bị hàng</span>
+              <p>Nhanh</p>
+              <span>Vận chuyển</span>
             </Grid>
             <Grid item lg={1.9}>
-              <p>77%</p>
-              <span>Tỉ lệ phản hồi</span>
+              <p>Cá nhân</p>
+              <span>LH Kinh doanh</span>
             </Grid>
             <Grid item lg={1.9}>
               <p>Vài ngày</p>
@@ -106,7 +95,7 @@ const InforShopPage = (props: InforShopPageProps) => {
             </Grid>
           </Grid>
 
-          <Grid
+          {/* <Grid
             className={cx("follow-wrap")}
             container
             justifyContent={"space-between"}
@@ -117,7 +106,7 @@ const InforShopPage = (props: InforShopPageProps) => {
             <Button variant="contained" startIcon={<StorefrontOutlinedIcon />}>
               <p>Vào shop</p>
             </Button>
-          </Grid>
+          </Grid> */}
         </Grid>
 
         <Grid item lg={6.8}>

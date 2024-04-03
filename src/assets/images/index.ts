@@ -30,7 +30,7 @@ const images = {
   bannerlogin: require("../images/anhlogin.jpg"),
   logo: require("../images/logo.png"),
   defalutShopAvt:
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk6d0xT7511-bDWKn5-ie9NNqI6x_mZ_KlIvYkemPIQoETP5FA7ealetYxOgdRopg8byE&usqp=CAU",
+   "https://cdn-icons-png.flaticon.com/512/3718/3718330.png"
 };
 
 export default images;
