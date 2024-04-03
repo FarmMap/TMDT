@@ -1,8 +1,5 @@
 // External files
 import React, { useState } from "react";
-import { Button, Input, Dropdown, Space, message } from "antd";
-import { DownOutlined, ReloadOutlined } from "@ant-design/icons";
-import type { MenuProps } from "antd";
 import { Box, Grid } from "@mui/material";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
@@ -14,6 +11,7 @@ import WaitProductListPage from "./waitproduct/WaitProductListPage";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./OrderShopList.module.scss";
+import SuccessProductPage from "./successProduct/SuccessProduct";
 
 const cx = classNames.bind(styles);
 
@@ -29,7 +27,41 @@ const OrderShopListPage = () => {
           <h4 className={cx("heading")}>Danh sách đơn hàng</h4>
           <Grid className={cx("tab-wrapper")}>
             <Box width={"100%"} height={"100%"}>
-              <WaitProductListPage />
+              <TabContext value={value}>
+                <Box
+                  sx={{
+                    borderBottom: 1,
+                    borderColor: "divider",
+                  }}
+                >
+                  <TabList
+                    variant="scrollable"
+                    scrollButtons
+                    allowScrollButtonsMobile
+                    sx={{ xs: { lg: "block" } }}
+                    onChange={handleChange}
+                  >
+                    <Tab
+                      label="Chưa nhận hàng"
+                      style={{ fontSize: "1.2rem", textTransform: "unset" }}
+                      value="1"
+                    />
+
+                    <Tab
+                      label="Đã nhận hàng"
+                      style={{ fontSize: "1.2rem", textTransform: "unset" }}
+                      value="2"
+                    />
+                  </TabList>
+                </Box>
+
+                <TabPanel value="1">
+                  <WaitProductListPage />
+                </TabPanel>
+                <TabPanel value="2">
+                  <SuccessProductPage />
+                </TabPanel>
+              </TabContext>
             </Box>
           </Grid>
         </Grid>
