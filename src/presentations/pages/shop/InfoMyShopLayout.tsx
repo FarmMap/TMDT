@@ -64,7 +64,7 @@ const InfoMyShopLayout = (props: InfoMyShopLayoutProps) => {
               </Grid>
               <Grid className={cx("order")}>
                 <p>
-                  Đơn khiếu nại <span>0</span>
+                  Đơn chưa hoàn thành <span>0</span>
                 </p>
               </Grid>
               <Grid className={cx("order")}>

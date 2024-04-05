@@ -16,7 +16,7 @@ const BasicInfoShopPage = () => {
   return (
     <Grid>
       <Grid className={cx("container")}>
-        <img src={images.wallpapperDefault} alt="wallpapperDefault" />
+        <Grid className={cx("background")}></Grid>
         {/* <input hidden type="file" id="wallpapper" /> */}
         {/* <label htmlFor="wallpapper">
           <AddAPhotoOutlinedIcon />
@@ -32,16 +32,11 @@ const BasicInfoShopPage = () => {
             </label> */}
             <Grid>
               <p className={cx("name-shop")}>{myShop.name}</p>
-              <a
-                className={cx("link-shop")}
-                target="_blank"
-                href={"https://romano.vn/"}
-                rel="noreferrer"
-              >
+              <p className={cx("link-shop")}>
                 {myShop.businessType == "INDIVIDUAL"
                   ? "Cá nhân"
                   : "Doanh nghiệp"}
-              </a>
+              </p>
             </Grid>
           </Grid>
         </Grid>

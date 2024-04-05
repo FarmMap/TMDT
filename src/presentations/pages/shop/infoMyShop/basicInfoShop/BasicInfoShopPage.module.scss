@@ -1,9 +1,10 @@
 .container {
   position: relative;
   height: auto;
-  img {
+  .background {
     width: 100%;
     height: 262px;
+    background-color: #d56c5a;
   }
 
   label {
@@ -57,7 +58,7 @@
 }
 
 .link-shop {
-  color: #0f62fe;
+  color: #d56c5a;
 }
 
 .about-shop-wrap {

@@ -1,15 +1,7 @@
 import React, { useState } from "react";
 import InfoMyShopLayout from "../InfoMyShopLayout";
 import { Grid } from "@mui/material";
-import {
-  Button,
-  Dropdown,
-  Input,
-  MenuProps,
-  Space,
-  Spin,
-  message,
-} from "antd";
+import { Button, Dropdown, Input, MenuProps, Space, Spin, message } from "antd";
 import AddIcon from "@mui/icons-material/Add";
 import classNames from "classnames/bind";
 import styles from "./ProductShop.module.scss";
@@ -57,36 +49,34 @@ const renderStarIcons = (rating: string | undefined) => {
   return starIcons;
 };
 
-
-
 const ProductShopPage = () => {
-   // Search
-   const [search,setSearch] = useState("")
-   const searchDebounce = useDebounce(search,700)
-   const [refresh,setRefresh] = useState(false)
+  // Search
+  const [search, setSearch] = useState("");
+  const searchDebounce = useDebounce(search, 700);
+  const [refresh, setRefresh] = useState(false);
 
-   // Get category
- const { productPort, isLoading } = useFetchProductPorfolio({});
- const items: MenuProps["items"] = productPort.map((item) => ({
-   label: item.name,
-   key: item.id !== undefined ? item.id.toString() : "", // Convert to string if id is defined
- }));
- 
- const handleMenuClick: MenuProps["onClick"] = (e) => {
-   message.info("Click on menu item.");
- };
- const menuProps = {
-   items,
-   onClick: handleMenuClick,
- };
+  // Get category
+  const { productPort, isLoading } = useFetchProductPorfolio({});
+  const items: MenuProps["items"] = productPort.map((item) => ({
+    label: item.name,
+    key: item.id !== undefined ? item.id.toString() : "", // Convert to string if id is defined
+  }));
+
+  const handleMenuClick: MenuProps["onClick"] = (e) => {
+    message.info("Click on menu item.");
+  };
+  const menuProps = {
+    items,
+    onClick: handleMenuClick,
+  };
   const { myShop } = useFetchMyShop({});
 
   // Call api
   const { productList } = useFetchProductList({
     page: 1,
     storeId: myShop.id,
-    search:searchDebounce,
-    shouldRefesh:refresh
+    search: searchDebounce,
+    shouldRefesh: refresh,
   });
 
   const columns: ColumnsType<ProductType> = [
@@ -95,15 +85,18 @@ const ProductShopPage = () => {
       render: (text: string, record: ProductType) => (
         // eslint-disable-next-line jsx-a11y/alt-text
         <img
-          src={record.images?.length===1 ? `${process.env.REACT_APP_API_BASE_URL}${record.images?.map(
-            (item, i) =>
-              (i === 0 &&  item)
-          )}` : `${(record.images || [])
-              .map(
-                (item, i) =>
-                  (i === 0 && process.env.REACT_APP_API_BASE_URL) || item
-              )
-              .join("")}`}
+          src={
+            record.images?.length === 1
+              ? `${process.env.REACT_APP_API_BASE_URL}${record.images?.map(
+                  (item, i) => i === 0 && item
+                )}`
+              : `${(record.images || [])
+                  .map(
+                    (item, i) =>
+                      (i === 0 && process.env.REACT_APP_API_BASE_URL) || item
+                  )
+                  .join("")}`
+          }
           className={cx("product-img")}
           alt="Lỗi"
         />
@@ -170,7 +163,6 @@ const ProductShopPage = () => {
     },
   ];
 
- 
   return (
     <InfoMyShopLayout>
       <Grid>
@@ -189,12 +181,10 @@ const ProductShopPage = () => {
               className={cx("input-search")}
               placeholder="Tìm kiếm theo tên sản phẩm, mã sản phẩm"
               value={search}
-              onChange={(e)=>{
-               
-                setSearch(e.currentTarget.value)
-            
+              onChange={(e) => {
+                setSearch(e.currentTarget.value);
               }}
-              prefix={isLoading ? <Spin/> : <SearchOutlined rev={undefined} />}
+              prefix={isLoading ? <Spin /> : <SearchOutlined rev={undefined} />}
             />
             <Space.Compact>
               <Dropdown menu={menuProps}>
@@ -205,7 +195,6 @@ const ProductShopPage = () => {
                   </Space>
                 </Button>
               </Dropdown>
-              
             </Space.Compact>
           </Grid>
           <Grid className={cx("table-list")}>
