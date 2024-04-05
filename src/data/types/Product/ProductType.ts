@@ -1,3 +1,4 @@
+import FeedBackType from "../FeedBack/FeedBackType";
 import ShopType from "../Shop/ShopType";
 
 export default interface ProductType {
@@ -27,4 +28,5 @@ export default interface ProductType {
   };
 
   store?: ShopType;
+  ratings?: FeedBackType[];
 }

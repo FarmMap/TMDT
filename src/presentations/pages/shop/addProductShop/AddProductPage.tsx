@@ -254,7 +254,7 @@ const AddProductPage = () => {
                   />
                 </Grid> */}
                 <Grid className={cx("type-input")}>
-                  <p>Khối lượng</p>
+                  <p>Số lượng</p>
                   <InputNumber
                     addonAfter={selectAfter}
                     defaultValue={0}

@@ -16,6 +16,7 @@ import classNames from "classnames/bind";
 import styles from "./DetailsPage.module.scss";
 import { Product, useCart } from "../Cart/CartContext";
 import { toast } from "react-toastify";
+import useFetchFeedBacksStatistic from "../../../../../data/api/FeedBack/useFetchFeedBacksStatistic";
 
 const cx = classNames.bind(styles);
 
@@ -140,6 +141,11 @@ const DetailsPage = () => {
 
     toast.success("Sản phẩm đã được thêm vào giỏ hàng");
   };
+
+  const { feedBackStatistic } = useFetchFeedBacksStatistic({
+    productId: productId,
+  });
+
   return (
     <DefaultLayOut>
       <Grid>
@@ -156,12 +162,12 @@ const DetailsPage = () => {
                   }
                   alt=""
                 />
-                <button className={cx("heart-btn")}>
+                {/* <button className={cx("heart-btn")}>
                   <FavoriteBorderIcon />
                 </button>
                 <button className={cx("share-btn")}>
                   <ShareOutlinedIcon />
-                </button>
+                </button> */}
               </Grid>
               <Grid className={cx("carousel-container")}>
                 <Carousel
@@ -227,13 +233,18 @@ const DetailsPage = () => {
 
               <Grid className={cx("comment-wrap")}>
                 <span className={cx("feedBack-star")}>
-                  {renderStarIcons("3")} <br />
+                  {renderStarIcons(
+                    feedBackStatistic[0]?.toString()
+                      ? feedBackStatistic[0].toString()
+                      : undefined
+                  )}{" "}
+                  <br />
                 </span>
                 <NavLink
                   style={{ color: "#4686fff2", margin: "0 12px" }}
                   to="#"
                 >
-                  3 đánh giá
+                  {product.ratings?.length} đánh giá
                 </NavLink>
                 <span>
                   <ShoppingBagOutlinedIcon />
@@ -241,14 +252,14 @@ const DetailsPage = () => {
                 </span>
               </Grid>
 
-              <Grid className={cx("sale-code-wrap")}>
+              {/* <Grid className={cx("sale-code-wrap")}>
                 <p style={{ marginRight: "12px" }}>
                   Mã giảm giá <br /> của shop
                 </p>
                 <span>Giảm 15k</span>
                 <span>Giảm 12k</span>
                 <span>Giảm 10k</span>
-              </Grid>
+              </Grid> */}
 
               <Grid className={cx("add-wrap")}>
                 <Grid className={cx("quantity-wrapper")}>
@@ -260,7 +271,7 @@ const DetailsPage = () => {
                     <input value={quantity} onChange={handleInputChange} />
                     <button onClick={handleIncrease}>+</button>
                     <span style={{ marginLeft: "18px" }}>
-                      100 sản phẩm có sẵn
+                      {product.weight} sản phẩm có sẵn
                     </span>
                   </Grid>
                 </Grid>
@@ -290,10 +301,15 @@ const DetailsPage = () => {
               </Grid>
 
               <Grid className={cx("address-wrap")}>
-                <h4>Thông tin vận chuyển</h4>
-                <Grid className={cx("address-container")}>
-                  <p>Vui lòng đăng kí thông tin vận chuyển</p>
-                  <button>Đăng kí</button>
+                <Grid className={cx("item")}>
+                  <Grid className={cx("description-wrap")}>
+                    <h4>Mô tả sản phẩm</h4>
+                    <p style={{ lineHeight: "26px" }}>
+                      {product.description !== "undefined"
+                        ? product.description
+                        : "Chưa có mô tả về sản phẩm"}
+                    </p>
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>

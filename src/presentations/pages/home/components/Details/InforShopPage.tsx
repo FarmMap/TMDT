@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Grid } from "@mui/material";
 import DefaultAvatar from "../../../../components/defaultAvatar";
 import AddCardOutlinedIcon from "@mui/icons-material/AddCardOutlined";
@@ -10,6 +10,8 @@ import classNames from "classnames/bind";
 import styles from "./InforShopPage.module.scss";
 import images from "../../../../../assets/images";
 import ProductType from "../../../../../data/types/Product/ProductType";
+import useFetchFeedBacksStatistic from "../../../../../data/api/FeedBack/useFetchFeedBacksStatistic";
+import useFetchFeedBacksById from "../../../../../data/api/FeedBack/useFetchFeedBacksById";
 
 const cx = classNames.bind(styles);
 
@@ -48,6 +50,21 @@ const InforShopPage = (props: InforShopPageProps) => {
     }
     return starIcons;
   };
+
+  // feedback
+  const [refresh, setRefresh] = useState(false);
+  const ratingTotal = [5, 4, 3, 2, 1];
+  const [rating, setRating] = useState(5);
+  const { feedBackStatistic } = useFetchFeedBacksStatistic({
+    productId: props.product.id,
+    shouldRefesh: refresh,
+  });
+
+  const { feedBacksById } = useFetchFeedBacksById({
+    productId: props.product.id,
+    rating: rating,
+  });
+
   return (
     <Grid className={cx("wrapper")}>
       <Grid
@@ -123,18 +140,19 @@ const InforShopPage = (props: InforShopPageProps) => {
 
           <Grid className={cx("item")} marginTop={"22px"}>
             <Grid className={cx("comment-title")}>
-              Đánh giá nhận xét về sản phẩm <span>(3 lượt đánh giá)</span>
+              Đánh giá nhận xét về sản phẩm{" "}
+              <span>({props.product.ratings?.length} lượt đánh giá)</span>
             </Grid>
 
             <Grid className={cx("star-container")} container>
               <Grid item lg={6} borderRight={"1px solid var(--border-color)"}>
                 <Grid className={cx("numberCmt-wrap")}>
-                  <p>2.7</p> <span>/5</span>{" "}
+                  <p>{feedBackStatistic[0] ?? 0}</p> <span>/5</span>{" "}
                   <span
                     style={{ marginLeft: "8px" }}
                     className={cx("feedBack-star")}
                   >
-                    {renderStarIcons("3")} <br />
+                    {renderStarIcons(feedBackStatistic[0]?.toString())} <br />
                   </span>
                 </Grid>
                 <Grid
@@ -153,132 +171,265 @@ const InforShopPage = (props: InforShopPageProps) => {
                   <span className={cx("feedBack-star")}>
                     {renderStarIcons("5")} <br />
                   </span>
-                  <Grid className={cx("input-cmt")}></Grid>
-                  <p>0</p>
+                  <Grid className={cx("input-cmt")}>
+                    <Grid
+                      style={{
+                        width: `${
+                          feedBackStatistic[5] &&
+                          props.product.ratings &&
+                          (feedBackStatistic[5] /
+                            props.product.ratings?.length) *
+                            100
+                        }%`,
+                        borderTopRightRadius:
+                          feedBackStatistic[5] &&
+                          props.product.ratings &&
+                          (feedBackStatistic[5] /
+                            props.product.ratings?.length) *
+                            100 ===
+                            100
+                            ? "10px"
+                            : "0",
+                        borderBottomRightRadius:
+                          feedBackStatistic[5] &&
+                          props.product.ratings &&
+                          (feedBackStatistic[5] /
+                            props.product.ratings?.length) *
+                            100 ===
+                            100
+                            ? "10px"
+                            : "0",
+                      }}
+                      className={cx("input-item")}
+                    ></Grid>
+                  </Grid>
+                  <p>{feedBackStatistic[5]}</p>
                 </Grid>
                 <Grid className={cx("countCmtWrap")}>
                   <span className={cx("feedBack-star")}>
                     {renderStarIcons("4")} <br />
                   </span>
-                  <Grid className={cx("input-cmt")}></Grid>
-                  <p>0</p>
+                  <Grid className={cx("input-cmt")}>
+                    <Grid
+                      style={{
+                        width: `${
+                          feedBackStatistic[4] &&
+                          props.product.ratings &&
+                          (feedBackStatistic[4] /
+                            props.product.ratings?.length) *
+                            100
+                        }%`,
+                        borderTopRightRadius:
+                          feedBackStatistic[4] &&
+                          props.product.ratings &&
+                          (feedBackStatistic[4] /
+                            props.product.ratings?.length) *
+                            100 ===
+                            100
+                            ? "10px"
+                            : "0",
+                        borderBottomRightRadius:
+                          feedBackStatistic[4] &&
+                          props.product.ratings &&
+                          (feedBackStatistic[4] /
+                            props.product.ratings?.length) *
+                            100 ===
+                            100
+                            ? "10px"
+                            : "0",
+                      }}
+                      className={cx("input-item")}
+                    ></Grid>
+                  </Grid>
+                  <p>{feedBackStatistic[4]}</p>
                 </Grid>
                 <Grid className={cx("countCmtWrap")}>
                   <span className={cx("feedBack-star")}>
                     {renderStarIcons("3")} <br />
                   </span>
-                  <Grid className={cx("input-cmt")}></Grid>
-                  <p>0</p>
+                  <Grid className={cx("input-cmt")}>
+                    <Grid
+                      style={{
+                        width: `${
+                          feedBackStatistic[3] &&
+                          props.product.ratings &&
+                          (feedBackStatistic[3] /
+                            props.product.ratings?.length) *
+                            100
+                        }%`,
+                        borderTopRightRadius:
+                          feedBackStatistic[3] &&
+                          props.product.ratings &&
+                          (feedBackStatistic[3] /
+                            props.product.ratings?.length) *
+                            100 ===
+                            100
+                            ? "10px"
+                            : "0",
+                        borderBottomRightRadius:
+                          feedBackStatistic[3] &&
+                          props.product.ratings &&
+                          (feedBackStatistic[3] /
+                            props.product.ratings?.length) *
+                            100 ===
+                            100
+                            ? "10px"
+                            : "0",
+                      }}
+                      className={cx("input-item")}
+                    ></Grid>
+                  </Grid>
+                  <p>{feedBackStatistic[3]}</p>
                 </Grid>
                 <Grid className={cx("countCmtWrap")}>
                   <span className={cx("feedBack-star")}>
                     {renderStarIcons("2")} <br />
                   </span>
-                  <Grid className={cx("input-cmt")}></Grid>
-                  <p>0</p>
+                  <Grid className={cx("input-cmt")}>
+                    <Grid
+                      style={{
+                        width: `${
+                          feedBackStatistic[2] &&
+                          props.product.ratings &&
+                          (feedBackStatistic[2] /
+                            props.product.ratings?.length) *
+                            100
+                        }%`,
+                        borderTopRightRadius:
+                          feedBackStatistic[2] &&
+                          props.product.ratings &&
+                          (feedBackStatistic[2] /
+                            props.product.ratings?.length) *
+                            100 ===
+                            100
+                            ? "10px"
+                            : "0",
+                        borderBottomRightRadius:
+                          feedBackStatistic[2] &&
+                          props.product.ratings &&
+                          (feedBackStatistic[2] /
+                            props.product.ratings?.length) *
+                            100 ===
+                            100
+                            ? "10px"
+                            : "0",
+                      }}
+                      className={cx("input-item")}
+                    ></Grid>
+                  </Grid>
+                  <p>{feedBackStatistic[2]}</p>
                 </Grid>
                 <Grid className={cx("countCmtWrap")}>
                   <span className={cx("feedBack-star")}>
                     {renderStarIcons("1")} <br />
                   </span>
-                  <Grid className={cx("input-cmt")}></Grid>
-                  <p>0</p>
+                  <Grid className={cx("input-cmt")}>
+                    <Grid
+                      style={{
+                        width: `${
+                          feedBackStatistic[1] &&
+                          props.product.ratings &&
+                          (feedBackStatistic[1] /
+                            props.product.ratings?.length) *
+                            100
+                        }%`,
+                        borderTopRightRadius:
+                          feedBackStatistic[1] &&
+                          props.product.ratings &&
+                          (feedBackStatistic[1] /
+                            props.product.ratings?.length) *
+                            100 ===
+                            100
+                            ? "10px"
+                            : "0",
+                        borderBottomRightRadius:
+                          feedBackStatistic[1] &&
+                          props.product.ratings &&
+                          (feedBackStatistic[1] /
+                            props.product.ratings?.length) *
+                            100 ===
+                            100
+                            ? "10px"
+                            : "0",
+                      }}
+                      className={cx("input-item")}
+                    ></Grid>
+                  </Grid>
+                  <p>{feedBackStatistic[1]}</p>
                 </Grid>
               </Grid>
             </Grid>
 
             <Grid className={cx("filter-btn")}>
-              <button>Tất cả</button>
-              <button>5 sao</button>
-              <button>4 sao</button>
-              <button>3 sao</button>
-              <button>2 sao</button>
-              <button>1 sao</button>
+              {ratingTotal.map((total, i) =>
+                rating === total ? (
+                  <button
+                    style={{
+                      backgroundColor: "var(--primary-color)",
+                      color: "var(--white-color)",
+                    }}
+                    onClick={() => {
+                      setRating(total);
+                      setRefresh((refresh) => !refresh);
+                    }}
+                    key={i}
+                  >
+                    {total} sao
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      setRating(total);
+                      setRefresh((refresh) => !refresh);
+                    }}
+                    key={i}
+                  >
+                    {total} sao
+                  </button>
+                )
+              )}
             </Grid>
 
-            <Grid className={cx("content-cmt")}>
-              <Grid className={cx("content-heading")}>
-                <DefaultAvatar medium avatar={images.avatar} small />
-                <Grid className={cx("info-user")}>
-                  <Grid>
-                    <Grid
-                      display={"flex"}
-                      alignItems={"center"}
-                      justifyContent={"space-between"}
-                    >
-                      <p>Văn Nhơn</p>
-                      <span
-                        style={{ marginLeft: "8px" }}
-                        className={cx("feedBack-star")}
+            {feedBacksById.map((feedback, i) => (
+              <Grid key={i} className={cx("content-cmt")}>
+                <Grid className={cx("content-heading")}>
+                  <DefaultAvatar medium avatar={images.avatar} small />
+                  <Grid className={cx("info-user")}>
+                    <Grid>
+                      <Grid
+                        display={"flex"}
+                        alignItems={"center"}
+                        justifyContent={"space-between"}
                       >
-                        {renderStarIcons("3")} <br />
-                      </span>
+                        <p>{feedback.user?.fullName}</p>
+                        <span
+                          style={{ marginLeft: "8px" }}
+                          className={cx("feedBack-star")}
+                        >
+                          {renderStarIcons(feedback.rating?.toString())} <br />
+                        </span>
+                      </Grid>
+                      <span>12:11 | 7/1/2024</span>
                     </Grid>
-                    <span>12:11 | 7/1/2024</span>
-                  </Grid>
 
-                  <section>
-                    giao hàng chậm. báo thời gian linh tinh. phản ánh mới chịu
-                    giao. sp chưa xem nên k nhận xét. nhưng cách làm việc quá tệ
-                  </section>
+                    <section>{feedback.comment}</section>
 
-                  <Grid className={cx("like-wrap")}>
-                    <Grid
-                      width={"50px"}
-                      textAlign={"center"}
-                      padding={"4px 0"}
-                      color={"#000"}
-                      style={{ background: "#e8e8e8" }}
-                    >
-                      Đen
-                    </Grid>
-                    <ThumbUpOutlinedIcon />
+                    {/* <Grid className={cx("like-wrap")}>
+                      <Grid
+                        width={"50px"}
+                        textAlign={"center"}
+                        padding={"4px 0"}
+                        color={"#000"}
+                        style={{ background: "#e8e8e8" }}
+                      >
+                        Đen
+                      </Grid>
+                      <ThumbUpOutlinedIcon />
+                    </Grid> */}
                   </Grid>
                 </Grid>
               </Grid>
-            </Grid>
-
-            <Grid className={cx("content-cmt")}>
-              <Grid className={cx("content-heading")}>
-                <DefaultAvatar medium avatar={images.avatar} small />
-                <Grid className={cx("info-user")}>
-                  <Grid>
-                    <Grid
-                      display={"flex"}
-                      alignItems={"center"}
-                      justifyContent={"space-between"}
-                    >
-                      <p>Văn Nhơn</p>
-                      <span
-                        style={{ marginLeft: "8px" }}
-                        className={cx("feedBack-star")}
-                      >
-                        {renderStarIcons("3")} <br />
-                      </span>
-                    </Grid>
-                    <span>12:11 | 7/1/2024</span>
-                  </Grid>
-
-                  <section>
-                    giao hàng chậm. báo thời gian linh tinh. phản ánh mới chịu
-                    giao. sp chưa xem nên k nhận xét. nhưng cách làm việc quá tệ
-                  </section>
-
-                  <Grid className={cx("like-wrap")}>
-                    <Grid
-                      width={"50px"}
-                      textAlign={"center"}
-                      padding={"4px 0"}
-                      color={"#000"}
-                      style={{ background: "#e8e8e8" }}
-                    >
-                      Đen
-                    </Grid>
-                    <ThumbUpOutlinedIcon />
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
+            ))}
           </Grid>
         </Grid>
       </Grid>
