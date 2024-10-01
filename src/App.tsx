@@ -27,6 +27,7 @@ import AboutUsPage from "./presentations/pages/aboutUs/AboutUsPage";
 import ProductSearchPage from "./presentations/pages/product/ProductSearchPage";
 import LoginSMS from "./presentations/pages/login/LoginSMS";
 import DetailsBlogPage from "./presentations/pages/blog/detailsblog/DetailsBlogPage";
+import PayProductCart from "./presentations/pages/home/components/Pay/PayProductCart";
 //Style
 
 const App: React.FC = () => {
@@ -61,8 +62,13 @@ const App: React.FC = () => {
             path="/san-pham/:productId/thanh-toan/:name-:quantity"
             element={<PayProductPage />}
           />
-          <Route
+           <Route path="/gio-hang/thanh-toan" element={<PayProductCart />} />
+          {/* <Route
             path="/san-pham/:productId/thanh-toan-thanh-cong"
+            element={<SuccessOrderPage />}
+          /> */}
+            <Route
+            path="/thanh-toan-thanh-cong"
             element={<SuccessOrderPage />}
           />
           <Route

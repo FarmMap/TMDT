@@ -13,6 +13,7 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 // import useFetchMyOrder from "../../../../../../data/api/Order/useFetchMyOrder";
 import useFetcMyAccount from "../../../../../../data/api/Account/useFetchMyAccount";
 import useFetchMyOrder from "../../../../../../data/api/Order/useFetchMyOrder";
+import { toReadableDate } from "../../../../../../hooks/useReadableDate";
 const cx = classNames.bind(styles);
 
 const WaitProductListPage = () => {
@@ -36,7 +37,7 @@ const WaitProductListPage = () => {
                     <a href="#">Chi tiết</a>{" "}
                   </p>
                   <p>
-                    Đặt ngày : <span>15/04/2024</span>
+                    Đặt ngày : <span>{toReadableDate(item.createdAt)}</span>
                   </p>
                 </Grid>
                 <Grid className={cx("user")}>

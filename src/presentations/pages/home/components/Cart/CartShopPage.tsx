@@ -7,6 +7,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import MessageOutlinedIcon from "@mui/icons-material/MessageOutlined";
 import LoyaltyOutlinedIcon from "@mui/icons-material/LoyaltyOutlined";
 import { useCart } from "./CartContext";
+import { useNavigate } from 'react-router-dom';
 
 // Styles
 import classNames from "classnames/bind";
@@ -23,6 +24,8 @@ const CartShopPage = () => {
   const [checkedItems, setCheckedItems] = useState<{ [key: number]: boolean }>(
     {}
   );
+  const navigate = useNavigate();
+
   //delete đơn hàng
   const handleDelete = (index: number) => {
     dispatch({ type: "REMOVE_FROM_CART", payload: cartItems[index].id });
@@ -66,7 +69,7 @@ const CartShopPage = () => {
     // Recalculate total price whenever checked items or product quantities change
     const newTotalPrice = cartItems.reduce((total, cart, i) => {
       if (checkedItems[i] && productQuantities[i] !== undefined) {
-        const priceAsNumber = cart.price;
+        const priceAsNumber = cart.priceSale || cart.price;
         const quantity = productQuantities[i] || 0; // Ensure quantity is defined
         return total + priceAsNumber * quantity;
       }
@@ -126,6 +129,22 @@ const CartShopPage = () => {
     setShowDeleteAll(!selectAll && cartItems.length > 0); // Toggle the visibility of the "Xóa tất cả" button
   };
 
+  const handleBuyNow = () => {
+    const selectedItems = cartItems.filter((_, index) => checkedItems[index]);
+    
+    if (selectedItems.length === 0) {
+      toast.error("Vui lòng chọn ít nhất một sản phẩm");
+      return;
+    }
+
+    const orderItems = selectedItems.map(item => ({
+      id: item.id,
+      quantity: productQuantities[cartItems.indexOf(item)]
+    }));
+
+    navigate('/gio-hang/thanh-toan', { state: { orderItems } });
+  };
+
   return (
     <DefaultLayOut>
       <Grid>
@@ -137,11 +156,10 @@ const CartShopPage = () => {
             style={{ justifyContent: "space-around", marginTop: "15px" }}
             display={"flex"}
           >
-            <Grid className={cx("product-order")} item lg={8}>
+            <Grid className={cx("product-order")} item lg={8} >
               {cartItems.map((cart, i) => (
                 <Grid
                   key={i}
-                  mt={"1.2rem"}
                   style={{ background: "var(--white-color)" }}
                 >
                   <Grid className={cx("shop")}>
@@ -185,14 +203,14 @@ const CartShopPage = () => {
                     >
                       <Grid className={cx("price")}>
                         <h3>
-                          {cart.price?.toLocaleString("it-IT", {
+                          {cart.priceSale?.toLocaleString("it-IT", {
                             style: "currency",
                             currency: "VND",
                           })}
                         </h3>
 
                         <p>
-                          {cart.priceSale?.toLocaleString("it-IT", {
+                          {cart.price?.toLocaleString("it-IT", {
                             style: "currency",
                             currency: "VND",
                           })}
@@ -279,7 +297,8 @@ const CartShopPage = () => {
                   </Grid>
                   <Button
                     disabled={!Object.values(checkedItems).some(Boolean)}
-                    block
+                    onClick={handleBuyNow}
+                    block 
                   >
                     Mua ngay
                   </Button>

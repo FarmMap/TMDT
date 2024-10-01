@@ -1,5 +1,6 @@
 import PlaceType from "../Place/PlaceType";
 import ProductType from "../Product/ProductType";
+import OrderDetailType from "./OrderDetailType";
 
 export default interface OrderType {
   createdAt?: string;
@@ -11,13 +12,7 @@ export default interface OrderType {
   districtCode?: string;
   wardCode?: string;
   address?: string;
-  orderDetails?: {
-    id?: number;
-    note?: string;
-    quantity?: number;
-    product?: ProductType;
-    productId?: number;
-  }[];
+  orderDetails?: OrderDetailType[];
   province?: PlaceType;
   district?: PlaceType;
   ward?: PlaceType;
