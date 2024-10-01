@@ -14,6 +14,7 @@ import {
   DatePicker,
   InputNumber,
   Select,
+  message,
 } from "antd";
 import type { Dayjs } from "dayjs";
 // Styles
@@ -34,39 +35,31 @@ const AddProductPage = () => {
   //thêm ảnh
   type FileType = UploadFile;
 
-  const getBase64 = (file: FileType): Promise<string> =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file.originFileObj as Blob);
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = (error) => reject(error);
-    });
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
   const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
-  const [fileList, setFileList] = useState<UploadFile[]>([
-    {
-      uid: "1",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-  ]);
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
   const navigate = useNavigate();
+
+  const getBase64 = (file: File): Promise<string> =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = (error) => reject(error);
+    });
 
   const handleCancel = () => setPreviewOpen(false);
 
   const handlePreview = async (file: UploadFile) => {
     if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj as FileType);
+      file.preview = await getBase64(file.originFileObj as File);
     }
 
     setPreviewImage(file.url || (file.preview as string));
     setPreviewOpen(true);
-    setPreviewTitle(
-      file.name || file.url!.substring(file.url!.lastIndexOf("/") + 1)
-    );
+    setPreviewTitle(file.name || file.url!.substring(file.url!.lastIndexOf("/") + 1));
   };
 
   const uploadButton = (
@@ -108,6 +101,13 @@ const AddProductPage = () => {
     fileList: newFileList,
     file,
   }) => {
+    // Check file size
+    const isLt25M = file.size && file.size / 1024 / 1024 < 25;
+    if (!isLt25M) {
+      message.error('Image must be smaller than 25MB!');
+      return;
+    }
+
     setFileList(newFileList);
 
     // Create an array of File objects
@@ -220,6 +220,12 @@ const AddProductPage = () => {
     </Select>
   );
 
+  // Helper function to ensure non-negative values
+  const ensureNonNegative = (value: number | string) => {
+    const num = typeof value === 'string' ? parseFloat(value) : value;
+    return Math.max(0, num);
+  };
+
   return (
     <InfoMyShopLayout>
       <Grid>
@@ -241,18 +247,6 @@ const AddProductPage = () => {
                 />
               </Grid>
               <Grid className={cx("product-code")}>
-                {/* <Grid className={cx("type-input")}>
-                  <p>Số lượng</p>
-                  <Input
-                    type="number"
-                    value={productList?.inventory ?? ""}
-                    onChange={(e) => {
-                      let newProducts = { ...productList };
-                      newProducts.inventory = parseInt(e.currentTarget.value);
-                      setProductList(newProducts);
-                    }}
-                  />
-                </Grid> */}
                 <Grid className={cx("type-input")}>
                   <p>Số lượng</p>
                   <InputNumber
@@ -262,11 +256,11 @@ const AddProductPage = () => {
                     onChange={(value) => {
                       if (value !== null && value !== undefined) {
                         let newProducts = { ...productList };
-                        newProducts.weight =
-                          parseInt(value.toString(), 10) || 0; // Convert to number
+                        newProducts.weight = ensureNonNegative(value);
                         setProductList(newProducts);
                       }
                     }}
+                    min={0}
                   />
                 </Grid>
               </Grid>
@@ -303,9 +297,10 @@ const AddProductPage = () => {
                       value={productList?.retailPrice ?? ""}
                       onChange={(e) => {
                         let newProducts = { ...productList };
-                        newProducts.retailPrice = e.currentTarget.value;
+                        newProducts.retailPrice = ensureNonNegative(e.currentTarget.value).toString();
                         setProductList(newProducts);
                       }}
+                      min="0"
                     />
                   </Grid>
 
@@ -316,9 +311,10 @@ const AddProductPage = () => {
                       value={productList?.salePrice ?? ""}
                       onChange={(e) => {
                         let newProducts = { ...productList };
-                        newProducts.salePrice = e.currentTarget.value;
+                        newProducts.salePrice = ensureNonNegative(e.currentTarget.value).toString();
                         setProductList(newProducts);
                       }}
+                      min="0"
                     />
                   </Grid>
                 </Grid>
@@ -332,17 +328,13 @@ const AddProductPage = () => {
                   <h3>Ảnh sản phẩm</h3>
                   <Upload
                     className={cx("img-product")}
-                    action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
                     listType="picture-card"
-                    ref={fileInputRef}
+                    fileList={fileList}
                     onPreview={handlePreview}
                     onChange={handleChange}
+                    beforeUpload={() => false}
                   >
-                    {productList?.images?.length !== undefined
-                      ? productList?.images?.length > 10
-                        ? null
-                        : uploadButton
-                      : uploadButton}
+                    {fileList.length >= 5 ? null : uploadButton}
                   </Upload>
                   <Modal
                     open={previewOpen}
@@ -352,7 +344,7 @@ const AddProductPage = () => {
                   >
                     <img
                       alt="example"
-                      style={{ width: "100%" }}
+                      style={{ width: "100%", maxHeight: "80vh", objectFit: "contain" }}
                       src={previewImage}
                     />
                   </Modal>

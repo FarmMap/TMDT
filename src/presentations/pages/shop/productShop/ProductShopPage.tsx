@@ -8,13 +8,12 @@ import styles from "./ProductShop.module.scss";
 import { DownOutlined, SearchOutlined } from "@ant-design/icons";
 import Table, { ColumnsType } from "antd/es/table";
 import StarIcon from "@mui/icons-material/Star";
-import useFetchProductList from "../../../../data/api/Product/useFetchProductList";
 import { NavLink } from "react-router-dom";
 import ProductType from "../../../../data/types/Product/ProductType";
 import useFetchMyShop from "../../../../data/api/Shop/useFetchMyShop";
 import useFetchProductPorfolio from "../../../../data/api/ProductPorfolio/useFetchProductPortfolio";
-import { Console } from "console";
 import useDebounce from "../../../../hooks/useDebounce";
+import useFetchProductShopList from "../../../../data/api/Product/useFetchProductShopList";
 
 const cx = classNames.bind(styles);
 
@@ -72,9 +71,9 @@ const ProductShopPage = () => {
   const { myShop } = useFetchMyShop({});
 
   // Call api
-  const { productList } = useFetchProductList({
+  const { productList, isLoading: isLoadingProductList } = useFetchProductShopList({
     page: 1,
-    storeId: myShop.id,
+    storeId: myShop.id ?? 0,
     search: searchDebounce,
     shouldRefesh: refresh,
   });
@@ -198,12 +197,16 @@ const ProductShopPage = () => {
             </Space.Compact>
           </Grid>
           <Grid className={cx("table-list")}>
-            <Table
-              size="small"
-              columns={columns}
-              dataSource={productList}
-              className={cx("table-row")}
-            />
+            {isLoadingProductList ? (
+              <Spin />
+            ) : (
+              <Table
+                size="small"
+                columns={columns}
+                dataSource={productList}
+                className={cx("table-row")}
+              />
+            )}
           </Grid>
         </Grid>
       </Grid>

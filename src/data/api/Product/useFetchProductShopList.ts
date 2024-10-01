@@ -1,18 +1,20 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 
-import OrderType from "../../types/Product/ProductType";
+import ProductList from "../../types/Product/ProductType";
 import Meta from "../../types/Meta/Meta";
 
-interface UseFetchOrderListProps {
+interface UseFetchProductListProps {
   page?: number;
   shouldRefesh?: boolean;
+  search?: string;
+  productCategoryId?: number;
   storeId: number;
 }
 
-interface OrderTypeResponse {
+interface ProductListResponse {
   meta: Meta;
-  data: OrderType[];
+  data: ProductList[];
 }
 
 interface ResponseError {
@@ -20,8 +22,8 @@ interface ResponseError {
   message: string;
 }
 
-const useFetchOrderList = (props: UseFetchOrderListProps) => {
-  let [orderList, setOrderList] = useState<OrderType[]>([]);
+const useFetchProductList = (props: UseFetchProductListProps) => {
+  let [productList, setProductList] = useState<ProductList[]>([]);
   let [page, setPages] = useState(1);
   let [error, setError] = useState<string | null>(null);
   let [isLoading, setLoading] = useState(false);
@@ -32,9 +34,11 @@ const useFetchOrderList = (props: UseFetchOrderListProps) => {
 
     var config = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_BASE_URL}orders?order=ASC&page=${
+      url: `${process.env.REACT_APP_API_BASE_URL}products?order=ASC&page=${
         props.page
-      }&take=10&&storeId=${props.storeId}`,
+      }&take=10&productCategoryId=${props.productCategoryId ?? ""}&search=${
+        props.search ?? ""
+      }&storeId=${props.storeId}`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
@@ -42,8 +46,8 @@ const useFetchOrderList = (props: UseFetchOrderListProps) => {
 
     axios(config)
       .then((response: AxiosResponse) => {
-        let data: OrderTypeResponse = response.data;
-        setOrderList(data.data);
+        let data: ProductListResponse = response.data;
+        setProductList(data.data);
         setPages(data.meta.pageCount ?? 0);
         setLoading(false);
       })
@@ -62,11 +66,13 @@ const useFetchOrderList = (props: UseFetchOrderListProps) => {
       });
   }, [
     props.page,
+    props.productCategoryId,
+    props.search,
     props.shouldRefesh,
     props.storeId,
   ]);
 
-  return { orderList, page, error, isLoading };
+  return { productList, page, error, isLoading };
 };
 
-export default useFetchOrderList;
+export default useFetchProductList;

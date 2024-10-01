@@ -1,27 +1,22 @@
 // External files
 import React, { useState } from "react";
-import { Button, Input, Dropdown, Space, message } from "antd";
-import { DownOutlined, ReloadOutlined } from "@ant-design/icons";
+import {  message } from "antd";
+
 import type { MenuProps } from "antd";
-import { Box, Grid } from "@mui/material";
-import Tab from "@mui/material/Tab";
-import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
+import {  Grid } from "@mui/material";
+
 import InfoMyShopLayout from "../InfoMyShopLayout";
 import dayjs from "dayjs";
 import type { Dayjs } from "dayjs";
 import type { TimeRangePickerProps } from "antd";
 import { DatePicker } from "antd";
 import AllOrderShopPage from "./allOrderShop/AllOrderShopPage";
-import WaitOrderShopPage from "./waitordershop/WaitOrderShopPage";
-import ConvertOrderShopPage from "./convertOrdershop/ConvertOrderShopPage";
+
 
 // Styles
 import classNames from "classnames/bind";
 import styles from "./OrderShop.module.scss";
 
-const { RangePicker } = DatePicker;
 
 const cx = classNames.bind(styles);
 //xóa ngày tháng năm

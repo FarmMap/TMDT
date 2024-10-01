@@ -128,10 +128,10 @@ const AllOrderShopPage = () => {
   const [page, setPage] = useState(1);
   const {
     orderList,
-    page: pages,
+    page: currentPage,
     isLoading: fetchLoading,
   } = useFetchOrderList({
-    storeId: myShop.id,
+    storeId: myShop.id ?? 0.9,
     page: page,
     shouldRefesh: refresh,
   });

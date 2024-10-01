@@ -65,7 +65,7 @@ const SuccessProductPage = () => {
                 <Grid className={cx("code-order")}>
                   <p>
                     Mã đơn hàng <span>#{item.id}</span> |{" "}
-                    <a href="#">Chi tiết</a>{" "}
+                    <a href={`/order-details/${item.id}`}>Chi tiết</a>{" "}
                   </p>
                   <p>
                     Đặt ngày : <span>15/04/2024</span>
