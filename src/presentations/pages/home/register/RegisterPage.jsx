@@ -63,6 +63,9 @@ const RegisterPage = () => {
       });
   };
 
+  console.log(flag);
+  
+
   // verifyOtp
   const verifyOtp = async (e) => {
     window.confirmationResult
@@ -115,12 +118,7 @@ const RegisterPage = () => {
               <span>HOẶC</span>
               <div className={cx("line")}></div>
             </Grid>
-            {/* <Grid className={cx("btn-google")}>
-              <Button variant="outlined">
-                <GoogleIcon />
-                oogle
-              </Button>
-            </Grid> */}
+ 
             <Grid className={cx("btn-register")}>
               <span>Bạn đã có tài khoản ?</span>
               <a href="/dang-nhap">Đăng nhập</a>
@@ -157,12 +155,7 @@ const RegisterPage = () => {
               <span>HOẶC</span>
               <div className={cx("line")}></div>
             </Grid>
-            {/* <Grid className={cx("btn-google")}>
-              <Button variant="outlined">
-                <GoogleIcon />
-                oogle
-              </Button>
-            </Grid> */}
+       
             <Grid className={cx("btn-register")}>
               <span>Bạn đã có tài khoản ?</span>
               <a href="/dang-nhap">Đăng nhập</a>

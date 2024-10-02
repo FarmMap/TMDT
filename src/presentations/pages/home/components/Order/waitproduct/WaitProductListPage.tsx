@@ -54,41 +54,36 @@ const WaitProductListPage = () => {
                   </h4>
                 </Grid>
               </Grid>
-              <Grid className={cx("details-product")}>
-                <Grid display={"flex"}>
-                  <img
-                    src={
-                      item &&
-                      item.orderDetails &&
-                      item.orderDetails[0] &&
-                      item.orderDetails[0].product &&
-                      item.orderDetails[0].product.images &&
-                      item.orderDetails[0].product.images[0]
-                        ? `${process.env.REACT_APP_API_BASE_URL}${item.orderDetails[0].product.images[0]}`
+              {item.orderDetails?.map((orderDetail, index) => (
+                <Grid key={index} className={cx("details-product")}>
+                  <Grid display={"flex"}>
+                    <img
+                      src={
+                      orderDetail &&
+                      orderDetail.product &&
+                      orderDetail.product.images &&
+                      orderDetail.product.images[0]
+                        ? `${process.env.REACT_APP_API_BASE_URL}${orderDetail.product.images[0]}`
                         : ""
                     }
                     alt=""
                   />
 
-                  <Grid className={cx("title")}>
-                    <h4>
-                      {item &&
-                        item.orderDetails &&
-                        item.orderDetails[0] &&
-                        item.orderDetails[0].product &&
-                        item.orderDetails[0].product.name &&
-                        item.orderDetails[0].product?.name}
+                    <Grid className={cx("title")}>
+                      <h4>
+                        {orderDetail &&
+                        orderDetail.product &&
+                        orderDetail.product.name &&
+                        orderDetail.product?.name}
                     </h4>
                     <p>
                       Shop :{" "}
                       <span>
-                        {item &&
-                          item.orderDetails &&
-                          item.orderDetails[0] &&
-                          item.orderDetails[0].product &&
-                          item.orderDetails[0].product.store &&
-                          item.orderDetails[0].product.store.name &&
-                          item.orderDetails[0].product?.store.name}
+                        {orderDetail &&
+                          orderDetail.product &&
+                          orderDetail.product.store &&
+                          orderDetail.product.store.name &&
+                          orderDetail.product?.store.name}
                       </span>
                     </p>
                     <Grid className={cx("status")}>
@@ -147,7 +142,8 @@ const WaitProductListPage = () => {
                     ]}
                   />
                 </Grid>
-              </Grid>
+                </Grid>
+              ))}
             </Grid>
           )
       )}

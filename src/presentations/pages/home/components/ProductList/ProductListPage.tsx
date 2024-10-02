@@ -68,7 +68,7 @@ const ProductListPage = (props: ProductListPageProps) => {
         {productList.map(
           (product, i) =>
             product.isActive && (
-              <Grid item lg={1.5} className={cx("item")} key={i}>
+              <Grid item lg={1.6} md={2} sm={3} xs={4} className={cx("item")} key={i}>
                 <NavLink to={`/san-pham/${product.id}`}>
                   <img
                     src={`${process.env.REACT_APP_API_BASE_URL}${product.images?.[0]}`}

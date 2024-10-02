@@ -140,11 +140,11 @@ const ProductShopPage = () => {
       render: (text: string, record: ProductType) => (
         <span className={cx("feedBack-star")}>
           {record.approveStatus === "PENDING" ? (
-            <span style={{ color: "var(--yellow-color)" }}>Chưa phê duyệt</span>
+            <span style={{ color: "var(--second-color)" }}>Từ chối</span>
           ) : record.approveStatus === "APPROVED" ? (
             <span style={{ color: "var(--primary-color)" }}>Đã phê duyệt</span>
           ) : (
-            <span style={{ color: "var(--second-color)" }}>Từ chối</span>
+            <span style={{ color: "var(--yellow-color)" }}>Chưa phê duyệt</span>
           )}
         </span>
       ),
