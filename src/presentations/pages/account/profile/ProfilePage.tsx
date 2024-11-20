@@ -12,9 +12,7 @@ import styles from "./ProfilePage.module.scss";
 import images from "../../../../assets/images";
 
 const cx = classNames.bind(styles);
-const onChange: DatePickerProps["onChange"] = (date, dateString) => {
-  // console.log(date, dateString);
-};
+const onChange: DatePickerProps["onChange"] = (date, dateString) => {};
 const ProfilePage = () => {
   return (
     <AccountPage>

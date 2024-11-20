@@ -28,7 +28,8 @@ const WaitProductListPage = () => {
     <>
       {myOrders.map(
         (item, i) =>
-          item.status !== "DELIVERED" && (
+          item.status !== "DELIVERED" &&
+          item.status !== "CANCELED" && (
             <Grid key={i} className={cx("wapper")}>
               <Grid className={cx("heading-order")}>
                 <Grid className={cx("code-order")}>
@@ -59,89 +60,89 @@ const WaitProductListPage = () => {
                   <Grid display={"flex"}>
                     <img
                       src={
-                      orderDetail &&
-                      orderDetail.product &&
-                      orderDetail.product.images &&
-                      orderDetail.product.images[0]
-                        ? `${process.env.REACT_APP_API_BASE_URL}${orderDetail.product.images[0]}`
-                        : ""
-                    }
-                    alt=""
-                  />
+                        orderDetail &&
+                        orderDetail.product &&
+                        orderDetail.product.images &&
+                        orderDetail.product.images[0]
+                          ? `${process.env.REACT_APP_API_BASE_URL}${orderDetail.product.images[0]}`
+                          : ""
+                      }
+                      alt=""
+                    />
 
                     <Grid className={cx("title")}>
                       <h4>
                         {orderDetail &&
-                        orderDetail.product &&
-                        orderDetail.product.name &&
-                        orderDetail.product?.name}
-                    </h4>
-                    <p>
-                      Shop :{" "}
-                      <span>
-                        {orderDetail &&
                           orderDetail.product &&
-                          orderDetail.product.store &&
-                          orderDetail.product.store.name &&
-                          orderDetail.product?.store.name}
-                      </span>
-                    </p>
-                    <Grid className={cx("status")}>
-                      {item.status === "PENDING"
-                        ? "Chờ xác nhận"
-                        : item.status === "CONFIRMED"
-                          ? "Đã xác nhận"
-                          : item.status === "DELIVERING"
-                            ? "Đang vận chuyển"
-                            : item.status === "DELIVERED"
-                              ? "Đã nhận hàng"
-                              : "Đã hủy"}
+                          orderDetail.product.name &&
+                          orderDetail.product?.name}
+                      </h4>
+                      <p>
+                        Shop :{" "}
+                        <span>
+                          {orderDetail &&
+                            orderDetail.product &&
+                            orderDetail.product.store &&
+                            orderDetail.product.store.name &&
+                            orderDetail.product?.store.name}
+                        </span>
+                      </p>
+                      <Grid className={cx("status")}>
+                        {item.status === "PENDING"
+                          ? "Chờ xác nhận"
+                          : item.status === "CONFIRMED"
+                            ? "Đã xác nhận"
+                            : item.status === "DELIVERING"
+                              ? "Đang vận chuyển"
+                              : item.status === "DELIVERED"
+                                ? "Đã nhận hàng"
+                                : "Đã hủy"}
+                      </Grid>
                     </Grid>
                   </Grid>
-                </Grid>
-                <Grid width={"580px"}>
-                  <Steps
-                    size="small"
-                    items={[
-                      {
-                        title: "Chờ xác nhận",
-                        status: "finish",
-                        icon: (
-                          <TimerIcon
-                            style={{ width: "2rem", height: "2rem" }}
-                          />
-                        ),
-                      },
-                      {
-                        title: "Đã xác nhận",
-                        status: "finish",
-                        icon: (
-                          <AssignmentTurnedInIcon
-                            style={{ width: "2rem", height: "2rem" }}
-                          />
-                        ),
-                      },
-                      {
-                        title: "Đang giao",
-                        status: "finish",
-                        icon: (
-                          <LocalShippingIcon
-                            style={{ width: "2rem", height: "2rem" }}
-                          />
-                        ),
-                      },
-                      {
-                        title: "Hoàn tất",
-                        status: "wait",
-                        icon: (
-                          <CheckCircleIcon
-                            style={{ width: "2rem", height: "2rem" }}
-                          />
-                        ),
-                      },
-                    ]}
-                  />
-                </Grid>
+                  <Grid width={"580px"}>
+                    <Steps
+                      size="small"
+                      items={[
+                        {
+                          title: "Chờ xác nhận",
+                          status: "finish",
+                          icon: (
+                            <TimerIcon
+                              style={{ width: "2rem", height: "2rem" }}
+                            />
+                          ),
+                        },
+                        {
+                          title: "Đã xác nhận",
+                          status: "finish",
+                          icon: (
+                            <AssignmentTurnedInIcon
+                              style={{ width: "2rem", height: "2rem" }}
+                            />
+                          ),
+                        },
+                        {
+                          title: "Đang giao",
+                          status: "finish",
+                          icon: (
+                            <LocalShippingIcon
+                              style={{ width: "2rem", height: "2rem" }}
+                            />
+                          ),
+                        },
+                        {
+                          title: "Hoàn tất",
+                          status: "wait",
+                          icon: (
+                            <CheckCircleIcon
+                              style={{ width: "2rem", height: "2rem" }}
+                            />
+                          ),
+                        },
+                      ]}
+                    />
+                  </Grid>
                 </Grid>
               ))}
             </Grid>

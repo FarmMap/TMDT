@@ -62,15 +62,12 @@ const App: React.FC = () => {
             path="/san-pham/:productId/thanh-toan/:name-:quantity"
             element={<PayProductPage />}
           />
-           <Route path="/gio-hang/thanh-toan" element={<PayProductCart />} />
-          {/* <Route
+          <Route path="/gio-hang/thanh-toan" element={<PayProductCart />} />
+          <Route
             path="/san-pham/:productId/thanh-toan-thanh-cong"
             element={<SuccessOrderPage />}
-          /> */}
-            <Route
-            path="/thanh-toan-thanh-cong"
-            element={<SuccessOrderPage />}
           />
+          {/* <Route path="/thanh-toan-thanh-cong" element={<SuccessOrderPage />} /> */}
           <Route
             path="/cua-hang/cua-hang-cua-toi"
             element={<InfoMyShopPage />}

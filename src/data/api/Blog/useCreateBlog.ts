@@ -27,10 +27,8 @@ const useCreateBlog = () => {
     data.append("description", params.blogs?.description);
     data.append("articleCategories", params.blogs?.articleCategories);
     if (params.blogs?.image?.name !== undefined) {
-      console.log("succ", params.blogs.image);
       data.append("image", params.blogs?.image);
     } else {
-      console.log("err", params.blogs?.image);
       data.append("image", "");
     }
 

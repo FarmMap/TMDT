@@ -71,12 +71,13 @@ const ProductShopPage = () => {
   const { myShop } = useFetchMyShop({});
 
   // Call api
-  const { productList, isLoading: isLoadingProductList } = useFetchProductShopList({
-    page: 1,
-    storeId: myShop.id ?? 0,
-    search: searchDebounce,
-    shouldRefesh: refresh,
-  });
+  const { productList, isLoading: isLoadingProductList } =
+    useFetchProductShopList({
+      page: 1,
+      storeId: myShop.id ?? 0,
+      search: searchDebounce,
+      shouldRefesh: refresh,
+    });
 
   const columns: ColumnsType<ProductType> = [
     {
@@ -85,16 +86,9 @@ const ProductShopPage = () => {
         // eslint-disable-next-line jsx-a11y/alt-text
         <img
           src={
-            record.images?.length === 1
-              ? `${process.env.REACT_APP_API_BASE_URL}${record.images?.map(
-                  (item, i) => i === 0 && item
-                )}`
-              : `${(record.images || [])
-                  .map(
-                    (item, i) =>
-                      (i === 0 && process.env.REACT_APP_API_BASE_URL) || item
-                  )
-                  .join("")}`
+            Array.isArray(record.images) && record.images.length > 0
+              ? `${process.env.REACT_APP_API_BASE_URL}${record.images[0]}`
+              : "" // Fallback if images is not an array or is empty
           }
           className={cx("product-img")}
           alt="Lỗi"

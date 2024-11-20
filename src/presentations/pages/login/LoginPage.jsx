@@ -28,7 +28,6 @@ const LoginPage = () => {
         const user = userCredential.user;
         window.localStorage.setItem("token", user.accessToken);
         navigate("/");
-        // console.log(user);
       })
       .catch((error) => {
         const errorCode = error.code;

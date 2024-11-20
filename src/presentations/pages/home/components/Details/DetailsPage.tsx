@@ -248,7 +248,7 @@ const DetailsPage = () => {
                 </NavLink>
                 <span>
                   <ShoppingBagOutlinedIcon />
-                  <p> 35 lượt mua</p>
+                  <p> 30 lượt mua</p>
                 </span>
               </Grid>
 
@@ -271,7 +271,7 @@ const DetailsPage = () => {
                     <input value={quantity} onChange={handleInputChange} />
                     <button onClick={handleIncrease}>+</button>
                     <span style={{ marginLeft: "18px" }}>
-                      {product.weight} sản phẩm có sẵn
+                      {product.weight} {product.unit} sản phẩm có sẵn
                     </span>
                   </Grid>
                 </Grid>

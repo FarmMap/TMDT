@@ -16,7 +16,6 @@ interface FormCreateShopPageProps {
 const FormCreateShopPage = (props: FormCreateShopPageProps) => {
   // Create variable shop API
   const [shop, setShop] = useState<ShopType>({});
-  const [refresh, setRefresh] = useState(false);
 
   // step
   const steps = [
@@ -46,11 +45,6 @@ const FormCreateShopPage = (props: FormCreateShopPageProps) => {
 
   const items = steps.map((item) => ({ key: item.title, title: item.title }));
 
-  // Validate
-  const [isNext, setIsNext] = useState(false);
-
-  console.log(shop);
-
   // end step
 
   // APi
@@ -66,7 +60,7 @@ const FormCreateShopPage = (props: FormCreateShopPageProps) => {
       toast.success("Thao tác thành công, vui lòng chờ xét duyệt");
       setTimeout(() => navigate("/"), 3000);
     } else if (createShopErr) {
-      toast.error(createShopErr);
+      toast.error("Vui lòng điền đầy đủ thông tin yêu cầu");
     }
   }, [createShopErr, isCreated, navigate]);
 
@@ -76,17 +70,25 @@ const FormCreateShopPage = (props: FormCreateShopPageProps) => {
       <div style={{ margin: "4rem 0" }}>{steps[current].content}</div>
       <div style={{ marginTop: 24 }}>
         {current < 2 && (
-          <Button type="primary" onClick={() => next()}>
+          <Button type="default" onClick={() => next()}>
             Tiếp theo
           </Button>
         )}
         {current === 2 && (
-          <Button type="primary" onClick={handleCreateShop}>
+          <Button
+            disabled={shop ? false : true}
+            type="primary"
+            onClick={handleCreateShop}
+          >
             Hoàn thành
           </Button>
         )}
         {current > 0 && (
-          <Button style={{ margin: "0 8px" }} onClick={() => prev()}>
+          <Button
+            type="text"
+            style={{ margin: "0 8px" }}
+            onClick={() => prev()}
+          >
             Quay lại
           </Button>
         )}

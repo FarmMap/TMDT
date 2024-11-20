@@ -59,7 +59,9 @@ const AddProductPage = () => {
 
     setPreviewImage(file.url || (file.preview as string));
     setPreviewOpen(true);
-    setPreviewTitle(file.name || file.url!.substring(file.url!.lastIndexOf("/") + 1));
+    setPreviewTitle(
+      file.name || file.url!.substring(file.url!.lastIndexOf("/") + 1)
+    );
   };
 
   const uploadButton = (
@@ -88,7 +90,6 @@ const AddProductPage = () => {
       newProducts.saleEndDate = dateStrings[1];
       setProductList(newProducts);
     } else {
-      // console.log('Clear');
     }
   };
   //   end
@@ -104,7 +105,7 @@ const AddProductPage = () => {
     // Check file size
     const isLt25M = file.size && file.size / 1024 / 1024 < 25;
     if (!isLt25M) {
-      message.error('Image must be smaller than 25MB!');
+      message.error("Image must be smaller than 25MB!");
       return;
     }
 
@@ -222,7 +223,7 @@ const AddProductPage = () => {
 
   // Helper function to ensure non-negative values
   const ensureNonNegative = (value: number | string) => {
-    const num = typeof value === 'string' ? parseFloat(value) : value;
+    const num = typeof value === "string" ? parseFloat(value) : value;
     return Math.max(0, num);
   };
 
@@ -297,7 +298,9 @@ const AddProductPage = () => {
                       value={productList?.retailPrice ?? ""}
                       onChange={(e) => {
                         let newProducts = { ...productList };
-                        newProducts.retailPrice = ensureNonNegative(e.currentTarget.value).toString();
+                        newProducts.retailPrice = ensureNonNegative(
+                          e.currentTarget.value
+                        ).toString();
                         setProductList(newProducts);
                       }}
                       min="0"
@@ -311,7 +314,9 @@ const AddProductPage = () => {
                       value={productList?.salePrice ?? ""}
                       onChange={(e) => {
                         let newProducts = { ...productList };
-                        newProducts.salePrice = ensureNonNegative(e.currentTarget.value).toString();
+                        newProducts.salePrice = ensureNonNegative(
+                          e.currentTarget.value
+                        ).toString();
                         setProductList(newProducts);
                       }}
                       min="0"
@@ -344,7 +349,11 @@ const AddProductPage = () => {
                   >
                     <img
                       alt="example"
-                      style={{ width: "100%", maxHeight: "80vh", objectFit: "contain" }}
+                      style={{
+                        width: "100%",
+                        maxHeight: "80vh",
+                        objectFit: "contain",
+                      }}
                       src={previewImage}
                     />
                   </Modal>

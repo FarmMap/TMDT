@@ -12,6 +12,7 @@ import WaitProductListPage from "./waitproduct/WaitProductListPage";
 import classNames from "classnames/bind";
 import styles from "./OrderShopList.module.scss";
 import SuccessProductPage from "./successProduct/SuccessProduct";
+import CancelProductPage from "./cancelProduct/CancelProductPage";
 
 const cx = classNames.bind(styles);
 
@@ -52,6 +53,11 @@ const OrderShopListPage = () => {
                       style={{ fontSize: "1.2rem", textTransform: "unset" }}
                       value="2"
                     />
+                    <Tab
+                      label="Đã hủy"
+                      style={{ fontSize: "1.2rem", textTransform: "unset" }}
+                      value="3"
+                    />
                   </TabList>
                 </Box>
 
@@ -60,6 +66,9 @@ const OrderShopListPage = () => {
                 </TabPanel>
                 <TabPanel value="2">
                   <SuccessProductPage />
+                </TabPanel>
+                <TabPanel value="3">
+                  <CancelProductPage />
                 </TabPanel>
               </TabContext>
             </Box>

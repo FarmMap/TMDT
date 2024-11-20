@@ -1,9 +1,9 @@
 // External files
 import React, { useState } from "react";
-import {  message } from "antd";
+import { message } from "antd";
 
 import type { MenuProps } from "antd";
-import {  Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 
 import InfoMyShopLayout from "../InfoMyShopLayout";
 import dayjs from "dayjs";
@@ -12,37 +12,18 @@ import type { TimeRangePickerProps } from "antd";
 import { DatePicker } from "antd";
 import AllOrderShopPage from "./allOrderShop/AllOrderShopPage";
 
-
 // Styles
 import classNames from "classnames/bind";
 import styles from "./OrderShop.module.scss";
 
-
 const cx = classNames.bind(styles);
 //xóa ngày tháng năm
-const onRangeChange = (
-  dates: null | (Dayjs | null)[],
-  dateStrings: string[]
-) => {
-  if (dates) {
-    // console.log('From: ', dates[0], ', to: ', dates[1]);
-    // console.log('From: ', dateStrings[0], ', to: ', dateStrings[1]);
-  } else {
-    // console.log('Clear');
-  }
-};
+
 // show calender
-const rangePresets: TimeRangePickerProps["presets"] = [
-  { label: "Hôm qua", value: [dayjs().add(-1, "d"), dayjs()] },
-  { label: "7 ngày qua", value: [dayjs().add(-7, "d"), dayjs()] },
-  { label: "14 ngày qua", value: [dayjs().add(-14, "d"), dayjs()] },
-  { label: "30 ngày qua", value: [dayjs().add(-30, "d"), dayjs()] },
-  { label: "90 ngày qua", value: [dayjs().add(-90, "d"), dayjs()] },
-];
+
 //menu dropdown
 const handleMenuClick: MenuProps["onClick"] = (e) => {
   message.info("Click on menu item.");
-  console.log("click", e);
 };
 const items: MenuProps["items"] = [
   {

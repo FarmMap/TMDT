@@ -29,7 +29,6 @@ const AllOrderShopPage = () => {
   });
 
   const handleMenuClick = (info: any) => {
-    console.log(info.key);
     updateUser({ status: info.key });
   };
 

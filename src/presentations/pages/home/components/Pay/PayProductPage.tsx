@@ -5,9 +5,9 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 import LoyaltyOutlinedIcon from "@mui/icons-material/LoyaltyOutlined";
 import InventoryIcon from "@mui/icons-material/Inventory";
-import { Button, Input, RadioChangeEvent } from "antd";
+import { Button, Input } from "antd";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useFetchMyAccount from "../../../../../data/api/Account/useFetchMyAccount";
 import useFetchProductDetail from "../../../../../data/api/Product/useFetchProductDetail";
 import DefaultModal from "../../../../components/defaultModal/DefaultModal";
@@ -15,14 +15,12 @@ import DefaultDropDown from "../../../../components/defaultDropDown";
 import GetPlaceVietNamPage from "./GetPlaceVietNamPage";
 import OrderType from "../../../../../data/types/Order/OrderType";
 import useFetchProvinceList from "../../../../../data/api/Place/useFetchProvince";
-import useFetchDistrictByProvinceCode from "../../../../../data/api/Place/useFetchDistrictByProvinceCode";
 import useFetchWardByDistrictCode from "../../../../../data/api/Place/useFetchWardByDistrictCode";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./PayProduct.module.scss";
 import UserAccountType from "../../../../../data/types/UserAccount/UserAccountType";
 import useFetchDistrictList from "../../../../../data/api/Place/useFetchDistrictList";
-import useFetchWardList from "../../../../../data/api/Place/useFetchWardList";
 import useUpdateMyAccount from "../../../../../data/api/Account/useUpdateMyAccount";
 import { toast } from "react-toastify";
 import useCreateOrder from "../../../../../data/api/Order/useCreateOrder";
@@ -106,7 +104,7 @@ const PayProductPage = () => {
       toast.success("Cập nhật thành công");
       setRefresh((refresh) => !refresh);
     } else if (updateUserErr) {
-      toast.error(updateUserErr);
+      toast.error("Vui lòng điền đầy đủ thông tin");
     }
   }, [updateUserErr, userUpdated]);
 
@@ -178,6 +176,7 @@ const PayProductPage = () => {
     } else if (error) {
       toast.error(error);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error, isCreated]);
 
   // thanh toan
@@ -202,9 +201,12 @@ const PayProductPage = () => {
             >
               <Grid>
                 <Grid>
-                  <label htmlFor="name">Họ & tên</label>
+                  <label htmlFor="name">
+                    Họ & tên <span style={{ color: "red" }}>*</span>
+                  </label>
                   <Input
                     className={cx("input")}
+                    required
                     value={userUpdate.fullName ?? user.fullName}
                     onChange={(e) => {
                       let newUser = { ...userUpdate };
@@ -217,7 +219,10 @@ const PayProductPage = () => {
                 </Grid>
 
                 <Grid>
-                  <label htmlFor="">Tỉnh/Thành phố/Quận/Huyện/Phường/Xã</label>
+                  <label htmlFor="">
+                    Tỉnh - Thành phố/Quận/Huyện - Phường/Xã{" "}
+                    <span style={{ color: "red" }}>*</span>
+                  </label>
                   <DefaultDropDown
                     visible={showPlace}
                     childrenRender={
@@ -262,6 +267,7 @@ const PayProductPage = () => {
                   <label htmlFor="name">Địa chỉ chi tiết</label>
                   <Input
                     className={cx("input")}
+                    required
                     value={userUpdate.address ?? user.address}
                     onChange={(e) => {
                       let newUser = { ...userUpdate };
@@ -406,8 +412,14 @@ const PayProductPage = () => {
               </Grid>
 
               <Grid className={cx("btn-order")}>
-                <Button onClick={handleSubmitOrder} block>
-                  Đặt mua
+                <Button
+                  disabled={user.address === null ? true : false}
+                  onClick={handleSubmitOrder}
+                  block
+                >
+                  {user.address === null
+                    ? "Vui lòng cập nhật địa chỉ"
+                    : "Đặt mua"}
                 </Button>
               </Grid>
             </Grid>
