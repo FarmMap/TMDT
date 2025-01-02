@@ -1,0 +1,131 @@
+.wrapper {
+  background-color: var(--white-color);
+  width: 92.5vw;
+  margin-top: 20px;
+  padding: 12px 0;
+  border-radius: 3px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 1.4rem;
+  padding: 0 12px;
+
+  h5 {
+    color: var(--black-color);
+    font-size: 1.6rem;
+  }
+  a {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    color: var(--primary-color);
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    svg {
+      margin-left: 4px;
+    }
+  }
+}
+
+.container {
+  padding: 0 12px;
+  .ant-carousel {
+    .slick-slide {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
+.product-card {
+  background-color: var(--white-color);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  position: relative;
+
+  img {
+    max-width: 80px; // Điều chỉnh kích thước hình ảnh
+    height: auto;
+    border-radius: 50%; // Hình tròn cho logo
+    margin-bottom: 10px; // Khoảng cách dưới hình ảnh
+  }
+
+  p {
+    display: block;
+    background-color: var(--gray-color);
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin: 5px 0;
+    font-size: 1.4rem;
+    color: var(--black-color);
+    span {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+  }
+
+  .rating {
+    font-size: 1rem;
+    color: #f39c12; // Màu vàng cho xếp hạng
+  }
+
+  .stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+
+    span {
+      font-size: 0.9rem;
+      color: #333;
+    }
+  }
+}
+
+.shopInfo-wrapper {
+  display: flex;
+  flex-direction: column !important;
+  justify-content: center;
+  margin: 0px 0 0 8px;
+
+  h4 {
+    display: block;
+    color: var(--white-color);
+
+    width: 100%;
+    text-align: left;
+    font-size: 1.6rem;
+    font-weight: bold; // Đậm hơn
+  }
+}
+
+.shop-relative {
+  position: relative;
+  height: 100px;
+  padding: 16px;
+  background-color: var(--green-hover-color);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.shop-absolute {
+  position: absolute;
+  bottom: -42px;
+}
+
+.about-shop {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+}

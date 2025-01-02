@@ -1,8 +1,8 @@
 .wrapper {
   display: flex;
   align-items: center;
-  padding: 14px 0;
-  background-color: var(--primary-color);
+  padding: 6px 0;
+  background: var(--primary-color);
   color: var(--white-color);
 }
 
@@ -12,20 +12,20 @@
 
 .logo {
   font-weight: 600;
-  margin-left: 80px;
+  margin-left: 50px;
   img {
     height: 48px;
-    width: 48px;
+    width: auto;
   }
 }
 
 .search-wrapper {
   margin-left: 8px;
-  width: 57%;
+  // width: 57%;
 }
 
 .icon-wrapper {
-  width: 448px;
+  // width: auto;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -40,13 +40,14 @@
   }
 
   .loginBtn {
-    background-color: var(--primary-color) !important;
+    background-color: transparent !important;
     box-shadow: none !important;
     font-size: 1.2rem !important;
     text-transform: none !important;
 
     &:hover {
       opacity: 0.8;
+      background-color: transparent !important;
     }
   }
 

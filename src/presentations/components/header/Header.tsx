@@ -16,6 +16,7 @@ import AccountInfo from "./components/AccountInfo";
 import useAuth from "../../../hooks/useAuth";
 import { NavLink } from "react-router-dom";
 import { useCart } from "../../pages/home/components/Cart/CartContext";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
@@ -39,14 +40,14 @@ const Header = () => {
 
   return (
     <Grid className={cx("container")}>
-      <Grid className={cx("wrapper")}>
-        <Grid className={cx("logo")}>
+      <Grid container columns={12} className={cx("wrapper")}>
+        <Grid lg={0.5} md={0.5} className={cx("logo")}>
           <NavLink to="/" style={{ display: "flex", alignItems: "center" }}>
             <img src={images.logo} alt="logo" />
           </NavLink>
         </Grid>
 
-        <Grid className={cx("search-wrapper")}>
+        <Grid lg={5.5} md={5.5} className={cx("search-wrapper")}>
           <InputSearch
             size="large"
             placeholder="Tìm kiếm sản phẩm"
@@ -54,11 +55,17 @@ const Header = () => {
           />
         </Grid>
 
-        <Grid className={cx("icon-wrapper")}>
+        <Grid lg={5} md={5} className={cx("icon-wrapper")}>
           <NavLink to="/">
             <Button className={cx("loginBtn")} variant="contained">
               <HomeRoundedIcon />
               <span>Trang chủ </span>
+            </Button>
+          </NavLink>
+          <NavLink to="/">
+            <Button className={cx("loginBtn")} variant="contained">
+              <NotificationsIcon />
+              <span>Thông báo </span>
             </Button>
           </NavLink>
           <NavLink to="/tin-tuc">

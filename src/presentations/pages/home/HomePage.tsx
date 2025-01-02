@@ -6,7 +6,7 @@ import DefaultLayOut from "../../components/defaultLayOut/DefaultLayOut";
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
 import GridViewIcon from "@mui/icons-material/GridView";
 // Internal files
-import { sidebarList, imageList } from "./DataHome";
+import { imageList } from "./DataHome";
 import CategoryPage from "./components/Category/CategoryPage";
 import ProductListPage from "./components/ProductList/ProductListPage";
 import useFetchProductPorfolio from "../../../data/api/ProductPorfolio/useFetchProductPortfolio";
@@ -14,6 +14,7 @@ import useFetchProductPorfolio from "../../../data/api/ProductPorfolio/useFetchP
 import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
 import { NavLink } from "react-router-dom";
+import SaleShopPage from "./components/SaleShop/SaleShopPage";
 
 const cx = classNames.bind(styles);
 
@@ -78,6 +79,10 @@ const HomePage = () => {
 
         <Grid id={categoryName}>
           <CategoryPage />
+        </Grid>
+
+        <Grid>
+          <SaleShopPage />
         </Grid>
 
         <Grid>

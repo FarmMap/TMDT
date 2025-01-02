@@ -29,8 +29,7 @@ const images = {
   stick: require("../images/stick.jpg"),
   bannerlogin: require("../images/anhlogin.jpg"),
   logo: require("../images/logo.png"),
-  defalutShopAvt:
-   "https://cdn-icons-png.flaticon.com/512/3718/3718330.png"
+  defalutShopAvt: require("../images/shopDefault.jpg"),
 };
 
 export default images;
